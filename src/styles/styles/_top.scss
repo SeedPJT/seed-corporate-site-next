@@ -620,12 +620,16 @@ body#frontpage.loading_container__hidden.loading_skipped {
     display: none;
     animation: none;
   }
-  // SPA nav 帰還時 = corner の 小 tree ( 最後 の 完成状態) を 静的 に表示。 animation なし、
-  // opacity 1 で 最初 から 確定 位置。
+  // SPA nav 帰還時 = corner の 小 tree ( 最後 の 完成状態) を 静的 に表示。
+  // load 直後 は frame 0 ( 土 だけ) が見える の で opacity 0 で 隠し、
+  // JS で 最終 frame に seek 完了 後 .tree-ready で 見せる。
   #loadingAnimationSub {
     display: flex;
-    opacity: 1;
+    opacity: 0;
     animation: none;
+    &.tree-ready {
+      opacity: 1;
+    }
   }
 }
 

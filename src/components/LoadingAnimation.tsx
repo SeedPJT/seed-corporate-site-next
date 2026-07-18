@@ -53,22 +53,29 @@ export default function LoadingAnimation() {
   }, [isFrontpage])
 
   // skip mode = corner tree を最終 frame に固定 ( 咲く animation を再生 させない)。
+  // load 直後 = frame 0 ( 土 だけ) が見える の を 防ぐ ため opacity 0 で 隠して、
+  // seek 完了 後 に .tree-ready で 見せる。
   useEffect(() => {
     if (!isFrontpage || shouldRunFullLoading) return
     const el = document.getElementById('loadingAnimationSub') as (HTMLElement & { getLottie?: () => { totalFrames: number; goToAndStop: (frame: number, isFrame?: boolean) => void } }) | null
     if (!el) return
+    let done = false
     const seekEnd = () => {
       const anim = el.getLottie?.()
-      if (anim) {
-        anim.goToAndStop(Math.max(0, anim.totalFrames - 1), true)
-        dbg('seek to end frame', anim.totalFrames - 1)
-      }
+      if (!anim) return
+      anim.goToAndStop(Math.max(0, anim.totalFrames - 1), true)
+      el.classList.add('tree-ready')
+      done = true
+      dbg('seek to end frame', anim.totalFrames - 1)
     }
     el.addEventListener('ready', seekEnd)
-    // 既に ready 済 の場合 も seek
     seekEnd()
+    // load event 後 でも 再 seek ( ready 前 に mount 完了 する 場合)
+    el.addEventListener('load', seekEnd)
     return () => {
       el.removeEventListener('ready', seekEnd)
+      el.removeEventListener('load', seekEnd)
+      if (!done) el.classList.remove('tree-ready')
     }
   }, [isFrontpage, shouldRunFullLoading])
 
