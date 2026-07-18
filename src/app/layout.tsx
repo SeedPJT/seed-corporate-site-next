@@ -1,9 +1,30 @@
 import type { Metadata } from 'next'
 import Script from 'next/script'
+import { headers } from 'next/headers'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import BodyIdSetter from '@/components/BodyIdSetter'
 import '@/styles/style.scss'
+
+// pathname → body id map。 middleware で 注入 された x-pathname header を使って SSR で 決定。
+const PATH_TO_ID: Record<string, string> = {
+  '/': 'frontpage',
+  '/about-us': 'about-us',
+  '/product': 'product',
+  '/service': 'service',
+  '/service/ai-and-system': 'ai-and-system',
+  '/service/ai-x-education': 'ai-x-education',
+  '/service/support-and-growth': 'support-and-growth',
+  '/contact': 'contact',
+  '/contact/thanks': 'thanks',
+}
+
+async function getBodyId(): Promise<string> {
+  const h = await headers()
+  const pathname = h.get('x-pathname') || '/'
+  const normalized = pathname.length > 1 && pathname.endsWith('/') ? pathname.slice(0, -1) : pathname
+  return PATH_TO_ID[normalized] || 'other_page'
+}
 
 export const metadata: Metadata = {
   title: '株式会社Seed',
@@ -20,12 +41,8 @@ export const metadata: Metadata = {
 
 const gtmId = 'GTM-MX2RWFNP'
 
-// body id を body parse 直後 に 同期 設定 する ため の inline script。
-// body 直下 の 1 番目 に 置く = 以降 に render される 子要素 の CSS ( body#frontpage スコープ の
-// レスポンシブ含む) が 初回描画 から効く。
-const bodyIdScript = `(function(){var m={'/':'frontpage','/about-us':'about-us','/product':'product','/service':'service','/service/ai-and-system':'ai-and-system','/service/ai-x-education':'ai-x-education','/service/support-and-growth':'support-and-growth','/contact':'contact','/contact/thanks':'thanks'};var p=location.pathname.replace(/\\/+$/,'');if(p==='')p='/';document.body.id=m[p]||'other_page';})();`
-
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const bodyId = await getBodyId()
   return (
     <html lang="ja">
       <head>
@@ -40,9 +57,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             async/defer だと lottie-player render 時点 で 未定義 = fullscreen loading の 初期 フェーズ が empty に見える。 */}
         <script src="https://unpkg.com/@lottiefiles/lottie-player@2.0.12/dist/lottie-player.js" />
       </head>
-      <body>
-        {/* body 直下 1 番目 で body id を 同期 set = SCSS body#{id} スコープ の レスポンシブ が 効く */}
-        <script dangerouslySetInnerHTML={{ __html: bodyIdScript }} />
+      <body id={bodyId}>
         {/* Google Tag Manager */}
         <Script id="gtm-script" strategy="afterInteractive">
           {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${gtmId}');`}
