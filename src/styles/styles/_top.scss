@@ -610,12 +610,17 @@ body#frontpage.loading_container__hidden {
 
   transition: transform 1s ease, right 1s ease, left 1s ease, top 1s ease,
     width 1s ease, height 1s ease, z-index 1s ease;
-  background: transparent;
+  // 元 WP = transparent = full page load 前提 (browser blank から描画)。
+  // Next.js SPA = 前 page の DOM が生きて いる = transparent だと 木画像 が behind に見える 問題。
+  // main_bg_color を明示 = 「一番惜しい」 state を 完全 に理想 state に = 木画像 が 完全にカバー される。
+  background: $main_bg_color;
   overflow: hidden;
 
   #loadingAnimation {
     display: block;
     height: 100%;
+    width: auto;
+    max-width: 100%;
   }
 
   #skipButton {
