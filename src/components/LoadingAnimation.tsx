@@ -9,9 +9,6 @@ import { usePathname } from 'next/navigation'
 // page-load 単位 の state を保持 ( module 再評価 は hard reload のみ )。
 let hasShownInPageLoad = false
 
-// Next.js App Router は root layout を SPA nav で 再 render しない = LoadingAnimation の
-// mount / unmount で 制御 する と 挙動 が壊れる。 pathname を watch して body class を
-// 全 nav で 再同期 する。
 const useIsoLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect
 
 // 一時 debug = user 依頼 で SPA nav 挙動 追跡 用。 本 番 fix 後 に 除去 予定。
@@ -19,19 +16,18 @@ const dbg = (...args: unknown[]) => {
   if (typeof window !== 'undefined') console.log('[loading]', ...args)
 }
 
-// full loading = 中央 の 巨大 tree loading + corner に 定着 する sub tree の 2 つ。
-const LOADING_HTML_FULL = `<div id="loading_container"><lottie-player id="loadingAnimation" src="/img/top/loading.json" background="transparent" speed="1" autoplay></lottie-player><div id="skipButton">Skip</div></div><lottie-player id="loadingAnimationSub" src="/img/top/loading.json" background="transparent" speed="100" autoplay></lottie-player>`
+// full loading = 中央 の 巨大 tree loading + skip button。 hard reload の時 のみ 描画。
+const LOADING_CONTAINER_HTML = `<div id="loading_container"><lottie-player id="loadingAnimation" src="/img/top/loading.json" background="transparent" speed="1" autoplay></lottie-player><div id="skipButton">Skip</div></div>`
 
-// SPA nav 帰還時 = 最後 の 完成状態 ( corner に 定着 した 小 tree のみ) を静的 に出す。
-// autoplay 外して useEffect で 最終 frame に seek = 咲く animation を 再生 させない。
-const LOADING_HTML_SKIP = `<lottie-player id="loadingAnimationSub" src="/img/top/loading.json" background="transparent"></lottie-player>`
+// corner の tree = 常時 mount で lottie state を持続 = SPA nav 帰還時 に 即 表示 可能。
+// autoplay = full loading 完了 で fadein する 際 に 咲く animation を再生 させる ため。
+// skip mode で は useEffect が 最終 frame に seek + pause させる。
+const LOADING_SUB_HTML = `<lottie-player id="loadingAnimationSub" src="/img/top/loading.json" background="transparent" speed="100" autoplay></lottie-player>`
 
 export default function LoadingAnimation() {
   const pathname = usePathname()
   const isFrontpage = pathname === '/'
 
-  // 各 render で module 変数 を fresh に 読む = hard reload 直後 は false で LOADING_HTML を出し、
-  // hasShown=true 後 の nav は 即 skip 扱い ( full loading は render しない、 corner tree のみ)。
   const shouldRunFullLoading = isFrontpage && !hasShownInPageLoad
 
   dbg('render', { pathname, isFrontpage, hasShown: hasShownInPageLoad, shouldRunFullLoading })
@@ -52,32 +48,31 @@ export default function LoadingAnimation() {
     }
   }, [isFrontpage])
 
-  // skip mode = corner tree を最終 frame に固定 ( 咲く animation を再生 させない)。
-  // load 直後 = frame 0 ( 土 だけ) が見える の を 防ぐ ため opacity 0 で 隠して、
-  // seek 完了 後 に .tree-ready で 見せる。
+  // skip mode = corner tree を 最終 frame で stop、 咲く animation を再生 させない。
+  // mount は 1 度 きり = tree state は 全 nav で 持続 する。
   useEffect(() => {
-    if (!isFrontpage || shouldRunFullLoading) return
-    const el = document.getElementById('loadingAnimationSub') as (HTMLElement & { getLottie?: () => { totalFrames: number; goToAndStop: (frame: number, isFrame?: boolean) => void } }) | null
+    const el = document.getElementById('loadingAnimationSub') as
+      | (HTMLElement & { getLottie?: () => { totalFrames: number; goToAndStop: (frame: number, isFrame?: boolean) => void; play: () => void } })
+      | null
     if (!el) return
-    let done = false
     const seekEnd = () => {
       const anim = el.getLottie?.()
       if (!anim) return
       anim.goToAndStop(Math.max(0, anim.totalFrames - 1), true)
       el.classList.add('tree-ready')
-      done = true
-      dbg('seek to end frame', anim.totalFrames - 1)
+      dbg('sub seek to end frame', anim.totalFrames - 1)
     }
+    // hard reload で full loading 実行中 = 通常 autoplay で 咲く animation を 見せる。
+    // 完了 後 ( hasShown=true) の nav では seek 済 で 静止 させる。
+    if (shouldRunFullLoading) return
     el.addEventListener('ready', seekEnd)
-    seekEnd()
-    // load event 後 でも 再 seek ( ready 前 に mount 完了 する 場合)
     el.addEventListener('load', seekEnd)
+    seekEnd()
     return () => {
       el.removeEventListener('ready', seekEnd)
       el.removeEventListener('load', seekEnd)
-      if (!done) el.classList.remove('tree-ready')
     }
-  }, [isFrontpage, shouldRunFullLoading])
+  }, [shouldRunFullLoading])
 
   useEffect(() => {
     if (!shouldRunFullLoading) return
@@ -125,7 +120,14 @@ export default function LoadingAnimation() {
     }
   }, [shouldRunFullLoading])
 
-  if (!isFrontpage) return null
-  const html = shouldRunFullLoading ? LOADING_HTML_FULL : LOADING_HTML_SKIP
-  return <div suppressHydrationWarning dangerouslySetInnerHTML={{ __html: html }} />
+  return (
+    <>
+      {shouldRunFullLoading && (
+        <div suppressHydrationWarning dangerouslySetInnerHTML={{ __html: LOADING_CONTAINER_HTML }} />
+      )}
+      {/* corner tree = 全 route で mount 維持 = 再訪時 に 即 表示、 lottie load / seek の delay なし。
+          CSS で 非 frontpage は display:none で hide される。 */}
+      <div suppressHydrationWarning dangerouslySetInnerHTML={{ __html: LOADING_SUB_HTML }} />
+    </>
+  )
 }
