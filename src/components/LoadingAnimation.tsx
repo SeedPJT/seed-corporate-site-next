@@ -25,10 +25,8 @@ export default function LoadingAnimation() {
       if (container) container.classList.add('hidden')
       document.body.classList.add('loading_container__hidden')
     }
-    // 元 WP は window.load = 画像 / fonts / lottie 全て 揃った 後 に 3秒 = 実質 5-7秒 の 体感。
-    // Next.js は hydration 時点 で readyState=complete = 即 3秒 開始 = 実際 に 短く 感じる。
-    // 4 秒 に 延長 で 体感 を 揃える。
-    const onLoad = () => setTimeout(hide, 4000)
+    // 元 WP と同じ = window.load から 3 秒。 readyState=complete 判定 は fallback。
+    const onLoad = () => setTimeout(hide, 3000)
     if (document.readyState === 'complete') {
       onLoad()
     } else {

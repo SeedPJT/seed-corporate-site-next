@@ -570,7 +570,7 @@ body#support-and-growth {
       position: relative;
       z-index: 600;
       opacity: 0;
-      animation: FvFadeIn 1s ease-in-out forwards;
+      animation: FvFadeIn 1s ease-in-out both;
 
       .fv_title {
         font-size: rem(60);
@@ -654,7 +654,8 @@ body#support-and-growth {
           background-color: #666cd9;
           border-radius: 50%;
           opacity: 0;
-          animation: FvFadeIn 1s ease-in-out forwards;
+          // fill-mode: both = delay 中 も 0% state (opacity 0) を強制 = client-nav 時 の 一瞬 表示 チラつき 対策
+          animation: FvFadeIn 1s ease-in-out both;
           animation-delay: 1s;
           @include mq(tbsm) {
             flex-direction: row;
@@ -752,7 +753,7 @@ body#support-and-growth {
           padding: rem(22) rem(12) rem(22) rem(22);
           margin-left: rem(28);
           opacity: 0;
-          animation: FvFadeIn 1s ease-in-out forwards;
+          animation: FvFadeIn 1s ease-in-out both;
           animation-delay: 1s;
           @include mq(tbsm) {
             font-size: rem(15);
