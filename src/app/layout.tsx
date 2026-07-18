@@ -36,8 +36,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&display=swap"
           rel="stylesheet"
         />
-        {/* Lottie player = defer で HTML parse 完了後、 hydration 前に実行 = custom element が使える状態 に */}
-        <script defer src="https://unpkg.com/@lottiefiles/lottie-player@2.0.12/dist/lottie-player.js" />
+        {/* Lottie player = sync loading で 初回描画 前 に custom element を確実 に 定義。
+            async/defer だと lottie-player render 時点 で 未定義 = fullscreen loading の 初期 フェーズ が empty に見える。 */}
+        <script src="https://unpkg.com/@lottiefiles/lottie-player@2.0.12/dist/lottie-player.js" />
       </head>
       <body>
         {/* body 直下 1 番目 で body id を 同期 set = SCSS body#{id} スコープ の レスポンシブ が 効く */}
