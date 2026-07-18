@@ -1,0 +1,46 @@
+@use "../styles/setting" as *;
+
+.accordion_area {
+  .acc_item {
+    transition: all 0.5s ease;
+
+    .accordion_title {
+      position: relative;
+      cursor: pointer;
+      transition: all 0.5s ease-in-out;
+
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        top: 48%;
+        right: rem(16);
+        width: rem(12);
+        height: 2px;
+        background-color: $text_color;
+        transition: all 0.5s ease;
+      }
+      &::before {
+        transform: rotate(0deg);
+      }
+      &::after {
+        transform: rotate(90deg);
+      }
+
+      &.open {
+        &::before {
+          transform: rotate(45deg);
+        }
+        &::after {
+          transform: rotate(-45deg);
+        }
+      }
+    }
+
+    .accordion_box {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+    }
+  }
+}

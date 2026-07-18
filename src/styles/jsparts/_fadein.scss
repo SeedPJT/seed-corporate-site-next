@@ -1,0 +1,24 @@
+@use "../styles/setting" as *;
+
+.animation_fade {
+  opacity: 0;
+  transition: opacity 2s, transform 2s;
+
+  &.top {
+    transform: translateY(-100px);
+  }
+  &.bottom {
+    transform: translateY(100px);
+  }
+  &.left {
+    transform: translateX(-100px);
+  }
+  &.right {
+    transform: translateX(100px);
+  }
+
+  &.fadein {
+    opacity: 1;
+    transform: translate(0);
+  }
+}

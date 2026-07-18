@@ -1,0 +1,64 @@
+@use "../styles/setting" as *;
+
+.modal_overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $white;
+  opacity: 0;
+  transition: background-color 0.3s, opacity 0.3s;
+
+  &.active {
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .modal_content {
+    position: relative;
+    padding: rem(32);
+    border-radius: rem(10);
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transform: scale(0.9);
+    transition: opacity 0.3s, transform 0.3s;
+
+    &.active {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .cross_btn {
+      position: absolute;
+      top: rem(16);
+      right: rem(16);
+      cursor: pointer;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  .btn_container {
+    margin-top: rem(24);
+    text-align: center;
+
+    .modal_btn {
+      font-size: rem(16);
+      padding: rem(16) rem(32);
+      margin: 0 rem(8);
+      cursor: pointer;
+      border: none;
+      border-radius: rem(10);
+      background-color: $gray;
+      color: $white;
+      text-decoration: none;
+    }
+  }
+}

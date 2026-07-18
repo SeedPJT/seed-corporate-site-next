@@ -1,0 +1,20 @@
+@use "../styles/setting" as *;
+
+.tab_buttons {
+  display: flex;
+  width: 100%;
+
+  .tab_button {
+    background: unset;
+  }
+}
+
+.tab_contents {
+  .tab_content {
+    display: none;
+
+    &.active {
+      display: block;
+    }
+  }
+}

@@ -1,0 +1,91 @@
+@use "sass:math";
+
+/////////////////
+// font-family //
+/////////////////
+$base_font: "Zen Kaku Gothic New", sans-serif;
+$accent_font: "Barlow Semi Condensed", sans-serif;
+
+/////////////////
+// font-weight //
+/////////////////
+$regular: 400;
+$medium: 500;
+$demi_bold: 600;
+$bold: 700;
+
+///////////
+// 色指定 //
+///////////
+$text_color: #242731;
+$black: #242731;
+$white: #fff;
+$gray: #ccc;
+$main_color: #777de1;
+$main_bg_color: #f3f4f9;
+$btn_green: #0a8866;
+$btn_pink: #f05f7c;
+
+/////////////
+// 基本設定 //
+/////////////
+
+body {
+  font-family: $base_font;
+  font-weight: $medium;
+  color: $text_color;
+}
+
+///////////////////
+// ブレイクポイント //
+///////////////////
+$breakpoints: (
+  se: 375,
+  sp: 480,
+  splg: 639,
+  tbsm: 768,
+  tb: 959,
+  pc: 1099,
+  pclg: 1100,
+);
+
+/////////////////
+// メディアクエリ //
+/////////////////
+$mediaquerys: (
+  se: "screen and (max-width: #{map-get($breakpoints,'se')}px)",
+  sp: "screen and (max-width: #{map-get($breakpoints,'sp')}px)",
+  splg: "screen and (max-width: #{map-get($breakpoints,'splg')}px)",
+  tbsm: "screen and (max-width: #{map-get($breakpoints,'tbsm')}px)",
+  tb: "screen and (max-width: #{map-get($breakpoints,'tb')}px)",
+  pc: "screen and (max-width: #{map-get($breakpoints,'pc')}px)",
+  pclg: "screen and (min-width: #{map-get($breakpoints,'pclg')}px)",
+);
+
+@mixin mq($mediaquery: tbsm) {
+  @media #{map-get($mediaquerys, $mediaquery)} {
+    @content;
+  }
+}
+
+/////////
+// 関数 //
+/////////
+
+// 数値のみを取り出す
+@function strip-unit($number) {
+  @if type-of($number) == "number" and not unitless($number) {
+    @return math.div($number, $number * 0 + 1);
+  }
+  @return $number;
+}
+
+// フォントサイズ ÷ 画面幅 * 100vw の計算
+@function vw($window_width, $size) {
+  @return math.div($size, $window_width) * 100vw;
+}
+
+// pxからremへの計算式
+@function rem($pixels) {
+  @return math.div($pixels, 16) * 1rem;
+}

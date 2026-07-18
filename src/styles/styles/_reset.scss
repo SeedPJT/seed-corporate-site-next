@@ -1,0 +1,54 @@
+﻿/* リセットCSS */
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+::before,
+::after {
+  border-style: solid;
+  box-sizing: border-box;
+  border-width: 0;
+}
+
+html {
+  height: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  line-height: 2;
+  text-rendering: optimizeSpeed;
+}
+
+.all_container {
+  overflow-x: hidden;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  background-color: transparent;
+  text-decoration: none;
+  text-decoration-skip-ink: auto;
+}
+
+img,
+video,
+iframe {
+  display: block;
+  max-width: 100%;
+  width: 100%;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
