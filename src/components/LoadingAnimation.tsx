@@ -1,31 +1,35 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useEffect, useLayoutEffect, useState } from 'react'
 
 // 元 WP header.php + loading.js の 完全 忠実 移植。
-// SSR HTML に loading 一式 を 直接 含める = hard reload 時 に 初回描画 から DOM に存在。
-// SPA nav で は useState lazy initializer が sessionStorage を 読んで 初回 render を null 化
-// = loading DOM が 一 瞬 でも paint されない = flash 完全 消滅。
+//
+// 「1 page load で 1 回」 semantics = hard reload は 必ず 走る、 SPA nav は skip。
+// sessionStorage は タブ 閉じ まで 持続 する ため 「reload しても skip」 に なって しまう =
+// module 変数 で page-load 単位 の state を保持 する ( module 再評価 は hard reload のみ )。
+let hasShownInPageLoad = false
+
+// SSR 中 は useLayoutEffect が 使え ない ため isomorphic 変種。
+// SPA nav 時 = client 側 で 動く = useLayoutEffect が paint 前 に class を反映 = flash 消える。
+const useIsoLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect
+
 const LOADING_HTML = `<div id="loading_container"><lottie-player id="loadingAnimation" src="/img/top/loading.json" background="transparent" speed="1" autoplay></lottie-player><div id="skipButton">Skip</div></div><lottie-player id="loadingAnimationSub" src="/img/top/loading.json" background="transparent" speed="100" autoplay></lottie-player>`
 
-const SESSION_KEY = 'seed_loading_shown'
-
 export default function LoadingAnimation() {
-  // SPA nav 時 の 「既 表示 済」 判定 = 初回 render 前 に 決定 する ため lazy init。
-  // SSR (typeof window === 'undefined') は false で render = hard reload 用 の HTML を SSR に含める。
-  const [skip] = useState<boolean>(() => {
-    if (typeof window === 'undefined') return false
-    return window.sessionStorage.getItem(SESSION_KEY) === '1'
-  })
+  // 初回 render 前 に skip 判定 = SSR は false 固定 で LOADING_HTML を render。
+  const [skip] = useState<boolean>(() => hasShownInPageLoad)
 
-  useEffect(() => {
+  // skip 経路 = BodyIdSetter の body id 変更 と 同 tick で class を貼って paint 一 発。
+  useIsoLayoutEffect(() => {
     if (skip) {
-      // SPA nav = loading DOM 無し で 即 完成 状態 に。
       document.body.classList.add('loading_container__hidden')
       document.body.classList.add('loading_skipped')
-      return
     }
+  }, [skip])
 
-    // hard reload path = 従来通り loading 再生 → hide → session flag set。
+  useEffect(() => {
+    if (skip) return
+
+    // hard reload path = 従来通り。 module 変数 は 最後 に set = 途中 unmount で skip 化 しない。
     document.body.classList.remove('loading_container__hidden')
     document.body.classList.remove('loading_skipped')
 
@@ -38,7 +42,7 @@ export default function LoadingAnimation() {
         const c = document.getElementById('loading_container')
         if (c) c.classList.add('hidden')
         document.body.classList.add('loading_container__hidden')
-        window.sessionStorage.setItem(SESSION_KEY, '1')
+        hasShownInPageLoad = true
       }
     }
 
