@@ -616,9 +616,15 @@ body#frontpage.loading_container__hidden.loading_skipped {
       display: none;
     }
   }
-  #loading_container,
-  #loadingAnimationSub {
+  #loading_container {
     display: none;
+    animation: none;
+  }
+  // SPA nav 帰還時 = corner の 小 tree ( 最後 の 完成状態) を 静的 に表示。 animation なし、
+  // opacity 1 で 最初 から 確定 位置。
+  #loadingAnimationSub {
+    display: flex;
+    opacity: 1;
     animation: none;
   }
 }

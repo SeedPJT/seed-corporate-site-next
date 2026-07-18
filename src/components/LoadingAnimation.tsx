@@ -14,18 +14,29 @@ let hasShownInPageLoad = false
 // 全 nav で 再同期 する。
 const useIsoLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect
 
-const LOADING_HTML = `<div id="loading_container"><lottie-player id="loadingAnimation" src="/img/top/loading.json" background="transparent" speed="1" autoplay></lottie-player><div id="skipButton">Skip</div></div><lottie-player id="loadingAnimationSub" src="/img/top/loading.json" background="transparent" speed="100" autoplay></lottie-player>`
+// 一時 debug = user 依頼 で SPA nav 挙動 追跡 用。 本 番 fix 後 に 除去 予定。
+const dbg = (...args: unknown[]) => {
+  if (typeof window !== 'undefined') console.log('[loading]', ...args)
+}
+
+// full loading = 中央 の 巨大 tree loading + corner に 定着 する sub tree の 2 つ。
+const LOADING_HTML_FULL = `<div id="loading_container"><lottie-player id="loadingAnimation" src="/img/top/loading.json" background="transparent" speed="1" autoplay></lottie-player><div id="skipButton">Skip</div></div><lottie-player id="loadingAnimationSub" src="/img/top/loading.json" background="transparent" speed="100" autoplay></lottie-player>`
+
+// SPA nav 帰還時 = 最後 の 完成状態 ( corner に 定着 した 小 tree のみ) を静的 に出す。
+const LOADING_HTML_SKIP = `<lottie-player id="loadingAnimationSub" src="/img/top/loading.json" background="transparent" speed="100" autoplay></lottie-player>`
 
 export default function LoadingAnimation() {
   const pathname = usePathname()
   const isFrontpage = pathname === '/'
 
   // 各 render で module 変数 を fresh に 読む = hard reload 直後 は false で LOADING_HTML を出し、
-  // hasShown=true 後 の nav は 即 skip。 useState で 固定 する と 後続 の nav でも 再 loading して しまう bug。
-  const shouldRenderLoading = isFrontpage && !hasShownInPageLoad
+  // hasShown=true 後 の nav は 即 skip 扱い ( full loading は render しない、 corner tree のみ)。
+  const shouldRunFullLoading = isFrontpage && !hasShownInPageLoad
 
-  // 全 nav で 実行 = frontpage 離れ たら class 清掃、 skip 再訪 で は 即 skip 状態 に。
+  dbg('render', { pathname, isFrontpage, hasShown: hasShownInPageLoad, shouldRunFullLoading })
+
   useIsoLayoutEffect(() => {
+    dbg('layoutEffect', { isFrontpage, hasShown: hasShownInPageLoad })
     if (!isFrontpage) {
       document.body.classList.remove('loading_container__hidden')
       document.body.classList.remove('loading_skipped')
@@ -41,9 +52,9 @@ export default function LoadingAnimation() {
   }, [isFrontpage])
 
   useEffect(() => {
-    if (!shouldRenderLoading) return
+    if (!shouldRunFullLoading) return
 
-    // hard reload path = 従来通り。 完了 時 に module flag を set。
+    dbg('useEffect: start full loading')
     let cancelled = false
     let isPageLoaded = false
 
@@ -54,6 +65,7 @@ export default function LoadingAnimation() {
         if (c) c.classList.add('hidden')
         document.body.classList.add('loading_container__hidden')
         hasShownInPageLoad = true
+        dbg('loading hidden, hasShown=true')
       }
     }
 
@@ -83,8 +95,9 @@ export default function LoadingAnimation() {
       window.removeEventListener('load', onLoad)
       if (skipButton) skipButton.removeEventListener('click', handleSkip)
     }
-  }, [shouldRenderLoading])
+  }, [shouldRunFullLoading])
 
-  if (!shouldRenderLoading) return null
-  return <div suppressHydrationWarning dangerouslySetInnerHTML={{ __html: LOADING_HTML }} />
+  if (!isFrontpage) return null
+  const html = shouldRunFullLoading ? LOADING_HTML_FULL : LOADING_HTML_SKIP
+  return <div suppressHydrationWarning dangerouslySetInnerHTML={{ __html: html }} />
 }
