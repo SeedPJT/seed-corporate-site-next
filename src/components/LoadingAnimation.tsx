@@ -1,27 +1,20 @@
 'use client'
 import { useEffect } from 'react'
 
-// 完全 reload / 初回 URL 直訪 = module state hasShownOnce=false = loading 表示
-// SPA client-nav (frontpage の 外 → frontpage への Link click) = module state 保持 = hasShownOnce=true = skip
-// 完全 reload や タブ 閉じ = JS 再 load = module state リセット = 再度 表示 される
-let hasShownOnce = false
-
+// frontpage mount の 度 に loading 表示 = 完全 reload + SPA nav 両方 で 出る (元 WP の 挙動 に 近い)。
+// 画像 が behind に あって も それ が 「いけてる 感じ」 の brand 挙動。
 export default function LoadingAnimation() {
   useEffect(() => {
-    if (hasShownOnce) {
-      // SPA nav = 既に session 中に一度出した = skip
-      const container = document.getElementById('loading_container')
-      if (container) container.classList.add('hidden')
-      document.body.classList.add('loading_container__hidden')
-      return
-    }
-    hasShownOnce = true
+    // mount 時 に 常に container を fullscreen 表示 に戻す ( 前回 hide 状態 が 残って いる 可能性)
+    const container = document.getElementById('loading_container')
+    if (container) container.classList.remove('hidden')
+    document.body.classList.remove('loading_container__hidden')
 
     let cancelled = false
     const hide = () => {
       if (cancelled) return
-      const container = document.getElementById('loading_container')
-      if (container) container.classList.add('hidden')
+      const c = document.getElementById('loading_container')
+      if (c) c.classList.add('hidden')
       document.body.classList.add('loading_container__hidden')
     }
     // 元 WP = window.load 後 setTimeout 3s = 全 resource ( 画像 / lottie JSON / fonts / GTM 等 数MB) 待ち で
