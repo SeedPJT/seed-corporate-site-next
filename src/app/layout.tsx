@@ -4,6 +4,7 @@ import { headers } from 'next/headers'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import BodyIdSetter from '@/components/BodyIdSetter'
+import FadeInObserver from '@/components/FadeInObserver'
 import '@/styles/style.scss'
 
 // pathname → body id map。 middleware で 注入 された x-pathname header を使って SSR で 決定。
@@ -73,6 +74,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
         {/* client-side navigation で body id を更新 */}
         <BodyIdSetter />
+        {/* .animation_fade を viewport 入場 で fadein 化 */}
+        <FadeInObserver />
         <div id="pagetop" className="all_container">
           <Header />
           <main id="main">{children}</main>
