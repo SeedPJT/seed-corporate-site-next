@@ -1,55 +1,68 @@
 'use client'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 
-// frontpage mount の 度 に loading 表示 = 完全 reload + SPA nav 両方 で 出る (元 WP の 挙動 に 近い)。
-// 画像 が behind に あって も それ が 「いけてる 感じ」 の brand 挙動。
+// 元 WP header.php + loading.js の 完全 忠実 移植。
+// React で JSX render すると custom element (lottie-player) の 属性 set + 定義 タイミング が
+// React 制御 に 干渉 = autoplay が 効か ない / SVG が render されない 等 の 現象 発生。
+// 対策 = dangerouslySetInnerHTML で raw HTML として mount = 通常 の DOM parser を経由 = 元 WP と同じ 挙動。
+const LOADING_HTML = `
+<div id="loading_container">
+  <lottie-player id="loadingAnimation" src="/img/top/loading.json" background="transparent" speed="1" autoplay></lottie-player>
+  <div id="skipButton">Skip</div>
+</div>
+<lottie-player id="loadingAnimationSub" src="/img/top/loading.json" background="transparent" speed="100" autoplay></lottie-player>
+`
+
 export default function LoadingAnimation() {
-  useEffect(() => {
-    // mount 時 に 常に container を fullscreen 表示 に戻す ( 前回 hide 状態 が 残って いる 可能性)
-    const container = document.getElementById('loading_container')
-    if (container) container.classList.remove('hidden')
-    document.body.classList.remove('loading_container__hidden')
+  const mountRef = useRef<HTMLDivElement>(null)
 
+  useEffect(() => {
+    if (!mountRef.current) return
+    // raw HTML で 挿入 = React 干渉なし。
+    mountRef.current.innerHTML = LOADING_HTML
+
+    // 元 loading.js を忠実 に 再現。
+    const loadingContainer = document.getElementById('loading_container')
+    let isPageLoaded = false
     let cancelled = false
-    const hide = () => {
+
+    const hideLoadingIfReady = () => {
       if (cancelled) return
-      const c = document.getElementById('loading_container')
-      if (c) c.classList.add('hidden')
-      document.body.classList.add('loading_container__hidden')
+      if (isPageLoaded && loadingContainer) {
+        loadingContainer.classList.add('hidden')
+        document.body.classList.add('loading_container__hidden')
+      }
     }
-    // 元 WP = window.load 後 setTimeout 3s = 全 resource ( 画像 / lottie JSON / fonts / GTM 等 数MB) 待ち で
-    // 実質 5-10s の 体感。 Vercel は CDN 高速 = timer だけ だと 短く 感じる ので 8s に 延長。
-    const onLoad = () => setTimeout(hide, 8000)
+
+    const onLoad = () => {
+      isPageLoaded = true
+      setTimeout(hideLoadingIfReady, 3000)
+    }
     if (document.readyState === 'complete') {
       onLoad()
     } else {
       window.addEventListener('load', onLoad)
     }
-    const skip = document.getElementById('skipButton')
+
+    const skipButton = document.getElementById('skipButton')
     const handleSkip = () => {
-      hide()
+      isPageLoaded = true
+      hideLoadingIfReady()
       document.querySelectorAll<HTMLElement>('*:not(.text_bridge > ul)').forEach((el) => {
         el.style.animationDuration = '0s'
         el.style.animationDelay = '0s'
       })
     }
-    if (skip) skip.addEventListener('click', handleSkip)
+    if (skipButton) skipButton.addEventListener('click', handleSkip)
+
     return () => {
       cancelled = true
       window.removeEventListener('load', onLoad)
-      if (skip) skip.removeEventListener('click', handleSkip)
+      if (skipButton) skipButton.removeEventListener('click', handleSkip)
     }
   }, [])
 
-  return (
-    <>
-      <div id="loading_container">
-        {/* @ts-expect-error lottie-player custom element = loop で 8s 間 再生 継続 (単独 play だと 3.7s で 終わる) */}
-        <lottie-player id="loadingAnimation" src="/img/top/loading.json" background="transparent" speed="1" autoplay="true" loop="true" style={{ width: '100%', height: '100%', display: 'block' }} />
-        <div id="skipButton" role="button" tabIndex={0}>Skip</div>
-      </div>
-      {/* @ts-expect-error sub = 元 WP と同じ 単発 (speed=100 = 一瞬で 最終frame へ = corner に animation 定着) */}
-      <lottie-player id="loadingAnimationSub" src="/img/top/loading.json" background="transparent" speed="100" autoplay="true" />
-    </>
-  )
+  // SSR 時 は 空、 client mount で 上記 innerHTML に置換 される。
+  // suppressHydrationWarning = hydration mismatch を silence。
+  return <div ref={mountRef} suppressHydrationWarning />
 }
