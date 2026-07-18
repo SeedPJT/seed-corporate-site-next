@@ -1,11 +1,11 @@
 import Link from 'next/link'
 
 const FOOTER_NAV = [
-  { label: 'Home', href: '/' },
-  { label: 'About', href: '/about-us/' },
-  { label: 'Product', href: '/product/' },
-  { label: 'Service', href: '/service/' },
-  { label: 'Contact', href: '/contact/' },
+  { label: 'トップページ', href: '/' },
+  { label: 'Seedについて', href: '/about-us/' },
+  { label: 'プロダクト紹介', href: '/product/' },
+  { label: 'サービス一覧', href: '/service/' },
+  { label: 'お問い合わせ', href: '/contact/' },
 ]
 
 export default function Footer() {

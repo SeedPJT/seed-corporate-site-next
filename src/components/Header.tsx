@@ -3,11 +3,11 @@ import { useState } from 'react'
 import Link from 'next/link'
 
 const NAV_ITEMS = [
-  { label: 'Home', href: '/' },
-  { label: 'About', href: '/about-us/' },
-  { label: 'Product', href: '/product/' },
-  { label: 'Service', href: '/service/' },
-  { label: 'Contact', href: '/contact/' },
+  { label: 'TOP', href: '/' },
+  { label: 'Seedについて', href: '/about-us/' },
+  { label: 'サービス', href: '/service/' },
+  { label: 'プロダクト紹介', href: '/product/' },
+  { label: 'お問い合わせ', href: '/contact/' },
 ]
 
 export default function Header() {

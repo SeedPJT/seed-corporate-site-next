@@ -13,7 +13,7 @@ const PATH_TO_ID: Record<string, string> = {
   '/service/ai-x-education': 'ai-x-education',
   '/service/support-and-growth': 'support-and-growth',
   '/contact': 'contact',
-  '/thanks': 'thanks',
+  '/contact/thanks': 'thanks',
 }
 
 export default function BodyIdSetter() {
