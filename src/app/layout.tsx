@@ -5,6 +5,7 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import BodyIdSetter from '@/components/BodyIdSetter'
 import FadeInObserver from '@/components/FadeInObserver'
+import LoadingAnimation from '@/components/LoadingAnimation'
 import '@/styles/style.scss'
 
 // pathname → body id map。 middleware で 注入 された x-pathname header を使って SSR で 決定。
@@ -20,11 +21,11 @@ const PATH_TO_ID: Record<string, string> = {
   '/contact/thanks': 'thanks',
 }
 
-async function getBodyId(): Promise<string> {
+async function getRouteInfo(): Promise<{ bodyId: string; pathname: string }> {
   const h = await headers()
   const pathname = h.get('x-pathname') || '/'
   const normalized = pathname.length > 1 && pathname.endsWith('/') ? pathname.slice(0, -1) : pathname
-  return PATH_TO_ID[normalized] || 'other_page'
+  return { bodyId: PATH_TO_ID[normalized] || 'other_page', pathname: normalized }
 }
 
 export const metadata: Metadata = {
@@ -43,7 +44,8 @@ export const metadata: Metadata = {
 const gtmId = 'GTM-MX2RWFNP'
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const bodyId = await getBodyId()
+  const { bodyId, pathname } = await getRouteInfo()
+  const isFrontpage = pathname === '/'
   return (
     <html lang="ja">
       <head>
@@ -78,6 +80,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <FadeInObserver />
         <div id="pagetop" className="all_container">
           <Header />
+          {/* 元 WP header.php と 同じ 位置 = main の 外 に render。
+              main の 中 に 置くと body#frontpage の main opacity 0 が 継承 されて loading が 見え ない。 */}
+          {isFrontpage && <LoadingAnimation />}
           <main id="main">{children}</main>
           <Footer />
         </div>

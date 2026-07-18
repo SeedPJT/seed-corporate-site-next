@@ -1,12 +1,9 @@
 import Link from 'next/link'
-import LoadingAnimation from '@/components/LoadingAnimation'
 import CtaSection from '@/components/CtaSection'
 
 export default function Home() {
   return (
     <>
-      <LoadingAnimation />
-
       <section id="fv">
         <div className="fv_inner innerbox_1280">
           <h2 className="fv_title">
