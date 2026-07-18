@@ -31,8 +31,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&display=swap"
           rel="stylesheet"
         />
-        {/* Lottie player (front-page で使用) */}
-        <Script src="https://unpkg.com/@lottiefiles/lottie-player@2.0.12/dist/lottie-player.js" strategy="beforeInteractive" />
+        {/* Lottie player (front-page で使用)。
+            Next.js の Script strategy="beforeInteractive" は 実 際 に は 遅延 実行 される =
+            fullscreen loading の 初期 フェーズ で lottie が 未 定義 に なる 現象 の 対策 で、
+            script 実 タグ で 同期 loading。 */}
+        <script async src="https://unpkg.com/@lottiefiles/lottie-player@2.0.12/dist/lottie-player.js" />
       </head>
       <body>
         {/* body id を DOM parse 直後 に 設定 = SCSS の body#frontpage 等 の セレクタ が 初回描画 から効く。
