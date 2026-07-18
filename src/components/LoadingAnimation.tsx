@@ -25,10 +25,10 @@ export default function LoadingAnimation() {
       if (container) container.classList.add('hidden')
       document.body.classList.add('loading_container__hidden')
     }
-    // 元 WP は window.load 後 3s = window.load 自体 が 遅い ( 全 resource 待ち = ~5-7s 体感)。
-    // Next.js は hydration = readyState=complete で 即 timer 開始 = 短く 感じる。
-    // Skip button を見せる余裕 + 元 WP 体感 に 揃える = 5s。
-    const onLoad = () => setTimeout(hide, 5000)
+    // 元 WP = window.load 後 3s = 全 resource ( 画像 / lottie JSON / fonts / GTM 等 数MB) 待ち で
+    // 実質 5-10s の 体感。 Vercel は CDN 高速 で ほぼ 即 load = timer だけ だと 短く 感じる。
+    // 元 体感 に 揃える = 8s。
+    const onLoad = () => setTimeout(hide, 8000)
     if (document.readyState === 'complete') {
       onLoad()
     } else {
