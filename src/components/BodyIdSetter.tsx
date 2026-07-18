@@ -9,9 +9,9 @@ const PATH_TO_ID: Record<string, string> = {
   '/about-us': 'about-us',
   '/product': 'product',
   '/service': 'service',
-  '/ai-and-system': 'ai-and-system',
-  '/ai-x-education': 'ai-x-education',
-  '/support-and-growth': 'support-and-growth',
+  '/service/ai-and-system': 'ai-and-system',
+  '/service/ai-x-education': 'ai-x-education',
+  '/service/support-and-growth': 'support-and-growth',
   '/contact': 'contact',
   '/thanks': 'thanks',
 }

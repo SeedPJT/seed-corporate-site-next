@@ -5,9 +5,6 @@ const FOOTER_NAV = [
   { label: 'About', href: '/about-us/' },
   { label: 'Product', href: '/product/' },
   { label: 'Service', href: '/service/' },
-  { label: 'AI x Education', href: '/ai-x-education/' },
-  { label: 'AI & System', href: '/ai-and-system/' },
-  { label: 'Support & Growth', href: '/support-and-growth/' },
   { label: 'Contact', href: '/contact/' },
 ]
 
