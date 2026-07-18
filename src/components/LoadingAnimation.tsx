@@ -1,38 +1,50 @@
 'use client'
 import { useEffect, useLayoutEffect, useState } from 'react'
+import { usePathname } from 'next/navigation'
 
 // 元 WP header.php + loading.js の 完全 忠実 移植。
 //
 // 「1 page load で 1 回」 semantics = hard reload は 必ず 走る、 SPA nav は skip。
-// sessionStorage は タブ 閉じ まで 持続 する ため 「reload しても skip」 に なって しまう =
-// module 変数 で page-load 単位 の state を保持 する ( module 再評価 は hard reload のみ )。
+// sessionStorage は タブ 閉じ まで 持続 = 「reload でも skip」 と なる ため module 変数 で
+// page-load 単位 の state を保持 ( module 再評価 は hard reload のみ )。
 let hasShownInPageLoad = false
 
-// SSR 中 は useLayoutEffect が 使え ない ため isomorphic 変種。
-// SPA nav 時 = client 側 で 動く = useLayoutEffect が paint 前 に class を反映 = flash 消える。
+// Next.js App Router は root layout を SPA nav で 再 render しない = LoadingAnimation の
+// mount / unmount で 制御 する と 挙動 が壊れる。 pathname を watch して body class を
+// 全 nav で 再同期 する。
 const useIsoLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect
 
 const LOADING_HTML = `<div id="loading_container"><lottie-player id="loadingAnimation" src="/img/top/loading.json" background="transparent" speed="1" autoplay></lottie-player><div id="skipButton">Skip</div></div><lottie-player id="loadingAnimationSub" src="/img/top/loading.json" background="transparent" speed="100" autoplay></lottie-player>`
 
 export default function LoadingAnimation() {
-  // 初回 render 前 に skip 判定 = SSR は false 固定 で LOADING_HTML を render。
-  const [skip] = useState<boolean>(() => hasShownInPageLoad)
+  const pathname = usePathname()
+  const isFrontpage = pathname === '/'
 
-  // skip 経路 = BodyIdSetter の body id 変更 と 同 tick で class を貼って paint 一 発。
+  // 「今回 の render サイクル で loading を出す か」 を確定。 SSR / hard reload では skip=false
+  // で LOADING_HTML を含む、 SPA nav で 再訪 は skip=true で 描画 なし。
+  const [initialSkip] = useState<boolean>(() => hasShownInPageLoad)
+  const shouldRenderLoading = isFrontpage && !initialSkip
+
+  // 全 nav で 実行 = frontpage 離れ たら class 清掃、 skip 再訪 で は 即 skip 状態 に。
   useIsoLayoutEffect(() => {
-    if (skip) {
+    if (!isFrontpage) {
+      document.body.classList.remove('loading_container__hidden')
+      document.body.classList.remove('loading_skipped')
+      return
+    }
+    if (hasShownInPageLoad) {
       document.body.classList.add('loading_container__hidden')
       document.body.classList.add('loading_skipped')
+    } else {
+      document.body.classList.remove('loading_container__hidden')
+      document.body.classList.remove('loading_skipped')
     }
-  }, [skip])
+  }, [isFrontpage])
 
   useEffect(() => {
-    if (skip) return
+    if (!shouldRenderLoading) return
 
-    // hard reload path = 従来通り。 module 変数 は 最後 に set = 途中 unmount で skip 化 しない。
-    document.body.classList.remove('loading_container__hidden')
-    document.body.classList.remove('loading_skipped')
-
+    // hard reload path = 従来通り。 完了 時 に module flag を set。
     let cancelled = false
     let isPageLoaded = false
 
@@ -72,8 +84,8 @@ export default function LoadingAnimation() {
       window.removeEventListener('load', onLoad)
       if (skipButton) skipButton.removeEventListener('click', handleSkip)
     }
-  }, [skip])
+  }, [shouldRenderLoading])
 
-  if (skip) return null
+  if (!shouldRenderLoading) return null
   return <div suppressHydrationWarning dangerouslySetInnerHTML={{ __html: LOADING_HTML }} />
 }

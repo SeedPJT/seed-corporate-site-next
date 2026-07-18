@@ -44,8 +44,7 @@ export const metadata: Metadata = {
 const gtmId = 'GTM-MX2RWFNP'
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const { bodyId, pathname } = await getRouteInfo()
-  const isFrontpage = pathname === '/'
+  const { bodyId } = await getRouteInfo()
   return (
     <html lang="ja">
       <head>
@@ -81,8 +80,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <div id="pagetop" className="all_container">
           <Header />
           {/* 元 WP header.php と 同じ 位置 = main の 外 に render。
-              main の 中 に 置くと body#frontpage の main opacity 0 が 継承 されて loading が 見え ない。 */}
-          {isFrontpage && <LoadingAnimation />}
+              root layout は SPA nav で 再 render されない ため 常時 mount し、
+              LoadingAnimation 内 で usePathname を watch して 全 nav に反応 する。 */}
+          <LoadingAnimation />
           <main id="main">{children}</main>
           <Footer />
         </div>
