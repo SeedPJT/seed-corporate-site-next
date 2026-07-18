@@ -23,7 +23,8 @@ const dbg = (...args: unknown[]) => {
 const LOADING_HTML_FULL = `<div id="loading_container"><lottie-player id="loadingAnimation" src="/img/top/loading.json" background="transparent" speed="1" autoplay></lottie-player><div id="skipButton">Skip</div></div><lottie-player id="loadingAnimationSub" src="/img/top/loading.json" background="transparent" speed="100" autoplay></lottie-player>`
 
 // SPA nav 帰還時 = 最後 の 完成状態 ( corner に 定着 した 小 tree のみ) を静的 に出す。
-const LOADING_HTML_SKIP = `<lottie-player id="loadingAnimationSub" src="/img/top/loading.json" background="transparent" speed="100" autoplay></lottie-player>`
+// autoplay 外して useEffect で 最終 frame に seek = 咲く animation を 再生 させない。
+const LOADING_HTML_SKIP = `<lottie-player id="loadingAnimationSub" src="/img/top/loading.json" background="transparent"></lottie-player>`
 
 export default function LoadingAnimation() {
   const pathname = usePathname()
@@ -50,6 +51,26 @@ export default function LoadingAnimation() {
       document.body.classList.remove('loading_skipped')
     }
   }, [isFrontpage])
+
+  // skip mode = corner tree を最終 frame に固定 ( 咲く animation を再生 させない)。
+  useEffect(() => {
+    if (!isFrontpage || shouldRunFullLoading) return
+    const el = document.getElementById('loadingAnimationSub') as (HTMLElement & { getLottie?: () => { totalFrames: number; goToAndStop: (frame: number, isFrame?: boolean) => void } }) | null
+    if (!el) return
+    const seekEnd = () => {
+      const anim = el.getLottie?.()
+      if (anim) {
+        anim.goToAndStop(Math.max(0, anim.totalFrames - 1), true)
+        dbg('seek to end frame', anim.totalFrames - 1)
+      }
+    }
+    el.addEventListener('ready', seekEnd)
+    // 既に ready 済 の場合 も seek
+    seekEnd()
+    return () => {
+      el.removeEventListener('ready', seekEnd)
+    }
+  }, [isFrontpage, shouldRunFullLoading])
 
   useEffect(() => {
     if (!shouldRunFullLoading) return
