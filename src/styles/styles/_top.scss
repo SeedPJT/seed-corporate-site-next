@@ -550,8 +550,8 @@ body#frontpage.loading_container__hidden {
   }
   main#main {
     opacity: 1;
-    // base の transition を削除したので fade-in を明示 (元 WP と同じ 0.5s ease-out で 2s delay 後)
-    transition: opacity 0.5s ease-out 2s;
+    // loading fade-out と 同時 に 出る = delay 削って 体感 速く
+    transition: opacity 0.5s ease-out;
   }
 
   #loadingAnimationSub {

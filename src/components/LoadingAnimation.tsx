@@ -8,7 +8,16 @@ const LOADING_HTML = `<div id="loading_container"><lottie-player id="loadingAnim
 
 export default function LoadingAnimation() {
   useEffect(() => {
-    // client-nav 時 に 既存 の loading DOM を 再初期化 = mount 時 に .hidden class を除去
+    // 1 セッション で 1 回 のみ = hard reload は 走る、 SPA nav は skip。
+    // 元 WP は毎 reload = SPA じゃない ため 毎回走った ので、 SPA nav で は 邪魔 な UX。
+    const SESSION_KEY = 'seed_loading_shown'
+    if (typeof window !== 'undefined' && window.sessionStorage.getItem(SESSION_KEY)) {
+      document.body.classList.add('loading_container__hidden')
+      const c = document.getElementById('loading_container')
+      if (c) c.classList.add('hidden')
+      return
+    }
+
     const container = document.getElementById('loading_container')
     if (container) container.classList.remove('hidden')
     document.body.classList.remove('loading_container__hidden')
