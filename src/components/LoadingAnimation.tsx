@@ -44,12 +44,29 @@ export default function LoadingAnimation() {
   return (
     <>
       <div id="loading_container">
-        {/* @ts-expect-error lottie-player custom element */}
-        <lottie-player id="loadingAnimation" src="/img/top/loading.json" background="transparent" speed="1" autoplay="true" />
+        {/* @ts-expect-error lottie-player custom element。
+            loop="true" = 3.7s (112fr/30fps) の animation が 何度も再生 = 8s 見せる 間 も visible。
+            style で 明示 sizing = shadow DOM 内 の SVG が 確実 に container fill。 */}
+        <lottie-player
+          id="loadingAnimation"
+          src="/img/top/loading.json"
+          background="transparent"
+          speed="1"
+          autoplay="true"
+          loop="true"
+          style={{ width: '100%', height: '100%', display: 'block' }}
+        />
         <div id="skipButton" role="button" tabIndex={0}>Skip</div>
       </div>
       {/* @ts-expect-error lottie-player custom element */}
-      <lottie-player id="loadingAnimationSub" src="/img/top/loading.json" background="transparent" speed="100" autoplay="true" />
+      <lottie-player
+        id="loadingAnimationSub"
+        src="/img/top/loading.json"
+        background="transparent"
+        speed="100"
+        autoplay="true"
+        loop="true"
+      />
     </>
   )
 }
