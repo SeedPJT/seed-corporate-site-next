@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Script from 'next/script'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import BodyIdSetter from '@/components/BodyIdSetter'
 import '@/styles/style.scss'
 
 export const metadata: Metadata = {
@@ -47,6 +48,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           />
         </noscript>
 
+        <BodyIdSetter />
         <div id="pagetop" className="all_container">
           <Header />
           <main id="main">{children}</main>

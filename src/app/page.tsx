@@ -1,6 +1,9 @@
+import LoadingAnimation from '@/components/LoadingAnimation'
+
 export default function Home() {
   return (
     <>
+      <LoadingAnimation />
       {/* front-page = 次phase で 完全 忠実 移植。 一時 placeholder */}
       <section id="fv">
         <div className="fv_inner innerbox_1280">
