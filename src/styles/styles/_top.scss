@@ -618,9 +618,15 @@ body#frontpage.loading_container__hidden {
 
   #loadingAnimation {
     display: block;
+    width: 100%;
     height: 100%;
-    width: auto;
-    max-width: 100%;
+    max-width: 100vw;
+    max-height: 100vh;
+    // lottie-player の 内部 .animation container ( SVG が入る) を 明示 sizing
+    .animation, svg {
+      width: 100% !important;
+      height: 100% !important;
+    }
   }
 
   #skipButton {
