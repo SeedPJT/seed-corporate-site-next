@@ -44,12 +44,12 @@ export default function LoadingAnimation() {
   return (
     <>
       <div id="loading_container">
-        {/* @ts-expect-error lottie-player custom element */}
+        {/* @ts-expect-error lottie-player custom element = loop で 8s 間 再生 継続 (単独 play だと 3.7s で 終わる) */}
         <lottie-player id="loadingAnimation" src="/img/top/loading.json" background="transparent" speed="1" autoplay="true" loop="true" style={{ width: '100%', height: '100%', display: 'block' }} />
         <div id="skipButton" role="button" tabIndex={0}>Skip</div>
       </div>
-      {/* @ts-expect-error lottie-player custom element */}
-      <lottie-player id="loadingAnimationSub" src="/img/top/loading.json" background="transparent" speed="100" autoplay="true" loop="true" />
+      {/* @ts-expect-error sub = 元 WP と同じ 単発 (speed=100 = 一瞬で 最終frame へ = corner に animation 定着) */}
+      <lottie-player id="loadingAnimationSub" src="/img/top/loading.json" background="transparent" speed="100" autoplay="true" />
     </>
   )
 }
