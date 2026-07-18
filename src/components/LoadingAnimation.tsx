@@ -1,35 +1,26 @@
 'use client'
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 
 // 元 WP header.php + loading.js の 完全 忠実 移植。
-// React で JSX render すると custom element (lottie-player) の 属性 set + 定義 タイミング が
-// React 制御 に 干渉 = autoplay が 効か ない / SVG が render されない 等 の 現象 発生。
-// 対策 = dangerouslySetInnerHTML で raw HTML として mount = 通常 の DOM parser を経由 = 元 WP と同じ 挙動。
-const LOADING_HTML = `
-<div id="loading_container">
-  <lottie-player id="loadingAnimation" src="/img/top/loading.json" background="transparent" speed="1" autoplay></lottie-player>
-  <div id="skipButton">Skip</div>
-</div>
-<lottie-player id="loadingAnimationSub" src="/img/top/loading.json" background="transparent" speed="100" autoplay></lottie-player>
-`
+// 重要 = HTML を SSR で render する = リロード 時 も 初回描画 から DOM に存在 = lottie が確実 に upgrade。
+// dangerouslySetInnerHTML を JSX return で 使う = SSR HTML に 直接 含まれる。
+const LOADING_HTML = `<div id="loading_container"><lottie-player id="loadingAnimation" src="/img/top/loading.json" background="transparent" speed="1" autoplay></lottie-player><div id="skipButton">Skip</div></div><lottie-player id="loadingAnimationSub" src="/img/top/loading.json" background="transparent" speed="100" autoplay></lottie-player>`
 
 export default function LoadingAnimation() {
-  const mountRef = useRef<HTMLDivElement>(null)
-
   useEffect(() => {
-    if (!mountRef.current) return
-    // raw HTML で 挿入 = React 干渉なし。
-    mountRef.current.innerHTML = LOADING_HTML
+    // client-nav 時 に 既存 の loading DOM を 再初期化 = mount 時 に .hidden class を除去
+    const container = document.getElementById('loading_container')
+    if (container) container.classList.remove('hidden')
+    document.body.classList.remove('loading_container__hidden')
 
-    // 元 loading.js を忠実 に 再現。
-    const loadingContainer = document.getElementById('loading_container')
-    let isPageLoaded = false
     let cancelled = false
+    let isPageLoaded = false
 
     const hideLoadingIfReady = () => {
       if (cancelled) return
-      if (isPageLoaded && loadingContainer) {
-        loadingContainer.classList.add('hidden')
+      if (isPageLoaded) {
+        const c = document.getElementById('loading_container')
+        if (c) c.classList.add('hidden')
         document.body.classList.add('loading_container__hidden')
       }
     }
@@ -62,7 +53,5 @@ export default function LoadingAnimation() {
     }
   }, [])
 
-  // SSR 時 は 空、 client mount で 上記 innerHTML に置換 される。
-  // suppressHydrationWarning = hydration mismatch を silence。
-  return <div ref={mountRef} suppressHydrationWarning />
+  return <div suppressHydrationWarning dangerouslySetInnerHTML={{ __html: LOADING_HTML }} />
 }

@@ -12,12 +12,13 @@ body#frontpage {
     }
   }
 
-  // ローディング用
+  // ローディング用 = 初期は opacity 0、 transition なし ( SPA nav 時 の
+  //   前 page opacity 1 → 0 flash を防ぐ)。 loading 終了時 の fade-in transition は
+  //   body#frontpage.loading_container__hidden 側 で 明示 する。
   header#header,
   main#main,
   footer#footer {
     opacity: 0;
-    transition: all 0.5s ease-out;
   }
 
   section#fv {
@@ -549,6 +550,8 @@ body#frontpage.loading_container__hidden {
   }
   main#main {
     opacity: 1;
+    // base の transition を削除したので fade-in を明示 (元 WP と同じ 0.5s ease-out で 2s delay 後)
+    transition: opacity 0.5s ease-out 2s;
   }
 
   #loadingAnimationSub {
