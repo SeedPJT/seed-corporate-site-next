@@ -35,6 +35,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Script src="https://unpkg.com/@lottiefiles/lottie-player@2.0.12/dist/lottie-player.js" strategy="beforeInteractive" />
       </head>
       <body>
+        {/* body id を DOM parse 直後 に 設定 = SCSS の body#frontpage 等 の セレクタ が 初回描画 から効く。
+            useEffect ( BodyIdSetter) だと hydration 後 = ローディング アニメーション の 一部 が 効かない タイミング が ある。 */}
+        <Script id="body-id-script" strategy="beforeInteractive">
+          {`(function(){var m={'/':'frontpage','/about-us':'about-us','/product':'product','/service':'service','/ai-and-system':'ai-and-system','/ai-x-education':'ai-x-education','/support-and-growth':'support-and-growth','/contact':'contact','/thanks':'thanks'};var p=location.pathname.replace(/\\/+$/,'');if(p==='')p='/';document.body.id=m[p]||'other_page';})();`}
+        </Script>
         {/* Google Tag Manager */}
         <Script id="gtm-script" strategy="afterInteractive">
           {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${gtmId}');`}
