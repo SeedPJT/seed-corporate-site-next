@@ -12,7 +12,9 @@ export default function LoadingAnimation() {
     // 元 WP は毎 reload = SPA じゃない ため 毎回走った ので、 SPA nav で は 邪魔 な UX。
     const SESSION_KEY = 'seed_loading_shown'
     if (typeof window !== 'undefined' && window.sessionStorage.getItem(SESSION_KEY)) {
+      // SPA nav 帰 還時 = fade-in / mask も 走らせない = 即 完成 状態 に skip
       document.body.classList.add('loading_container__hidden')
+      document.body.classList.add('loading_skipped')
       const c = document.getElementById('loading_container')
       if (c) c.classList.add('hidden')
       return
@@ -21,6 +23,7 @@ export default function LoadingAnimation() {
     const container = document.getElementById('loading_container')
     if (container) container.classList.remove('hidden')
     document.body.classList.remove('loading_container__hidden')
+    document.body.classList.remove('loading_skipped')
 
     let cancelled = false
     let isPageLoaded = false
@@ -31,6 +34,7 @@ export default function LoadingAnimation() {
         const c = document.getElementById('loading_container')
         if (c) c.classList.add('hidden')
         document.body.classList.add('loading_container__hidden')
+        window.sessionStorage.setItem(SESSION_KEY, '1')
       }
     }
 

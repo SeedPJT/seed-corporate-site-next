@@ -535,6 +535,32 @@ body#frontpage {
   }
 }
 
+// SPA nav 帰還時 = fade-in / mask を 全部 skip して 即 完成 状態 に。
+// loading_container__hidden の 上 に 重ねて 各 animation を無効化 する。
+body#frontpage.loading_skipped {
+  overflow: initial;
+  header#header,
+  footer#footer,
+  section:not(#fv),
+  .text_bridge,
+  .fv_scroll_icon {
+    animation: none;
+    opacity: 1;
+  }
+  main#main {
+    opacity: 1;
+    transition: none;
+  }
+  section#fv .fv_title_inner > span {
+    animation: none;
+    transform: translateX(200%);
+  }
+  #loading_container,
+  #loadingAnimationSub {
+    display: none;
+  }
+}
+
 // ローディング完了後のスタイル
 body#frontpage.loading_container__hidden {
   overflow: initial;
