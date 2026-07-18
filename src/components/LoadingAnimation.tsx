@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useLayoutEffect, useState } from 'react'
+import { useEffect, useLayoutEffect } from 'react'
 import { usePathname } from 'next/navigation'
 
 // 元 WP header.php + loading.js の 完全 忠実 移植。
@@ -20,10 +20,9 @@ export default function LoadingAnimation() {
   const pathname = usePathname()
   const isFrontpage = pathname === '/'
 
-  // 「今回 の render サイクル で loading を出す か」 を確定。 SSR / hard reload では skip=false
-  // で LOADING_HTML を含む、 SPA nav で 再訪 は skip=true で 描画 なし。
-  const [initialSkip] = useState<boolean>(() => hasShownInPageLoad)
-  const shouldRenderLoading = isFrontpage && !initialSkip
+  // 各 render で module 変数 を fresh に 読む = hard reload 直後 は false で LOADING_HTML を出し、
+  // hasShown=true 後 の nav は 即 skip。 useState で 固定 する と 後続 の nav でも 再 loading して しまう bug。
+  const shouldRenderLoading = isFrontpage && !hasShownInPageLoad
 
   // 全 nav で 実行 = frontpage 離れ たら class 清掃、 skip 再訪 で は 即 skip 状態 に。
   useIsoLayoutEffect(() => {
