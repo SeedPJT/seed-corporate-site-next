@@ -16,13 +16,8 @@ const dbg = (...args: unknown[]) => {
   if (typeof window !== 'undefined') console.log('[loading]', ...args)
 }
 
-// full loading = 中央 の 巨大 tree loading + skip button。 hard reload の時 のみ 描画。
+// full loading 用 = 中央 の 巨大 tree + skip button。 hard reload の時 のみ 描画。
 const LOADING_CONTAINER_HTML = `<div id="loading_container"><lottie-player id="loadingAnimation" src="/img/top/loading.json" background="transparent" speed="1" autoplay></lottie-player><div id="skipButton">Skip</div></div>`
-
-// corner の tree = 常時 mount で lottie state を持続 = SPA nav 帰還時 に 即 表示 可能。
-// autoplay = full loading 完了 で fadein する 際 に 咲く animation を再生 させる ため。
-// skip mode で は useEffect が 最終 frame に seek + pause させる。
-const LOADING_SUB_HTML = `<lottie-player id="loadingAnimationSub" src="/img/top/loading.json" background="transparent" speed="100" autoplay></lottie-player>`
 
 export default function LoadingAnimation() {
   const pathname = usePathname()
@@ -48,31 +43,41 @@ export default function LoadingAnimation() {
     }
   }, [isFrontpage])
 
-  // skip mode = corner tree を 最終 frame で stop、 咲く animation を再生 させない。
-  // mount は 1 度 きり = tree state は 全 nav で 持続 する。
+  // corner tree = LoadingAnimation の 初回 mount 時 に document.createElement で lottie を作り、
+  // body 直下 に append。 React が触ら ない = 全 nav で 完全 に 継続 = frame state / seek 状態 保持。
   useEffect(() => {
-    const el = document.getElementById('loadingAnimationSub') as
+    let el = document.getElementById('loadingAnimationSub') as
       | (HTMLElement & { getLottie?: () => { totalFrames: number; goToAndStop: (frame: number, isFrame?: boolean) => void; play: () => void } })
       | null
+    if (!el) {
+      dbg('sub: creating new element')
+      const created = document.createElement('lottie-player') as HTMLElement
+      created.id = 'loadingAnimationSub'
+      created.setAttribute('src', '/img/top/loading.json')
+      created.setAttribute('background', 'transparent')
+      created.setAttribute('speed', '100')
+      created.setAttribute('autoplay', '')
+      document.body.appendChild(created)
+      el = created as unknown as typeof el
+    }
     if (!el) return
+    const target = el
     const seekEnd = () => {
-      const anim = el.getLottie?.()
+      const anim = target.getLottie?.()
+      dbg('sub: seekEnd', { hasAnim: !!anim, totalFrames: anim?.totalFrames })
       if (!anim) return
       anim.goToAndStop(Math.max(0, anim.totalFrames - 1), true)
-      el.classList.add('tree-ready')
-      dbg('sub seek to end frame', anim.totalFrames - 1)
+      target.classList.add('tree-ready')
     }
-    // hard reload で full loading 実行中 = 通常 autoplay で 咲く animation を 見せる。
-    // 完了 後 ( hasShown=true) の nav では seek 済 で 静止 させる。
-    if (shouldRunFullLoading) return
-    el.addEventListener('ready', seekEnd)
-    el.addEventListener('load', seekEnd)
+    target.addEventListener('ready', seekEnd)
+    target.addEventListener('load', seekEnd)
+    // 既に ready 済 の 場合 も seek 試行
     seekEnd()
     return () => {
-      el.removeEventListener('ready', seekEnd)
-      el.removeEventListener('load', seekEnd)
+      target.removeEventListener('ready', seekEnd)
+      target.removeEventListener('load', seekEnd)
     }
-  }, [shouldRunFullLoading])
+  }, [])
 
   useEffect(() => {
     if (!shouldRunFullLoading) return
@@ -120,14 +125,8 @@ export default function LoadingAnimation() {
     }
   }, [shouldRunFullLoading])
 
-  return (
-    <>
-      {shouldRunFullLoading && (
-        <div suppressHydrationWarning dangerouslySetInnerHTML={{ __html: LOADING_CONTAINER_HTML }} />
-      )}
-      {/* corner tree = 全 route で mount 維持 = 再訪時 に 即 表示、 lottie load / seek の delay なし。
-          CSS で 非 frontpage は display:none で hide される。 */}
-      <div suppressHydrationWarning dangerouslySetInnerHTML={{ __html: LOADING_SUB_HTML }} />
-    </>
-  )
+  // sub は document.body に直接 append する ため React tree から 外す = React reconcile 対象 外。
+  // loading_container のみ conditional に render。
+  if (!shouldRunFullLoading) return null
+  return <div suppressHydrationWarning dangerouslySetInnerHTML={{ __html: LOADING_CONTAINER_HTML }} />
 }
