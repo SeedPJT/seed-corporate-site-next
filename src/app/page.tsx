@@ -46,24 +46,24 @@ export default function Home() {
             <div className="message_triangle flex_center">
               <span className="en_text">Vision</span>
               <span className="ja_text">
-                多様な価値観が活かされる<br />
-                包摂的な社会を創る
+                誰もが本質的な行動に<br />
+                熱中できるような<br />
+                社会を創る
               </span>
             </div>
             <div className="message_triangle flex_center">
               <span className="en_text">Mission</span>
               <span className="ja_text">
-                一人ひとりが<br />
-                自立化につながる道を主体的に<br />
-                選択できるようにする
+                散らかった行動を整理し、<br />
+                価値ある情報に変える
               </span>
             </div>
             <div className="message_triangle flex_center">
               <span className="en_text">Values</span>
               <span className="ja_text">
-                情熱 / 多様性 /<br />
-                多面的思考 / 創造性 /<br />
-                ワクワク
+                圧倒的没頭 /<br />
+                多面的思考 /<br />
+                直感的選択
               </span>
             </div>
           </div>
@@ -145,8 +145,8 @@ export default function Home() {
 
       <div className="text_bridge">
         <ul>
-          <li>Empowering Personalized Learning with AI-Driven Solutions.</li>
-          <li>Empowering Personalized Learning with AI-Driven Solutions.</li>
+          <li>Empowering Personalized Action with AI-Driven Solutions.</li>
+          <li>Empowering Personalized Action with AI-Driven Solutions.</li>
         </ul>
       </div>
 

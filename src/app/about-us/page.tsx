@@ -49,13 +49,13 @@ export default function AboutUs() {
             <div className="afsw_text_wrapper">
               <h2 className="section_title small_title">
                 <span className="en_title">vision</span>
-                <span className="ja_title">多様な価値観が活かされる<br />包摂的な社会を創る</span>
+                <span className="ja_title">誰もが本質的な行動に<br className="u_pc" />熱中できるような社会を創る</span>
               </h2>
               <div className="section_explain">
-                世界には、さまざまな価値観や背景を持つ人々が共に生きています。<br />
-                <span className="main_color bold">私たちは、一人ひとりの価値観が尊重され、活かされる社会を築くことが不可欠だと考えています。</span><br />
-                多様な価値観が受け入れられることで、人々はより自由に、自分らしく生きられるようになります。さらに、異なる視点やアイデアが交わることで、新たな解決策や創造的なアプローチが生まれ、組織や社会全体の生産性や創造性を高めます。<br />
-                <span className="main_color bold">私たちは、多様性を力に変え、誰もが活躍できる未来を共に創造していきます。</span>
+                世界には、多様な背景と価値観をもつ人々が共に生きています。<br />
+                <span className="main_color bold">私たちは、一人ひとりが自分にとって本質的な行動を見つけ、そこに本気で熱中できる環境を築くことが不可欠だと考えています。</span><br />
+                本質的な行動に打ち込む人が増えれば、社会全体が生き生きとし、新たな価値が生まれ続けます。散らかった情報や日々の忙しさに埋もれるのではなく、自分にとって意味のある一手に集中できる。そんな状態を、テクノロジーと人の力で支えていきます。<br />
+                <span className="main_color bold">私たちは、誰もが本質的な行動に熱中できる社会を、共に創っていきます。</span>
               </div>
             </div>
             {/* @ts-expect-error lottie-player custom element */}
@@ -66,13 +66,12 @@ export default function AboutUs() {
             <div className="afsw_text_wrapper">
               <h2 className="section_title small_title">
                 <span className="en_title">mission</span>
-                <span className="ja_title">一人ひとりが自立化につながる道を<br className="u_pc" />主体的に選択できるようにする</span>
+                <span className="ja_title">散らかった行動を整理し、<br className="u_pc" />価値ある情報に変える</span>
               </h2>
               <div className="section_explain">
-                私たちは、<span className="main_color bold">多様な価値観や背景を持つすべての人が、自らの可能性を信じ、主体的に自立の道を選べる環境を築く</span>ことを目指しています。しかし、社会や組織には依然として固定観念が根強く残り、個人の選択肢を制限してしまうことがあります。<br />
-                そこで私たちは、多様な情報やリソースを提供し、一人ひとりに最適な選択肢を提示し、共に歩みます。AIを活用することで、客観的なデータに基づいた選択肢を提示しつつ、感情のケアや生活や意思決定の支援は人が寄り添いながら行うことで、より深いサポートを実現します。<br />
-                さらに、<span className="main_color bold">社会全体の基盤づくりにも取り組みます。</span>教育や学びの機会の提供、AI・システムの導入支援、異業種との連携を通じて、多様な人々が活躍できる仕組みを構築し、持続可能な社会の実現を目指します。<br />
-                <span className="main_color bold">どんな背景を持つ人でも、急速に変化する社会の中で取り残されることなく、自らの意志で未来を選択できる世界を実現する。</span>それが、私たちの使命です。
+                私たちは、<span className="main_color bold">日々の膨大な行動や情報を整理し、次の意思決定に活かせる形に変換する仕組み</span>をつくります。会議・タスク・議事録・チャット。それぞれが散らばったままでは、本質的な行動に集中できません。<br />
+                AI が行動データを構造化し、人が意思をもって判断する。この分業により、経営者・個人・組織それぞれの意思決定を支え、本質的な行動に集中できる環境を提供します。<br />
+                <span className="main_color bold">散らかった行動を放置せず、次の一手に活かせる価値ある情報に変える。</span>それが、私たちのミッションです。
               </div>
             </div>
             {/* @ts-expect-error lottie-player custom element */}
@@ -82,35 +81,35 @@ export default function AboutUs() {
           <section id="values" className="about_flex_section innerbox_1180">
             <h2 className="section_title small_title">
               <span className="en_title">values</span>
-              <span className="ja_title">私たちは<span className="pink">「情熱 / 多様性 / 多面的思考 / 創造性 / ワクワク」</span>を<br className="u_pc" />核となる価値観として掲げています。</span>
+              <span className="ja_title">私たちは<span className="pink">「圧倒的没頭 / 多面的思考 / 直感的選択」</span>を<br className="u_pc" />核となる価値観として掲げています。</span>
             </h2>
             <div className="afsw_text_wrapper">
               <ul className="values_explain_list">
                 <li className="vel_item">
                   <div className="vel_item_title">
                     <img src="/img/about/values_icon_01.webp" alt="01" className="icon" />
-                    <span className="text">やりたいことを徹底的に追求しよう</span>
+                    <span className="text">圧倒的に没頭しよう</span>
                   </div>
                   <div className="vel_item_text">
-                    やりたいことに没頭し、情熱を持って取り組む人こそ、大きな成果を生み出します。
+                    自分にとって本質的な行動を見極め、そこに全力を注ぐ姿勢が、最も大きな価値を生み出します。私たち自身も、目の前の課題と製品に圧倒的に没頭し続けます。
                   </div>
                 </li>
                 <li className="vel_item">
                   <div className="vel_item_title">
                     <img src="/img/about/values_icon_02.webp" alt="02" className="icon" />
-                    <span className="text">多様性を大切にし、多面的な視点を持とう</span>
+                    <span className="text">多面的に考えよう</span>
                   </div>
                   <div className="vel_item_text">
-                    異なる価値観や背景を尊重し、多面的な視点で物事を捉えることで、革新的なアイデアやより良い解決策が生まれます。
+                    一つの正解を追わず、複数の視点で物事を捉える。異なる背景や意見を受け入れ、多面的に考えることで、本質を見抜く力を養います。
                   </div>
                 </li>
                 <li className="vel_item">
                   <div className="vel_item_title">
                     <img src="/img/about/values_icon_03.webp" alt="03" className="icon" />
-                    <span className="text">ワクワクする選択をしよう</span>
+                    <span className="text">直感で選ぼう</span>
                   </div>
                   <div className="vel_item_text">
-                    ワクワクするかどうかを意思決定の基準にすることで、<br />情熱と創造性が最大限に引き出され、長期的な成長につながります。
+                    情報を尽くしたその先で、最終的には直感で選ぶ。過剰な分析ではなく、自分の中の確信に従うことが、後悔しない行動と成果につながります。
                   </div>
                 </li>
               </ul>
