@@ -5,6 +5,7 @@ import Link from 'next/link'
 type FooterItem = { label: string; href: string; serviceChild?: boolean }
 
 const FOOTER_NAV: FooterItem[] = [
+  { label: 'トップページ', href: '/' },
   { label: 'Seedについて', href: '/about-us/' },
   { label: 'プロダクト紹介', href: '/product/' },
   { label: 'サービス', href: '/service/' },
