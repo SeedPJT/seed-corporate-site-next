@@ -3,7 +3,7 @@ import CtaSection from '@/components/CtaSection'
 
 export const metadata: Metadata = {
   title: 'Kaika | 株式会社Seed',
-  description: '身軽になりたい社長の右腕。業務も意思決定も、一つの場で。AIプロダクト Kaika。',
+  description: '身軽になりたい社長の右腕。業務も意思決定も、一つの場で。',
 }
 
 export default function Product() {
