@@ -11,11 +11,6 @@ let hasShownInPageLoad = false
 
 const useIsoLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect
 
-// 一時 debug = user 依頼 で SPA nav 挙動 追跡 用。 本 番 fix 後 に 除去 予定。
-const dbg = (...args: unknown[]) => {
-  if (typeof window !== 'undefined') console.log('[loading]', ...args)
-}
-
 // full loading 用 = 中央 の 巨大 tree + skip button。 hard reload の時 のみ 描画。
 const LOADING_CONTAINER_HTML = `<div id="loading_container"><lottie-player id="loadingAnimation" src="/img/top/loading.json" background="transparent" speed="1" autoplay></lottie-player><div id="skipButton">Skip</div></div>`
 
@@ -25,10 +20,7 @@ export default function LoadingAnimation() {
 
   const shouldRunFullLoading = isFrontpage && !hasShownInPageLoad
 
-  dbg('render', { pathname, isFrontpage, hasShown: hasShownInPageLoad, shouldRunFullLoading })
-
   useIsoLayoutEffect(() => {
-    dbg('layoutEffect', { isFrontpage, hasShown: hasShownInPageLoad })
     if (!isFrontpage) {
       document.body.classList.remove('loading_container__hidden')
       document.body.classList.remove('loading_skipped')
@@ -50,8 +42,7 @@ export default function LoadingAnimation() {
       | (HTMLElement & { getLottie?: () => { totalFrames: number; goToAndStop: (frame: number, isFrame?: boolean) => void; play: () => void } })
       | null
     if (!el) {
-      dbg('sub: creating new element')
-      const created = document.createElement('lottie-player') as HTMLElement
+        const created = document.createElement('lottie-player') as HTMLElement
       created.id = 'loadingAnimationSub'
       created.setAttribute('src', '/img/top/loading.json')
       created.setAttribute('background', 'transparent')
@@ -64,7 +55,6 @@ export default function LoadingAnimation() {
     const target = el
     const seekEnd = () => {
       const anim = target.getLottie?.()
-      dbg('sub: seekEnd', { hasAnim: !!anim, totalFrames: anim?.totalFrames })
       if (!anim) return
       anim.goToAndStop(Math.max(0, anim.totalFrames - 1), true)
       target.classList.add('tree-ready')
@@ -82,7 +72,6 @@ export default function LoadingAnimation() {
   useEffect(() => {
     if (!shouldRunFullLoading) return
 
-    dbg('useEffect: start full loading')
     let cancelled = false
     let isPageLoaded = false
 
@@ -93,7 +82,6 @@ export default function LoadingAnimation() {
         if (c) c.classList.add('hidden')
         document.body.classList.add('loading_container__hidden')
         hasShownInPageLoad = true
-        dbg('loading hidden, hasShown=true')
       }
     }
 
