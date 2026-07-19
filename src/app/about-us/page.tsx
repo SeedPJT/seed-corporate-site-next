@@ -65,9 +65,7 @@ export default function AboutUs() {
                 <span className="ja_title">散らかった行動を整理し、<br className="u_pc" />価値ある情報に変える</span>
               </h2>
               <div className="section_explain">
-                私たちは、<span className="main_color bold">日々の膨大な行動や情報を整理し、次の意思決定に活かせる形に変換する仕組み</span>をつくります。会議・タスク・議事録・チャット。それぞれが散らばったままでは、本質的な行動に集中できません。<br />
-                AI が行動データを構造化し、人が意思をもって判断する。この分業により、経営者・個人・組織それぞれの意思決定を支え、本質的な行動に集中できる環境を提供します。<br />
-                <span className="main_color bold">散らかった行動を放置せず、次の一手に活かせる価値ある情報に変える。</span>それが、私たちのミッションです。
+                発達障害の傾向や行動量が多く、頭の中が散らかっていて自分だけで整理するのが難しい人も含めて、<span className="main_color bold">Kaikaが情報の構造化を担い、人は本質的な判断と行動に集中できるようにします。</span>
               </div>
             </div>
             {/* @ts-expect-error lottie-player custom element */}
