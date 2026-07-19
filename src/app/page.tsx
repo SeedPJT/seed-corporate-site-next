@@ -95,7 +95,7 @@ export default function Home() {
             <div className="section_explain">
               Kaikaは、社長の日々の業務と意思決定を一つの場で整理できるAIプロダクトです。<br />
               個人やチームのプロジェクトや振り返りがKaikaに蓄積され、業務も経営判断も、次の一手に繋がる状態へ。<br />
-              散らかりを整理するだけでなく、発信や分析にも活かし、社長を支えます。
+              業務・判断・発信・分析、あらゆる面から社長を支えます。
             </div>
             <div className="section_btn_wrapper">
               <Link href="/product/" className="btn arrow_btn">
@@ -125,12 +125,12 @@ export default function Home() {
           </h2>
           <div className="section_explain">
             Seedは、テクノロジーと人の力を融合し、一人ひとりの散らかった行動を整理し、本質的な行動に熱中できる環境をつくります。<br />
-            独自プロダクト Kaika は、業務の実行や、意思決定の整理を一つの場で行える AI プロダクトです。身軽になりたい社長に伴走します。
+            独自プロダクトKaikaは、業務の実行や、意思決定の整理を一つの場で行えるAIプロダクトです。業務に合わせて柔軟にカスタマイズでき、身軽になりたい社長に伴走します。
           </div>
 
           <div className="service_contents_wrapper service_contents_wrapper__single">
             <div className="serv_co">
-              <img src="/img/top/service_02.webp" alt="Kaika実装伴走" className="serv_co_image" />
+              <img src="/img/top/service_01.webp" alt="Kaika実装伴走" className="serv_co_image" />
               <div className="serv_co_text_wrapper">
                 <div className="serv_co_title">Kaika実装伴走</div>
                 <div className="serv_co_text">

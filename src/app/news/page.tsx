@@ -34,26 +34,23 @@ export default async function NewsIndex({ searchParams }: Props) {
     <>
       <PageHead en="news" ja="お知らせ" />
 
-      <div className="page_contents_wrapper innerbox_1180">
-        <nav className="news_category_nav" aria-label="カテゴリ絞り込み">
-          <Link
-            href="/news/"
-            className={`news_category_nav_item${active === 'all' ? ' is_active' : ''}`}
-          >
-            すべて
-          </Link>
-          {(Object.keys(NEWS_CATEGORIES) as NewsCategory[])
-            .filter((key) => activeCategories.has(key))
-            .map((key) => (
-              <Link
-                key={key}
-                href={`/news/?category=${key}`}
-                className={`news_category_nav_item${active === key ? ' is_active' : ''}`}
-              >
-                {NEWS_CATEGORIES[key]}
-              </Link>
-            ))}
-        </nav>
+      <div className="page_contents_wrapper innerbox_1180 archive_contents_wrapper">
+        <div className="archive_category_list_wrapper">
+          <ul className="archive_category_list">
+            <li className={`cat_item${active === 'all' ? ' current' : ''}`}>
+              <Link href="/news/" className="flex_center">すべて</Link>
+            </li>
+            {(Object.keys(NEWS_CATEGORIES) as NewsCategory[])
+              .filter((key) => activeCategories.has(key))
+              .map((key) => (
+                <li key={key} className={`cat_item${active === key ? ' current' : ''}`}>
+                  <Link href={`/news/?category=${key}`} className="flex_center">
+                    {NEWS_CATEGORIES[key]}
+                  </Link>
+                </li>
+              ))}
+          </ul>
+        </div>
 
         <div className="news_contents_wrapper archive_main_contents">
           {items.length === 0 ? (
