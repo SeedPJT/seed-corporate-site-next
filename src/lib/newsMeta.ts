@@ -10,3 +10,6 @@ export const NEWS_CATEGORIES = {
 } as const
 
 export type NewsCategory = keyof typeof NEWS_CATEGORIES
+
+// アイキャッチ 未設定 の時 の fallback 画像 = デザイン 崩れ 防止。
+export const DEFAULT_THUMBNAIL = '/img/common/logo.webp'

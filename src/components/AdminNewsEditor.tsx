@@ -1,16 +1,19 @@
 'use client'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { NEWS_CATEGORIES, type NewsCategory } from '@/lib/newsMeta'
 
 // 新規 / 編集 で 共有 する form。 mode=create は POST、 mode=edit は PUT + 削除 button 追加。
+// アイキャッチ = file input で 選 ぶ と /api/admin/upload に multipart POST → public/img/news/*.{ext}
+// に GitHub commit → 返って くる path を thumbnail field に格納。
 export type AdminNewsFormValues = {
   slug: string
   title: string
   date: string
   category: NewsCategory
   summary: string
+  thumbnail: string
   body: string
 }
 
@@ -26,9 +29,30 @@ export default function AdminNewsEditor({
   const [error, setError] = useState('')
   const [saving, setSaving] = useState(false)
   const [deleting, setDeleting] = useState(false)
+  const [uploading, setUploading] = useState(false)
+  const fileInputRef = useRef<HTMLInputElement>(null)
 
   const update = <K extends keyof AdminNewsFormValues>(key: K, v: AdminNewsFormValues[K]) => {
     setValues((prev) => ({ ...prev, [key]: v }))
+  }
+
+  const onUpload = async (file: File) => {
+    setUploading(true)
+    setError('')
+    try {
+      const form = new FormData()
+      form.append('file', file)
+      form.append('nameHint', values.slug || 'thumbnail')
+      const res = await fetch('/api/admin/upload', { method: 'POST', body: form })
+      const data = await res.json().catch(() => ({ error: 'upload 失敗' }))
+      if (!res.ok) throw new Error(data.error || 'upload 失敗')
+      update('thumbnail', data.path)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'upload 失敗')
+    } finally {
+      setUploading(false)
+      if (fileInputRef.current) fileInputRef.current.value = ''
+    }
   }
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -142,6 +166,48 @@ export default function AdminNewsEditor({
         </div>
 
         <div className="admin_field">
+          <label>アイキャッチ 画像</label>
+          {values.thumbnail && (
+            <div style={{ marginBottom: 12 }}>
+              <img
+                src={values.thumbnail}
+                alt="thumbnail preview"
+                style={{ maxWidth: 320, maxHeight: 180, objectFit: 'cover', border: '1px solid #e5e7eb', borderRadius: 6 }}
+              />
+              <div style={{ marginTop: 8, display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
+                <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>
+                  {values.thumbnail}
+                </code>
+                <button
+                  type="button"
+                  onClick={() => update('thumbnail', '')}
+                  className="admin_btn admin_btn__secondary"
+                  style={{ padding: '4px 10px', fontSize: 13 }}
+                >
+                  クリア
+                </button>
+              </div>
+            </div>
+          )}
+          <div style={{ display: 'flex', gap: 12, alignItems: 'center', flexWrap: 'wrap' }}>
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="image/jpeg,image/png,image/webp,image/gif"
+              onChange={(e) => {
+                const f = e.target.files?.[0]
+                if (f) onUpload(f)
+              }}
+              disabled={uploading}
+            />
+            {uploading && <span style={{ fontSize: 13, color: '#6b7280' }}>アップロード中…</span>}
+          </div>
+          <div className="admin_field_hint">
+            jpg / png / webp / gif ( 最大 5 MB)。 未 設定 の 場合 は Seed ロゴ を代 わり に表示。
+          </div>
+        </div>
+
+        <div className="admin_field">
           <label htmlFor="body">本文 ( Markdown)</label>
           <textarea
             id="body"
@@ -170,7 +236,7 @@ export default function AdminNewsEditor({
         </div>
         <div style={{ display: 'flex', gap: 12 }}>
           <Link href="/admin/news" className="admin_btn admin_btn__secondary">キャンセル</Link>
-          <button type="submit" disabled={saving || deleting} className="admin_btn">
+          <button type="submit" disabled={saving || deleting || uploading} className="admin_btn">
             {saving ? '保存中…' : mode === 'create' ? '投稿する' : '更新 する'}
           </button>
         </div>

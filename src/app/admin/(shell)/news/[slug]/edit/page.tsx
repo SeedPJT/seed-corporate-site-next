@@ -38,6 +38,7 @@ export default async function AdminNewsEdit({ params }: Props) {
           date: meta.date,
           category: meta.category,
           summary: meta.summary || '',
+          thumbnail: meta.thumbnail || '',
           body: body.trim(),
         }}
       />

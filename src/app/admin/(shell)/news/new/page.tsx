@@ -22,6 +22,7 @@ export default function AdminNewsNew() {
           date: todayISO(),
           category: 'info',
           summary: '',
+          thumbnail: '',
           body: '',
         }}
       />

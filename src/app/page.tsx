@@ -1,7 +1,9 @@
 import Link from 'next/link'
 import CtaSection from '@/components/CtaSection'
+import { getAllNews, NEWS_CATEGORIES, formatNewsDate, getThumbnailOrDefault } from '@/lib/news'
 
 export default function Home() {
+  const latestNews = getAllNews().slice(0, 3)
   return (
     <>
       <section id="fv">
@@ -175,7 +177,44 @@ export default function Home() {
         </div>
       </section>
 
-      {/* News section = 動的コンテンツ (WP posts) = Phase B で headless CMS 導入 or 別ページ 化 して 移植。 一時 非表示。 */}
+      {latestNews.length > 0 && (
+        <section id="news">
+          <div className="news_inner innerbox_1180">
+            <div className="section_title_wrapper">
+              <h2 className="section_title">
+                <span className="en_title">news</span>
+                <span className="ja_title">お知らせ</span>
+              </h2>
+              <div className="section_btn_wrapper news_btn_wrapper news_btn_wrapper__pc">
+                <Link href="/news/" className="btn arrow_btn">
+                  <img src="/img/common/icon_arrow.webp" alt="→" className="arrow" />
+                  <span className="text">お知らせ一覧へ</span>
+                </Link>
+              </div>
+            </div>
+
+            <div className="news_contents_wrapper archive_main_contents">
+              {latestNews.map((item) => (
+                <Link key={item.slug} href={`/news/${item.slug}/`} className="co">
+                  <img src={getThumbnailOrDefault(item)} alt={item.title} className="co_image" />
+                  <div className="co_title">{item.title}</div>
+                  <div className="co_date">{formatNewsDate(item.date)}</div>
+                  <div className="co_cats_wrapper category_wrapper">
+                    <span className="co_cat_item cat_item">{NEWS_CATEGORIES[item.category]}</span>
+                  </div>
+                </Link>
+              ))}
+            </div>
+
+            <div className="section_btn_wrapper news_btn_wrapper news_btn_wrapper__sp">
+              <Link href="/news/" className="btn arrow_btn">
+                <img src="/img/common/icon_arrow.webp" alt="→" className="arrow" />
+                <span className="text">お知らせ一覧へ</span>
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
 
       <CtaSection />
     </>

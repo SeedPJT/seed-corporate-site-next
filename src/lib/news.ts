@@ -6,9 +6,9 @@ import path from 'node:path'
 import matter from 'gray-matter'
 import { remark } from 'remark'
 import remarkHtml from 'remark-html'
-import { NEWS_CATEGORIES, type NewsCategory } from './newsMeta'
+import { NEWS_CATEGORIES, DEFAULT_THUMBNAIL, type NewsCategory } from './newsMeta'
 
-export { NEWS_CATEGORIES, type NewsCategory }
+export { NEWS_CATEGORIES, DEFAULT_THUMBNAIL, type NewsCategory }
 
 const NEWS_DIR = path.join(process.cwd(), 'content', 'news')
 
@@ -18,6 +18,7 @@ export type NewsMeta = {
   date: string
   category: NewsCategory
   summary?: string
+  thumbnail?: string
 }
 
 export type NewsItem = NewsMeta & {
@@ -42,6 +43,7 @@ function parseFile(filePath: string, slug: string): NewsMeta & { raw: string } {
     date: String(data.date || '1970-01-01'),
     category,
     summary: data.summary ? String(data.summary) : undefined,
+    thumbnail: data.thumbnail ? String(data.thumbnail) : undefined,
     raw: content,
   }
 }
@@ -57,6 +59,7 @@ export function getAllNews(): NewsMeta[] {
       date: parsed.date,
       category: parsed.category,
       summary: parsed.summary,
+      thumbnail: parsed.thumbnail,
     }
   })
   // 新しい順 = date DESC
@@ -76,6 +79,7 @@ export async function getNewsBySlug(slug: string): Promise<NewsItem | null> {
     date: parsed.date,
     category: parsed.category,
     summary: parsed.summary,
+    thumbnail: parsed.thumbnail,
     contentHtml: String(processed),
   }
 }
@@ -92,4 +96,8 @@ export function formatNewsDate(dateStr: string): string {
   const m = String(d.getMonth() + 1).padStart(2, '0')
   const day = String(d.getDate()).padStart(2, '0')
   return `${y}.${m}.${day}`
+}
+
+export function getThumbnailOrDefault(item: { thumbnail?: string }): string {
+  return item.thumbnail || DEFAULT_THUMBNAIL
 }

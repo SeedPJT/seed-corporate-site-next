@@ -18,6 +18,7 @@ function buildMarkdown(input: {
   date: string
   category: string
   summary: string
+  thumbnail: string
   body: string
 }): string {
   const fm = [
@@ -26,6 +27,7 @@ function buildMarkdown(input: {
     `date: ${input.date}`,
     `category: ${input.category}`,
     input.summary ? `summary: ${JSON.stringify(input.summary)}` : null,
+    input.thumbnail ? `thumbnail: ${JSON.stringify(input.thumbnail)}` : null,
     '---',
     '',
     input.body.trim(),
@@ -49,6 +51,7 @@ export async function POST(req: Request) {
     const date = String(data.date || '').trim()
     const category = String(data.category || 'info').trim()
     const summary = String(data.summary || '').trim()
+    const thumbnail = String(data.thumbnail || '').trim()
     const body = String(data.body || '').trim()
 
     if (!isValidSlug(slug)) {
@@ -64,7 +67,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: '同 じ スラッグ の 記事 が既 に あります' }, { status: 409 })
     }
 
-    const md = buildMarkdown({ title, date, category, summary, body })
+    const md = buildMarkdown({ title, date, category, summary, thumbnail, body })
     await upsertFile({
       path: filePath,
       content: md,

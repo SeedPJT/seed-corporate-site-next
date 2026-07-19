@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import PageHead from '@/components/PageHead'
 import CtaSection from '@/components/CtaSection'
-import { getAllNews, NEWS_CATEGORIES, formatNewsDate } from '@/lib/news'
+import { getAllNews, NEWS_CATEGORIES, formatNewsDate, getThumbnailOrDefault } from '@/lib/news'
 
 export const metadata = {
   title: 'お知らせ | 株式会社Seed',
@@ -15,26 +15,22 @@ export default function NewsIndex() {
       <PageHead en="news" ja="お知らせ" />
 
       <div className="page_contents_wrapper innerbox_1180">
-        <div className="news_list_wrapper page_inner">
+        <div className="news_contents_wrapper archive_main_contents">
           {items.length === 0 ? (
-            <div className="news_empty">現在 お知らせ は ありません。</div>
+            <div style={{ width: '100%', textAlign: 'center', padding: '48px 0', opacity: 0.5 }}>
+              現在 お知らせ は ありません。
+            </div>
           ) : (
-            <ul className="news_list">
-              {items.map((item) => (
-                <li key={item.slug} className="news_list_item">
-                  <Link href={`/news/${item.slug}/`} className="news_link">
-                    <div className="news_meta">
-                      <time className="news_date" dateTime={item.date}>{formatNewsDate(item.date)}</time>
-                      <span className={`news_category news_category__${item.category}`}>
-                        {NEWS_CATEGORIES[item.category]}
-                      </span>
-                    </div>
-                    <div className="news_title">{item.title}</div>
-                    {item.summary && <div className="news_summary">{item.summary}</div>}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            items.map((item) => (
+              <Link key={item.slug} href={`/news/${item.slug}/`} className="co">
+                <img src={getThumbnailOrDefault(item)} alt={item.title} className="co_image" />
+                <div className="co_title">{item.title}</div>
+                <div className="co_date">{formatNewsDate(item.date)}</div>
+                <div className="co_cats_wrapper category_wrapper">
+                  <span className="co_cat_item cat_item">{NEWS_CATEGORIES[item.category]}</span>
+                </div>
+              </Link>
+            ))
           )}
         </div>
       </div>
