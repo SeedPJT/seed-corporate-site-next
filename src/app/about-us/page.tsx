@@ -65,7 +65,7 @@ export default function AboutUs() {
                 <span className="ja_title">散らかった行動を整理し、<br className="u_pc" />価値ある情報に変える</span>
               </h2>
               <div className="section_explain">
-                発達障害の傾向や行動量が多く、頭の中が散らかっていて自分だけで整理するのが難しい人も含めて、<span className="main_color bold">Kaikaが情報の構造化を担い、人は本質的な判断と行動に集中できるようにします。</span>
+                行動量や思考量が多く、頭の中が散らかっていて自分だけで整理するのが難しい人も含めて、<span className="main_color bold">Kaikaが情報の構造化を担い、人は本質的な判断と行動に集中できるようにします。</span>
               </div>
             </div>
             {/* @ts-expect-error lottie-player custom element */}
