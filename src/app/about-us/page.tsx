@@ -82,28 +82,28 @@ export default function AboutUs() {
                 <li className="vel_item">
                   <div className="vel_item_title">
                     <img src="/img/about/values_icon_01.webp" alt="01" className="icon" />
-                    <span className="text">圧倒的に没頭しよう</span>
+                    <span className="text">やりたいことに圧倒的に没頭しよう</span>
                   </div>
                   <div className="vel_item_text">
-                    自分にとって本質的な行動を見極め、そこに全力を注ぐ姿勢が、最も大きな価値を生み出します。私たち自身も、目の前の課題と製品に圧倒的に没頭し続けます。
+                    やりたいことに没頭し、情熱を持って取り組む人こそ、大きな成果を生み出します。
                   </div>
                 </li>
                 <li className="vel_item">
                   <div className="vel_item_title">
                     <img src="/img/about/values_icon_02.webp" alt="02" className="icon" />
-                    <span className="text">多面的に考えよう</span>
+                    <span className="text">多様性を大切にし、多面的な思考を持とう</span>
                   </div>
                   <div className="vel_item_text">
-                    一つの正解を追わず、複数の視点で物事を捉える。異なる背景や意見を受け入れ、多面的に考えることで、本質を見抜く力を養います。
+                    異なる価値観や背景を尊重し、多面的な視点で物事を捉えることで、革新的なアイデアやより良い解決策が生まれます。
                   </div>
                 </li>
                 <li className="vel_item">
                   <div className="vel_item_title">
                     <img src="/img/about/values_icon_03.webp" alt="03" className="icon" />
-                    <span className="text">直感で選ぼう</span>
+                    <span className="text">直感的な選択をしよう</span>
                   </div>
                   <div className="vel_item_text">
-                    情報を尽くしたその先で、最終的には直感で選ぶ。過剰な分析ではなく、自分の中の確信に従うことが、後悔しない行動と成果につながります。
+                    心がワクワクするかどうかを意思決定の基準にすることで、情熱と創造性が最大限に引き出され、長期的な成長につながります。
                   </div>
                 </li>
               </ul>
