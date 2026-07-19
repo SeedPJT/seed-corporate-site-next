@@ -13,17 +13,8 @@ type NavItem = { label: string; href: string; contact?: boolean; children?: SubI
 const NAV_ITEMS: NavItem[] = [
   { label: 'TOP', href: '/' },
   { label: 'Seedについて', href: '/about-us/' },
-  {
-    label: 'サービス',
-    href: '/service/',
-    children: [
-      { label: 'サービス一覧', href: '/service/', spOnly: true },
-      { label: '包括的で最適な伴走サービス', href: '/service/support-and-growth/' },
-      { label: 'AI・システムの受託開発', href: '/service/ai-and-system/' },
-      { label: '独自プロダクトによる教育支援', href: '/service/ai-x-education/' },
-    ],
-  },
   { label: 'プロダクト紹介', href: '/product/' },
+  { label: 'サービス', href: '/service/' },
   { label: 'お知らせ', href: '/news/' },
   { label: 'お問い合わせ', href: '/contact/', contact: true },
 ]

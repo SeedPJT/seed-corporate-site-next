@@ -7,12 +7,9 @@ type FooterItem = { label: string; href: string; serviceChild?: boolean }
 const FOOTER_NAV: FooterItem[] = [
   { label: 'Seedについて', href: '/about-us/' },
   { label: 'プロダクト紹介', href: '/product/' },
+  { label: 'サービス', href: '/service/' },
   { label: 'お知らせ', href: '/news/' },
   { label: 'お問い合わせ', href: '/contact/' },
-  { label: 'サービス一覧', href: '/service/' },
-  { label: '01 包括的で最適な伴走サービス', href: '/service/support-and-growth/', serviceChild: true },
-  { label: '02 AI・システムの受託開発', href: '/service/ai-and-system/', serviceChild: true },
-  { label: '03 独自プロダクトによる教育支援', href: '/service/ai-x-education/', serviceChild: true },
 ]
 
 export default function Footer() {
