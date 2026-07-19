@@ -164,8 +164,9 @@ export default function Home() {
               Kaika<span className="small">（Keep Advancing with Innovative Knowledge Assistance）</span>
             </div>
             <div className="section_explain">
-              Kaikaは、個々の特性をデータ分析し、最適な学習・進路・生活支援を実現するAI搭載の学習支援プロダクトです。学びのスタイルや進路の選択肢は人それぞれ。Kaikaは、行動データをもとに一人ひとりに合った支援プランを提案し、多様な伴走者とともに学びと成長をサポートします。<br />
-              特性分析による個別最適化を行い、最適な学習プランを設計。さらに、伴走者や伴走マネージャーのサポートによって、進路やキャリアの選択肢を広げることができます。AIによる進捗分析を活用し、学びの内容やサポート方針を柔軟に調整することで、継続的な成長を支援します。
+              Kaikaは、社長の日々の業務と意思決定を一つの場で整理できるAIプロダクトです。<br />
+              個人やチームのプロジェクトや振り返りがKaikaに蓄積され、業務も経営判断も、次の一手に繋がる状態へ。<br />
+              散らかりを整理するだけでなく、発信や分析にも活かし、社長を支えます。
             </div>
             <div className="section_btn_wrapper">
               <Link href="/product/" className="btn arrow_btn">
