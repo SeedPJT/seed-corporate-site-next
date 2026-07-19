@@ -1386,32 +1386,17 @@ body#product {
           padding-right: 0;
         }
 
-        // span 化 に伴 う typography ( 旧 = 画像 で 表示 して いた ため font 指定 なし)。
         .fv_title_label {
-          display: block;
           padding-right: rem(10);
-          font-size: rem(56);
-          line-height: 1;
-          font-weight: 700;
-          font-family: $accent_font;
-          color: $main_color;
           @include mq(tbsm) {
             padding-right: 0;
-            font-size: rem(40);
           }
         }
 
         .fv_title_text {
-          display: block;
-          margin-top: rem(24);
-          font-size: rem(32);
-          line-height: calc(48 / 32);
-          font-weight: 700;
-          color: $black;
+          margin-top: rem(17);
           @include mq(tbsm) {
-            margin-top: rem(12);
-            font-size: rem(22);
-            line-height: calc(33 / 22);
+            margin-top: rem(8);
           }
         }
       }

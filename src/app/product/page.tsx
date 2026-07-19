@@ -15,8 +15,8 @@ export default function Product() {
           <div className="fv_inner innerbox_1280">
             <div className="fv_text_wrapper">
               <h2 className="fv_title">
-                <span className="fv_title_label">Kaika</span>
-                <span className="fv_title_text">身軽になりたい社長の右腕</span>
+                <img src="/img/product/fv_title_label.webp" alt="Kaika（Keep Advancing with Innovative Knowledge Assistance）" className="fv_title_label" />
+                <img src="/img/product/fv_title_text.webp" alt="身軽になりたい社長の右腕" className="fv_title_text" />
               </h2>
               <div className="fv_explain section_explain">
                 業務も意思決定も、一つの場で。
