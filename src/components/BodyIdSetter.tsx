@@ -14,6 +14,20 @@ const PATH_TO_ID: Record<string, string> = {
   '/service/support-and-growth': 'support-and-growth',
   '/contact': 'contact',
   '/contact/thanks': 'thanks',
+  '/news': 'news',
+}
+
+// 動 的 slug ( news/[slug] 等) は prefix 一致 で body id を付ける。
+const DYNAMIC_PATH_PREFIXES: { prefix: string; id: string }[] = [
+  { prefix: '/news/', id: 'news' },
+]
+
+function resolveBodyId(pathname: string): string {
+  if (PATH_TO_ID[pathname]) return PATH_TO_ID[pathname]
+  for (const { prefix, id } of DYNAMIC_PATH_PREFIXES) {
+    if (pathname.startsWith(prefix)) return id
+  }
+  return 'other_page'
 }
 
 // SSR 中 は useLayoutEffect が 使え ない ため isomorphic 変種。
@@ -24,8 +38,7 @@ export default function BodyIdSetter() {
   const pathname = usePathname()
   useIsoLayoutEffect(() => {
     const normalized = pathname.endsWith('/') && pathname !== '/' ? pathname.slice(0, -1) : pathname
-    const id = PATH_TO_ID[normalized] || 'other_page'
-    document.body.id = id
+    document.body.id = resolveBodyId(normalized)
   }, [pathname])
   return null
 }

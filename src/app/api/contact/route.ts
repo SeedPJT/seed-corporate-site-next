@@ -1,8 +1,45 @@
 // Contact form receiver = Vercel Serverless。
-// field 名 は 元 CF7 と 同 じ ( cf_* prefix)。 現状 = 受信 内容 を console.log + 200 で return する placeholder。
-// 本番 化 する とき に SendGrid / Resend / Nodemailer 等 の 実 送信 を 差し込む。
-// user から の 送信 先 メール アドレス が 決まり 次第、 CONTACT_TO 環境変数 で 設定。
+// field 名 は 元 CF7 と 同 じ ( cf_* prefix)。
+// 通知 = Slack incoming webhook ( 主)。 env var `SLACK_CONTACT_WEBHOOK_URL` を Vercel Project Settings で 設定。
+// webhook 未 設定 の 場合 = console.log の みで 200 return ( form 動作 自体 は 壊れない)。
+// 将来 メール archive 追加 する なら Resend / SendGrid を ここ に差し込む。
 import { NextResponse } from 'next/server'
+
+type ContactPayload = {
+  name: string
+  email: string
+  company: string
+  whats: string
+  details: string
+}
+
+async function postToSlack(payload: ContactPayload): Promise<void> {
+  const url = process.env.SLACK_CONTACT_WEBHOOK_URL
+  if (!url) {
+    console.log('[contact] SLACK_CONTACT_WEBHOOK_URL 未設定 = Slack 通知 skip')
+    return
+  }
+  const text = [
+    ':envelope_with_arrow: *HP から お問い合わせ が届き ました*',
+    `> *お名前*: ${payload.name}`,
+    `> *メール*: ${payload.email}`,
+    payload.company ? `> *会社*: ${payload.company}` : null,
+    `> *項目*: ${payload.whats}`,
+    payload.details ? `> *詳細*:\n\`\`\`\n${payload.details}\n\`\`\`` : null,
+  ]
+    .filter(Boolean)
+    .join('\n')
+
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ text }),
+  })
+  if (!res.ok) {
+    const body = await res.text()
+    throw new Error(`Slack webhook failed: ${res.status} ${body}`)
+  }
+}
 
 export async function POST(req: Request) {
   try {
@@ -22,16 +59,23 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'プライバシーポリシーへの同意が必要です' }, { status: 400 })
     }
 
-    // TODO: 実 送信 = SendGrid / Resend 等 で 差し込む。
-    // 例:
-    //   await resend.emails.send({
-    //     from: 'noreply@seed-tech.co.jp',
-    //     to: process.env.CONTACT_TO || 'inoue.shunnosuke@seed-tech.co.jp',
-    //     subject: `[HP問い合わせ] ${name} 様 (${whats})`,
-    //     text: `お名前: ${name}\n会社: ${company}\nメール: ${email}\n項目: ${whats}\n\n${details}`,
-    //   })
+    const payload: ContactPayload = { name, email, company, whats, details }
 
-    console.log('[contact] received:', { name, email, company, whats, details: details.slice(0, 200) })
+    // Slack 通知 = 失敗 しても user への 200 return は継続 ( form 送信 成功 扱い)、
+    // 失敗 は log に残 して 後 で 復旧 。
+    try {
+      await postToSlack(payload)
+    } catch (err) {
+      console.error('[contact] Slack 通知 失敗:', err)
+    }
+
+    console.log('[contact] received:', {
+      name,
+      email,
+      company,
+      whats,
+      details: details.slice(0, 200),
+    })
 
     return NextResponse.json({ ok: true })
   } catch (err) {

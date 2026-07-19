@@ -24,6 +24,7 @@ const NAV_ITEMS: NavItem[] = [
     ],
   },
   { label: 'プロダクト紹介', href: '/product/' },
+  { label: 'お知らせ', href: '/news/' },
   { label: 'お問い合わせ', href: '/contact/', contact: true },
 ]
 

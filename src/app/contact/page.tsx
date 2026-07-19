@@ -66,6 +66,7 @@ export default function Contact() {
                       type="text"
                       name="cf_name"
                       required
+                      placeholder="例）山田　太郎"
                       className="wpcf7-form-control wpcf7-text wpcf7-validates-as-required"
                       aria-required="true"
                     />
@@ -83,6 +84,7 @@ export default function Contact() {
                       type="email"
                       name="cf_email"
                       required
+                      placeholder="例）example@sample.co.jp"
                       className="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email"
                       aria-required="true"
                     />
@@ -94,7 +96,12 @@ export default function Contact() {
                 <div className="form_item__label">会社名・団体名</div>
                 <div className="form_item__input">
                   <span className="wpcf7-form-control-wrap" data-name="cf_company">
-                    <input type="text" name="cf_company" className="wpcf7-form-control wpcf7-text" />
+                    <input
+                      type="text"
+                      name="cf_company"
+                      placeholder="例）〇〇株式会社"
+                      className="wpcf7-form-control wpcf7-text"
+                    />
                   </span>
                 </div>
               </div>
@@ -126,6 +133,7 @@ export default function Contact() {
                     <textarea
                       name="cf_details"
                       rows={8}
+                      placeholder="具体的なお問い合わせ内容をご記入ください。"
                       className="wpcf7-form-control wpcf7-textarea"
                     />
                   </span>

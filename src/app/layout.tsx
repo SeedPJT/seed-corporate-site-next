@@ -19,13 +19,27 @@ const PATH_TO_ID: Record<string, string> = {
   '/service/support-and-growth': 'support-and-growth',
   '/contact': 'contact',
   '/contact/thanks': 'thanks',
+  '/news': 'news',
+}
+
+// news 詳細 = 動 的 slug は 個別 に mapping せず、 prefix match で news body id を付ける。
+const DYNAMIC_PATH_PREFIXES: { prefix: string; id: string }[] = [
+  { prefix: '/news/', id: 'news' },
+]
+
+function resolveBodyId(pathname: string): string {
+  if (PATH_TO_ID[pathname]) return PATH_TO_ID[pathname]
+  for (const { prefix, id } of DYNAMIC_PATH_PREFIXES) {
+    if (pathname.startsWith(prefix)) return id
+  }
+  return 'other_page'
 }
 
 async function getRouteInfo(): Promise<{ bodyId: string; pathname: string }> {
   const h = await headers()
   const pathname = h.get('x-pathname') || '/'
   const normalized = pathname.length > 1 && pathname.endsWith('/') ? pathname.slice(0, -1) : pathname
-  return { bodyId: PATH_TO_ID[normalized] || 'other_page', pathname: normalized }
+  return { bodyId: resolveBodyId(normalized), pathname: normalized }
 }
 
 export const metadata: Metadata = {
