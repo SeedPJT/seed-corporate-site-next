@@ -2,7 +2,8 @@ import type { Metadata } from 'next'
 import CtaSection from '@/components/CtaSection'
 
 export const metadata: Metadata = {
-  title: 'Product | 株式会社Seed',
+  title: 'Kaika | 株式会社Seed',
+  description: '身軽になりたい社長の右腕。業務も意思決定も、一つの場で。AIプロダクト Kaika。',
 }
 
 export default function Product() {
@@ -14,22 +15,22 @@ export default function Product() {
           <div className="fv_inner innerbox_1280">
             <div className="fv_text_wrapper">
               <h2 className="fv_title">
-                <img src="/img/product/fv_title_label.webp" alt="Kaika（Keep Advancing with Innovative Knowledge Assistance）" className="fv_title_label" />
-                <img src="/img/product/fv_title_text.webp" alt="特性分析・学習推薦を、AIがサポート。" className="fv_title_text" />
+                <span className="fv_title_label">Kaika</span>
+                <span className="fv_title_text">身軽になりたい社長の右腕</span>
               </h2>
               <div className="fv_explain section_explain">
-                Kaikaは、一人ひとりの特性を分析し、<br className="u_sp" />最適な学びをサポートします。
+                業務も意思決定も、一つの場で。
               </div>
               <div className="fv_btn_wrapper u_pc">
-                <a href="https://kaika.world/" className="btn black_btn" target="_blank" rel="noopener noreferrer">まずは<span className="yellow">無料</span>で利用する</a>
+                <a href="https://kaika.world/" className="btn black_btn" target="_blank" rel="noopener noreferrer">まずは<span className="yellow">無料</span>で試す</a>
               </div>
             </div>
             <div className="fv_image_wrapper">
-              <img src="/img/product/fv_main.webp" alt="特性分析・学習推薦を、AIがサポート。" className="fv_main_image" />
+              <img src="/img/product/fv_main.webp" alt="Kaika 今日画面 = 業務と意思決定を一つの場で整理" className="fv_main_image" />
               <img src="/img/common/logo_brain.webp" alt="." className="fv_main_bg" />
             </div>
             <div className="fv_btn_wrapper u_sp">
-              <a href="https://kaika.world/" className="btn black_btn" target="_blank" rel="noopener noreferrer">まずは<span className="yellow">無料</span>で利用する</a>
+              <a href="https://kaika.world/" className="btn black_btn" target="_blank" rel="noopener noreferrer">まずは<span className="yellow">無料</span>で試す</a>
             </div>
           </div>
         </section>
