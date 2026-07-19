@@ -246,7 +246,6 @@ body#frontpage {
   section#service {
     position: relative;
     z-index: 400;
-    background-color: #e7ebf6;
     padding-top: rem(120);
     padding-bottom: rem(160);
     @include mq(tbsm) {
@@ -254,23 +253,24 @@ body#frontpage {
       padding-bottom: rem(147);
     }
 
+    // 背景 は 元 の position 2 (旧 product) を維持 = 白 bg + product_bg 画像を左に。
     &::before {
       content: "";
       display: block;
       position: absolute;
       z-index: -1;
-      right: 0;
-      top: 0;
-      width: rem(697);
-      height: calc(100% - rem(160));
-      background-image: url(/img/top/service_bg.webp);
+      top: rem(101);
+      left: 0;
+      width: rem(670);
+      height: rem(633);
+      background-image: url(/img/top/product_bg.webp);
       background-position: right top;
       background-repeat: no-repeat;
       background-size: contain;
       @include mq(tbsm) {
-        top: rem(24);
-        width: rem(314);
-        height: rem(517.5);
+        top: rem(-4);
+        width: rem(302);
+        height: rem(285);
       }
     }
 
@@ -481,29 +481,31 @@ body#frontpage {
     position: relative;
     z-index: 400;
     overflow: hidden;
+    background-color: #e7ebf6;
     padding-top: rem(80);
     padding-bottom: rem(120);
     @include mq(tbsm) {
       padding-top: rem(53);
     }
 
+    // 背景 は 元 の position 1 (旧 service) を維持 = blue bg + service_bg 画像を右に。
     &::before {
       content: "";
       display: block;
       position: absolute;
       z-index: -1;
-      top: rem(101);
-      left: 0;
-      width: rem(670);
-      height: rem(633);
-      background-image: url(/img/top/product_bg.webp);
+      right: 0;
+      top: 0;
+      width: rem(697);
+      height: calc(100% - rem(160));
+      background-image: url(/img/top/service_bg.webp);
       background-position: right top;
       background-repeat: no-repeat;
       background-size: contain;
       @include mq(tbsm) {
-        top: rem(-4);
-        width: rem(302);
-        height: rem(285);
+        top: rem(24);
+        width: rem(314);
+        height: rem(517.5);
       }
     }
 
