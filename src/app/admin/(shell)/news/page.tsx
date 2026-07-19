@@ -1,9 +1,9 @@
 import Link from 'next/link'
 import { getAllNews, NEWS_CATEGORIES, formatNewsDate } from '@/lib/news'
 
-// admin news list = 現行 の 記事 一覧、 編集 / 削除 導線 付き。
-// SSR で file system から 読み込み = ローカル 開発 時 も deploy 後 も 同 じ 挙動。
-// GitHub API で 保存 後 は Vercel deploy 完了 する まで list に反映 されない ( 1-2 分)。
+// admin news list = 現行の記事一覧、 編集 / 削除導線付き。
+// SSR で file system から読み込み = ローカル開発時も deploy 後も同じ挙動。
+// GitHub API で保存後は Vercel deploy 完了するまで list に反映されない ( 1-2 分)。
 export const dynamic = 'force-dynamic'
 
 export default function AdminNewsList() {
@@ -13,13 +13,13 @@ export default function AdminNewsList() {
       <h1 className="admin_h1">お知らせ</h1>
       <div className="admin_toolbar">
         <div className="admin_field_hint">
-          記事 数: {items.length} 件 = 保存 する と GitHub に commit → Vercel が 自動 deploy します ( 反映 まで 1-2 分)。
+          記事数: {items.length} 件 = 保存すると GitHub に commit → Vercel が自動 deploy します ( 反映まで 1-2 分)。
         </div>
-        <Link href="/admin/news/new" className="admin_btn">新規 投稿</Link>
+        <Link href="/admin/news/new" className="admin_btn">新規投稿</Link>
       </div>
 
       {items.length === 0 ? (
-        <div className="admin_card">まだ 記事 が ありません。 「新規 投稿」 から 始めて ください。</div>
+        <div className="admin_card">まだ記事がありません。 「新規投稿」 から始めてください。</div>
       ) : (
         <table className="admin_table">
           <thead>

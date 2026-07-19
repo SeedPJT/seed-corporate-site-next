@@ -4,9 +4,9 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { NEWS_CATEGORIES, type NewsCategory } from '@/lib/newsMeta'
 
-// 新規 / 編集 で 共有 する form。 mode=create は POST、 mode=edit は PUT + 削除 button 追加。
-// アイキャッチ = file input で 選 ぶ と /api/admin/upload に multipart POST → public/img/news/*.{ext}
-// に GitHub commit → 返って くる path を thumbnail field に格納。
+// 新規 / 編集で共有する form。 mode=create は POST、 mode=edit は PUT + 削除 button 追加。
+// アイキャッチ = file input で選ぶと /api/admin/upload に multipart POST → public/img/news/*.{ext}
+// に GitHub commit → 返ってくる path を thumbnail field に格納。
 export type AdminNewsFormValues = {
   slug: string
   title: string
@@ -68,31 +68,31 @@ export default function AdminNewsEditor({
         body: JSON.stringify(values),
       })
       if (!res.ok) {
-        const data = await res.json().catch(() => ({ error: '保存 失敗' }))
-        throw new Error(data.error || '保存 失敗')
+        const data = await res.json().catch(() => ({ error: '保存失敗' }))
+        throw new Error(data.error || '保存失敗')
       }
       router.push('/admin/news')
       router.refresh()
     } catch (err) {
-      setError(err instanceof Error ? err.message : '保存 失敗')
+      setError(err instanceof Error ? err.message : '保存失敗')
       setSaving(false)
     }
   }
 
   const onDelete = async () => {
-    if (!confirm(`「${initial.title}」 を削除 します。 元 に 戻せ ません が よろしい ですか?`)) return
+    if (!confirm(`「${initial.title}」 を削除します。 元に戻せませんがよろしいですか?`)) return
     setDeleting(true)
     setError('')
     try {
       const res = await fetch(`/api/admin/news/${initial.slug}`, { method: 'DELETE' })
       if (!res.ok) {
-        const data = await res.json().catch(() => ({ error: '削除 失敗' }))
-        throw new Error(data.error || '削除 失敗')
+        const data = await res.json().catch(() => ({ error: '削除失敗' }))
+        throw new Error(data.error || '削除失敗')
       }
       router.push('/admin/news')
       router.refresh()
     } catch (err) {
-      setError(err instanceof Error ? err.message : '削除 失敗')
+      setError(err instanceof Error ? err.message : '削除失敗')
       setDeleting(false)
     }
   }
@@ -140,7 +140,7 @@ export default function AdminNewsEditor({
 
         {mode === 'create' && (
           <div className="admin_field">
-            <label htmlFor="slug">スラッグ ( URL の 末尾)</label>
+            <label htmlFor="slug">スラッグ ( URL の末尾)</label>
             <input
               id="slug"
               type="text"
@@ -150,23 +150,23 @@ export default function AdminNewsEditor({
               pattern="[a-z0-9-]+"
               required
             />
-            <div className="admin_field_hint">半 角 英 数 と ハイフン のみ、 URL /news/&lt;slug&gt;/ に なります。</div>
+            <div className="admin_field_hint">半角英数とハイフンのみ、 URL /news/&lt;slug&gt;/ になります。</div>
           </div>
         )}
 
         <div className="admin_field">
-          <label htmlFor="summary">概要 ( 一覧 に表示)</label>
+          <label htmlFor="summary">概要 ( 一覧に表示)</label>
           <input
             id="summary"
             type="text"
             value={values.summary}
             onChange={(e) => update('summary', e.target.value)}
-            placeholder="例) 資金 調達 を実施 しました"
+            placeholder="例) 資金調達を実施しました"
           />
         </div>
 
         <div className="admin_field">
-          <label>アイキャッチ 画像</label>
+          <label>アイキャッチ画像</label>
           {values.thumbnail && (
             <div style={{ marginBottom: 12 }}>
               <img
@@ -203,7 +203,7 @@ export default function AdminNewsEditor({
             {uploading && <span style={{ fontSize: 13, color: '#6b7280' }}>アップロード中…</span>}
           </div>
           <div className="admin_field_hint">
-            jpg / png / webp / gif ( 最大 5 MB)。 未 設定 の 場合 は Seed ロゴ を代 わり に表示。
+            jpg / png / webp / gif (最大 5 MB)。未設定の場合は Seed の no-image 画像を代わりに表示。
           </div>
         </div>
 
@@ -213,10 +213,10 @@ export default function AdminNewsEditor({
             id="body"
             value={values.body}
             onChange={(e) => update('body', e.target.value)}
-            placeholder={`本文 を Markdown で 書いて ください。\n\n## 見出し 2\n\n段落。\n\n- 箇条 書き 1\n- 箇条 書き 2`}
+            placeholder={`本文を Markdown で書いてください。\n\n## 見出し 2\n\n段落。\n\n- 箇条書き 1\n- 箇条書き 2`}
           />
           <div className="admin_field_hint">
-            見出し ( ## / ###)、 段落、 箇条書き、 リンク、 引用 が使え ます。
+            見出し ( ## / ###)、 段落、 箇条書き、 リンク、 引用が使えます。
           </div>
         </div>
       </div>
@@ -237,7 +237,7 @@ export default function AdminNewsEditor({
         <div style={{ display: 'flex', gap: 12 }}>
           <Link href="/admin/news" className="admin_btn admin_btn__secondary">キャンセル</Link>
           <button type="submit" disabled={saving || deleting || uploading} className="admin_btn">
-            {saving ? '保存中…' : mode === 'create' ? '投稿する' : '更新 する'}
+            {saving ? '保存中…' : mode === 'create' ? '投稿する' : '更新する'}
           </button>
         </div>
       </div>

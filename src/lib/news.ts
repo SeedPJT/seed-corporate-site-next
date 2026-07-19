@@ -1,6 +1,6 @@
-// お知らせ ( news) content loader = `content/news/*.md` を 読 んで 一覧 / 詳細 に 提供 する。
-// SSOT = markdown ファイル ( gray-matter frontmatter + body)、 後 で microCMS 化 する 際 は
-// この module の 内 部 だけ 差 し替え れば page 側 は 触 らない ( abstraction 保 つ)。
+// お知らせ ( news) content loader = `content/news/*.md` を読んで一覧 / 詳細に提供する。
+// SSOT = markdown ファイル ( gray-matter frontmatter + body)、 後で microCMS 化する際は
+// この module の内部だけ差し替えれば page 側は触らない ( abstraction 保つ)。
 import fs from 'node:fs'
 import path from 'node:path'
 import matter from 'gray-matter'
@@ -88,7 +88,7 @@ export function getAllNewsSlugs(): string[] {
   return safeReadDir(NEWS_DIR).map((f) => f.replace(/\.(md|mdx)$/, ''))
 }
 
-// 日付 表 示 = YYYY.MM.DD の 統 一 format。
+// 日付表示 = YYYY.MM.DD の統一 format。
 export function formatNewsDate(dateStr: string): string {
   const d = new Date(dateStr)
   if (Number.isNaN(d.getTime())) return dateStr

@@ -1,8 +1,8 @@
 // Contact form receiver = Vercel Serverless。
-// field 名 は 元 CF7 と 同 じ ( cf_* prefix)。
-// 通知 = Slack Bot OAuth ( chat.postMessage) で `SLACK_CONTACT_CHANNEL_ID` に 送 る。
-// bot 未 設定 の 場 合 = console.log の みで 200 return ( form 動 作 破壊 なし)。
-// 将来 メール archive 追加 する なら Resend / SendGrid を ここ に差 し込む。
+// field 名は元 CF7 と同じ ( cf_* prefix)。
+// 通知 = Slack Bot OAuth ( chat.postMessage) で `SLACK_CONTACT_CHANNEL_ID` に送る。
+// bot 未設定の場合 = console.log のみで 200 return ( form 動作破壊なし)。
+// 将来メール archive 追加するなら Resend / SendGrid をここに差し込む。
 import { NextResponse } from 'next/server'
 
 type ContactPayload = {
@@ -21,7 +21,7 @@ async function postToSlack(payload: ContactPayload): Promise<void> {
     return
   }
   const text = [
-    ':envelope_with_arrow: *HP から お問い合わせ が届き ました*',
+    ':envelope_with_arrow: *HP からお問い合わせが届きました*',
     `> *お名前*: ${payload.name}`,
     `> *メール*: ${payload.email}`,
     payload.company ? `> *会社*: ${payload.company}` : null,
@@ -57,7 +57,7 @@ export async function POST(req: Request) {
     const acceptance = String(data.cf_acceptance || '').trim()
 
     if (!name || !email || !whats) {
-      return NextResponse.json({ error: 'お名前 / メールアドレス / お問い合わせ項目 は必須です' }, { status: 400 })
+      return NextResponse.json({ error: 'お名前 / メールアドレス / お問い合わせ項目は必須です' }, { status: 400 })
     }
     if (!acceptance) {
       return NextResponse.json({ error: 'プライバシーポリシーへの同意が必要です' }, { status: 400 })
@@ -65,12 +65,12 @@ export async function POST(req: Request) {
 
     const payload: ContactPayload = { name, email, company, whats, details }
 
-    // Slack 通知 = 失敗 しても user への 200 return は継続 ( form 送信 成功 扱い)、
-    // 失敗 は log に残して 後 で 復旧。
+    // Slack 通知 = 失敗しても user への 200 return は継続 ( form 送信成功扱い)、
+    // 失敗は log に残して後で復旧。
     try {
       await postToSlack(payload)
     } catch (err) {
-      console.error('[contact] Slack 通知 失敗:', err)
+      console.error('[contact] Slack 通知失敗:', err)
     }
 
     console.log('[contact] received:', {

@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import '../admin.css'
 
-// admin UI は 公 開 site と CSS を 完 全 分離 = 独自 の 軽量 UI shell。
-// SCSS 継承 しない ( 記事 body prose のみ 別途 対応)。
+// admin UI は公開 site と CSS を完全分離 = 独自の軽量 UI shell。
+// SCSS 継承しない ( 記事 body prose のみ別途対応)。
 export const metadata = {
   title: '管理 | 株式会社Seed',
   robots: { index: false, follow: false },

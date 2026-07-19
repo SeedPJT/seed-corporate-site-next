@@ -8,7 +8,7 @@ import FadeInObserver from '@/components/FadeInObserver'
 import LoadingAnimation from '@/components/LoadingAnimation'
 import '@/styles/style.scss'
 
-// pathname → body id map。 middleware で 注入 された x-pathname header を使って SSR で 決定。
+// pathname → body id map。 middleware で注入された x-pathname header を使って SSR で決定。
 const PATH_TO_ID: Record<string, string> = {
   '/': 'frontpage',
   '/about-us': 'about-us',
@@ -22,7 +22,7 @@ const PATH_TO_ID: Record<string, string> = {
   '/news': 'news',
 }
 
-// news 詳細 = 動 的 slug は 個別 に mapping せず、 prefix match で news body id を付ける。
+// news 詳細 = 動的 slug は個別に mapping せず、 prefix match で news body id を付ける。
 const DYNAMIC_PATH_PREFIXES: { prefix: string; id: string }[] = [
   { prefix: '/news/', id: 'news' },
 ]
@@ -69,8 +69,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&display=swap"
           rel="stylesheet"
         />
-        {/* Lottie player = sync loading で 初回描画 前 に custom element を確実 に 定義。
-            async/defer だと lottie-player render 時点 で 未定義 = fullscreen loading の 初期 フェーズ が empty に見える。 */}
+        {/* Lottie player = sync loading で初回描画前に custom element を確実に定義。
+            async/defer だと lottie-player render 時点で未定義 = fullscreen loading の初期フェーズが empty に見える。 */}
         <script src="https://unpkg.com/@lottiefiles/lottie-player@2.0.12/dist/lottie-player.js" />
       </head>
       <body id={bodyId}>
@@ -89,13 +89,13 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
         {/* client-side navigation で body id を更新 */}
         <BodyIdSetter />
-        {/* .animation_fade を viewport 入場 で fadein 化 */}
+        {/* .animation_fade を viewport 入場で fadein 化 */}
         <FadeInObserver />
         <div id="pagetop" className="all_container">
           <Header />
-          {/* 元 WP header.php と 同じ 位置 = main の 外 に render。
-              root layout は SPA nav で 再 render されない ため 常時 mount し、
-              LoadingAnimation 内 で usePathname を watch して 全 nav に反応 する。 */}
+          {/* 元 WP header.php と同じ位置 = main の外に render。
+              root layout は SPA nav で再 render されないため常時 mount し、
+              LoadingAnimation 内で usePathname を watch して全 nav に反応する。 */}
           <LoadingAnimation />
           <main id="main">{children}</main>
           <Footer />

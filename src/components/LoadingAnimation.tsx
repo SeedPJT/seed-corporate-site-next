@@ -2,16 +2,16 @@
 import { useEffect, useLayoutEffect } from 'react'
 import { usePathname } from 'next/navigation'
 
-// 元 WP header.php + loading.js の 完全 忠実 移植。
+// 元 WP header.php + loading.js の完全忠実移植。
 //
-// 「1 page load で 1 回」 semantics = hard reload は 必ず 走る、 SPA nav は skip。
-// sessionStorage は タブ 閉じ まで 持続 = 「reload でも skip」 と なる ため module 変数 で
-// page-load 単位 の state を保持 ( module 再評価 は hard reload のみ )。
+// 「1 page load で 1 回」 semantics = hard reload は必ず走る、 SPA nav は skip。
+// sessionStorage はタブ閉じまで持続 = 「reload でも skip」 となるため module 変数で
+// page-load 単位の state を保持 ( module 再評価は hard reload のみ )。
 let hasShownInPageLoad = false
 
 const useIsoLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect
 
-// full loading 用 = 中央 の 巨大 tree + skip button。 hard reload の時 のみ 描画。
+// full loading 用 = 中央の巨大 tree + skip button。 hard reload の時のみ描画。
 const LOADING_CONTAINER_HTML = `<div id="loading_container"><lottie-player id="loadingAnimation" src="/img/top/loading.json" background="transparent" speed="1" autoplay></lottie-player><div id="skipButton">Skip</div></div>`
 
 export default function LoadingAnimation() {
@@ -35,8 +35,8 @@ export default function LoadingAnimation() {
     }
   }, [isFrontpage])
 
-  // corner tree = LoadingAnimation の 初回 mount 時 に document.createElement で lottie を作り、
-  // body 直下 に append。 React が触ら ない = 全 nav で 完全 に 継続 = frame state / seek 状態 保持。
+  // corner tree = LoadingAnimation の初回 mount 時に document.createElement で lottie を作り、
+  // body 直下に append。 React が触らない = 全 nav で完全に継続 = frame state / seek 状態保持。
   useEffect(() => {
     let el = document.getElementById('loadingAnimationSub') as
       | (HTMLElement & { getLottie?: () => { totalFrames: number; goToAndStop: (frame: number, isFrame?: boolean) => void; play: () => void } })
@@ -61,7 +61,7 @@ export default function LoadingAnimation() {
     }
     target.addEventListener('ready', seekEnd)
     target.addEventListener('load', seekEnd)
-    // 既に ready 済 の 場合 も seek 試行
+    // 既に ready 済の場合も seek 試行
     seekEnd()
     return () => {
       target.removeEventListener('ready', seekEnd)
@@ -113,7 +113,7 @@ export default function LoadingAnimation() {
     }
   }, [shouldRunFullLoading])
 
-  // sub は document.body に直接 append する ため React tree から 外す = React reconcile 対象 外。
+  // sub は document.body に直接 append するため React tree から外す = React reconcile 対象外。
   // loading_container のみ conditional に render。
   if (!shouldRunFullLoading) return null
   return <div suppressHydrationWarning dangerouslySetInnerHTML={{ __html: LOADING_CONTAINER_HTML }} />

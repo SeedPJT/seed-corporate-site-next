@@ -1,11 +1,11 @@
-// GitHub Contents API 経由 で content/news/*.md を CRUD する wrapper。
-// admin UI 側 は これ を 呼 ぶ だけ で 記事 の 追加 / 更新 / 削除 が git commit として 記録 され、
-// Vercel が 自動 deploy して site に 反映 する ( WP の 投稿 → 公開 と 同 じ UX)。
+// GitHub Contents API 経由で content/news/*.md を CRUD する wrapper。
+// admin UI 側はこれを呼ぶだけで記事の追加 / 更新 / 削除が git commit として記録され、
+// Vercel が自動 deploy して site に反映する ( WP の投稿 → 公開と同じ UX)。
 //
 // 必要 env vars:
 //   GITHUB_TOKEN = fine-grained PAT ( Contents: Read and write scope)
-//   GITHUB_REPO  = "owner/repo" ( 未設定 の 場 合 は VERCEL_GIT_REPO_OWNER/VERCEL_GIT_REPO_SLUG から derive)
-//   GITHUB_BRANCH = 対象 branch ( 未設定 は "main")
+//   GITHUB_REPO  = "owner/repo" ( 未設定の場合は VERCEL_GIT_REPO_OWNER/VERCEL_GIT_REPO_SLUG から derive)
+//   GITHUB_BRANCH = 対象 branch ( 未設定は "main")
 
 const API_BASE = 'https://api.github.com'
 
@@ -18,7 +18,7 @@ function getRepo(): { owner: string; repo: string } {
   const owner = process.env.VERCEL_GIT_REPO_OWNER
   const repo = process.env.VERCEL_GIT_REPO_SLUG
   if (owner && repo) return { owner, repo }
-  throw new Error('GITHUB_REPO env 未設定 かつ Vercel Git env も 未取得')
+  throw new Error('GITHUB_REPO env 未設定かつ Vercel Git env も未取得')
 }
 
 function getBranch(): string {
@@ -27,7 +27,7 @@ function getBranch(): string {
 
 function getToken(): string {
   const t = process.env.GITHUB_TOKEN
-  if (!t) throw new Error('GITHUB_TOKEN env が設定 されて い ません')
+  if (!t) throw new Error('GITHUB_TOKEN env が設定されていません')
   return t
 }
 
@@ -47,7 +47,7 @@ async function gh(path: string, init?: RequestInit): Promise<Response> {
 
 export type FileInfo = { path: string; sha: string; contentBase64: string }
 
-// ファイル取得 = sha も返す ( 更新 / 削除 に必要)。 存在 しない 場合 は null。
+// ファイル取得 = sha も返す ( 更新 / 削除に必要)。 存在しない場合は null。
 export async function getFile(filePath: string): Promise<FileInfo | null> {
   const { owner, repo } = getRepo()
   const branch = getBranch()

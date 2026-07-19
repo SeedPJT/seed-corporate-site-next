@@ -3,7 +3,7 @@ import { cookies } from 'next/headers'
 import { verifySessionCookieValue, SESSION_COOKIE_NAME } from '@/lib/auth'
 import { getFile, upsertFile } from '@/lib/github'
 
-// 記事 の 新規 作成 = POST /api/admin/news
+// 記事の新規作成 = POST /api/admin/news
 // body = { slug, title, date, category, summary, body }
 // content/news/${slug}.md を GitHub API で create commit する。
 
@@ -42,7 +42,7 @@ function isValidSlug(s: string): boolean {
 
 export async function POST(req: Request) {
   if (!(await requireAuth())) {
-    return NextResponse.json({ error: '未認証 です' }, { status: 401 })
+    return NextResponse.json({ error: '未認証です' }, { status: 401 })
   }
   try {
     const data = await req.json()
@@ -55,16 +55,16 @@ export async function POST(req: Request) {
     const body = String(data.body || '').trim()
 
     if (!isValidSlug(slug)) {
-      return NextResponse.json({ error: 'スラッグ が不正 です ( 半 角 英 数 + ハイフン)' }, { status: 400 })
+      return NextResponse.json({ error: 'スラッグが不正です ( 半角英数 + ハイフン)' }, { status: 400 })
     }
     if (!title || !date) {
-      return NextResponse.json({ error: 'タイトル / 日付 は必須 です' }, { status: 400 })
+      return NextResponse.json({ error: 'タイトル / 日付は必須です' }, { status: 400 })
     }
 
     const filePath = `content/news/${slug}.md`
     const existing = await getFile(filePath)
     if (existing) {
-      return NextResponse.json({ error: '同 じ スラッグ の 記事 が既 に あります' }, { status: 409 })
+      return NextResponse.json({ error: '同じスラッグの記事が既にあります' }, { status: 409 })
     }
 
     const md = buildMarkdown({ title, date, category, summary, thumbnail, body })
@@ -77,7 +77,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: true, slug })
   } catch (err) {
     console.error('[admin/news POST] error:', err)
-    const msg = err instanceof Error ? err.message : '保存 失敗'
+    const msg = err instanceof Error ? err.message : '保存失敗'
     return NextResponse.json({ error: msg }, { status: 500 })
   }
 }

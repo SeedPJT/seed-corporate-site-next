@@ -3,9 +3,9 @@ import { cookies } from 'next/headers'
 import { verifySessionCookieValue, SESSION_COOKIE_NAME } from '@/lib/auth'
 import { upsertFile, getFile } from '@/lib/github'
 
-// admin から の 画像 upload = multipart FormData を受け取り GitHub API で
-// public/img/news/*.{ext} に commit する。 return は 公 開 URL ( /img/news/xxx.ext)。
-// Vercel は public/ を root で serve する ので この path が そのまま HP から アクセス可能。
+// admin からの画像 upload = multipart FormData を受け取り GitHub API で
+// public/img/news/*.{ext} に commit する。 return は公開 URL ( /img/news/xxx.ext)。
+// Vercel は public/ を root で serve するのでこの path がそのまま HP からアクセス可能。
 
 const MAX_SIZE = 5 * 1024 * 1024 // 5 MB
 const ALLOWED_MIME: Record<string, string> = {
@@ -27,36 +27,36 @@ function sanitizeSlug(s: string): string {
 
 export async function POST(req: Request) {
   if (!(await requireAuth())) {
-    return NextResponse.json({ error: '未認証 です' }, { status: 401 })
+    return NextResponse.json({ error: '未認証です' }, { status: 401 })
   }
   try {
     const form = await req.formData()
     const file = form.get('file')
     const nameHint = String(form.get('nameHint') || 'thumbnail')
     if (!(file instanceof File)) {
-      return NextResponse.json({ error: 'file が付いて い ません' }, { status: 400 })
+      return NextResponse.json({ error: 'file が付いていません' }, { status: 400 })
     }
     if (file.size > MAX_SIZE) {
-      return NextResponse.json({ error: `ファイル が 大き過ぎ ます ( 上限 ${MAX_SIZE / 1024 / 1024}MB)` }, { status: 400 })
+      return NextResponse.json({ error: `ファイルが大き過ぎます ( 上限 ${MAX_SIZE / 1024 / 1024}MB)` }, { status: 400 })
     }
     const ext = ALLOWED_MIME[file.type]
     if (!ext) {
-      return NextResponse.json({ error: '対応 して い ない 形式 です ( jpg / png / webp / gif のみ)' }, { status: 400 })
+      return NextResponse.json({ error: '対応していない形式です ( jpg / png / webp / gif のみ)' }, { status: 400 })
     }
     const arrayBuf = await file.arrayBuffer()
     const b64 = Buffer.from(arrayBuf).toString('base64')
 
-    // ファイル 名 = slug hint + タイムスタンプ ( unique 化) + 拡張 子。
+    // ファイル名 = slug hint + タイムスタンプ ( unique 化) + 拡張子。
     const base = sanitizeSlug(nameHint)
     const stamp = Date.now().toString(36)
     const fileName = `${base}-${stamp}.${ext}`
     const filePath = `public/img/news/${fileName}`
 
-    // 既存 file が ある 場合 は sha 付与 ( 通常 は timestamp 化 で 衝 突 なし)。
+    // 既存 file がある場合は sha 付与 ( 通常は timestamp 化で衝突なし)。
     const existing = await getFile(filePath)
 
-    // upsertFile は 内 部 で toBase64(str) する = string 前提。 ここ は 直接 API 叩く。
-    // 画像 は 生 base64 で 送 る 必要 が ある。
+    // upsertFile は内部で toBase64(str) する = string 前提。 ここは直接 API 叩く。
+    // 画像は生 base64 で送る必要がある。
     await putBinary(filePath, b64, existing?.sha, `news: upload ${fileName}`)
 
     return NextResponse.json({ ok: true, path: `/img/news/${fileName}` })
@@ -71,7 +71,7 @@ async function putBinary(path: string, contentB64: string, sha: string | undefin
   const raw = process.env.GITHUB_REPO
   const owner = raw?.split('/')[0] || process.env.VERCEL_GIT_REPO_OWNER
   const repo = raw?.split('/')[1] || process.env.VERCEL_GIT_REPO_SLUG
-  if (!owner || !repo) throw new Error('GITHUB_REPO env 未設定 かつ Vercel Git env も 未 取得')
+  if (!owner || !repo) throw new Error('GITHUB_REPO env 未設定かつ Vercel Git env も未取得')
   const branch = process.env.GITHUB_BRANCH || 'main'
   const token = process.env.GITHUB_TOKEN
   if (!token) throw new Error('GITHUB_TOKEN env 未設定')

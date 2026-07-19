@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
-// 各ページ 共通 の 見出し + パンくず。 元 parts/page_head.php 相当。
-// 現状 は 単純 な 1階 層 のみ 想定 ( 固定 ページ)。 深い階層 が 出たら extraCrumbs で拡張。
+// 各ページ共通の見出し + パンくず。 元 parts/page_head.php 相当。
+// 現状は単純な 1階層のみ想定 ( 固定ページ)。 深い階層が出たら extraCrumbs で拡張。
 type Crumb = { label: string; href?: string }
 type Props = {
   en: string

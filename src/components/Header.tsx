@@ -2,11 +2,11 @@
 import { useState } from 'react'
 import Link from 'next/link'
 
-// 元 WP の nav 構造 と 完全 一致:
-// - `menu-item-has-children` = サブメニュー 持ち (Service)
+// 元 WP の nav 構造と完全一致:
+// - `menu-item-has-children` = サブメニュー持ち (Service)
 // - `header_menu__contact` = お問い合わせ = SCSS で button 化
 // - `sub-menu` = ドロップダウン
-// - `u_sp` = mobile のみ表示 (「サービス一覧」 は PC では Service ラベル で 集約 = mobile では 子として表示)
+// - `u_sp` = mobile のみ表示 (「サービス一覧」 は PC では Service ラベルで集約 = mobile では子として表示)
 type SubItem = { label: string; href: string; spOnly?: boolean }
 type NavItem = { label: string; href: string; contact?: boolean; children?: SubItem[] }
 

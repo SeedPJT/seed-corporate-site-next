@@ -2,8 +2,8 @@
 import { usePathname } from 'next/navigation'
 import { useEffect, useLayoutEffect } from 'react'
 
-// path から body#{id} を 動的 に 設定。 元 WP の $page->post_name = body id と 同 じ 挙動 で
-// SCSS 側 の body#frontpage / body#about-us 等 の page 特有 スタイル を 効かせる。
+// path から body#{id} を動的に設定。 元 WP の $page->post_name = body id と同じ挙動で
+// SCSS 側の body#frontpage / body#about-us 等の page 特有スタイルを効かせる。
 const PATH_TO_ID: Record<string, string> = {
   '/': 'frontpage',
   '/about-us': 'about-us',
@@ -17,7 +17,7 @@ const PATH_TO_ID: Record<string, string> = {
   '/news': 'news',
 }
 
-// 動 的 slug ( news/[slug] 等) は prefix 一致 で body id を付ける。
+// 動的 slug ( news/[slug] 等) は prefix 一致で body id を付ける。
 const DYNAMIC_PATH_PREFIXES: { prefix: string; id: string }[] = [
   { prefix: '/news/', id: 'news' },
 ]
@@ -30,8 +30,8 @@ function resolveBodyId(pathname: string): string {
   return 'other_page'
 }
 
-// SSR 中 は useLayoutEffect が 使え ない ため isomorphic 変種。
-// paint 前 に body id を確定 する = 前 page 状態 と body#frontpage 規則 の 一 瞬 flash 消える。
+// SSR 中は useLayoutEffect が使えないため isomorphic 変種。
+// paint 前に body id を確定する = 前 page 状態と body#frontpage 規則の一瞬 flash 消える。
 const useIsoLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect
 
 export default function BodyIdSetter() {

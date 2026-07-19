@@ -13,7 +13,7 @@ function todayISO(): string {
 export default function AdminNewsNew() {
   return (
     <>
-      <h1 className="admin_h1">新規 投稿</h1>
+      <h1 className="admin_h1">新規投稿</h1>
       <AdminNewsEditor
         mode="create"
         initial={{

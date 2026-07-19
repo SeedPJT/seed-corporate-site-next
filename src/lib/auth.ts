@@ -1,14 +1,14 @@
 // 簡易 session = HMAC-SHA256 で signed cookie。 middleware ( edge runtime) と route handler
-// ( node runtime) 両方 で verify する ため Web Crypto API を利用 = 依存 追加 なし。
+// ( node runtime) 両方で verify するため Web Crypto API を利用 = 依存追加なし。
 // cookie value 形式 = `${payload}.${sig}` 、 payload = `${expiryMs}` ( 期限 UTC ms のみ)。
-// 期限 は 現在 + 7 日 で 発行、 login で 都度 更新。
+// 期限は現在 + 7 日で発行、 login で都度更新。
 
 const COOKIE_NAME = 'admin_session'
 const SESSION_TTL_MS = 1000 * 60 * 60 * 24 * 7 // 7 日
 
 function getSecret(): string {
   const s = process.env.SESSION_SECRET
-  if (!s) throw new Error('SESSION_SECRET env が設定 されて い ません')
+  if (!s) throw new Error('SESSION_SECRET env が設定されていません')
   return s
 }
 

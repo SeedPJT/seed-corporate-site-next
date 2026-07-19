@@ -5,9 +5,9 @@ import Link from 'next/link'
 import PageHead from '@/components/PageHead'
 import CtaSection from '@/components/CtaSection'
 
-// Contact form = WP CF7 の 忠実 移植。 field 構造 と class 名 は 元 CF7 と 完 全 一致
+// Contact form = WP CF7 の忠実移植。 field 構造と class 名は元 CF7 と完全一致
 // (form_contents / form_item / form_item__label / form_item__input / acceptance_wrapper /
-// submit_btn_wrapper / wpcf7-* 系) = SCSS の 既存 style が そのまま 効く。
+// submit_btn_wrapper / wpcf7-* 系) = SCSS の既存 style がそのまま効く。
 const WHATS_OPTIONS = [
   'サービスについて',
   '導入のご相談',
@@ -50,7 +50,7 @@ export default function Contact() {
       <div className="page_contents_wrapper innerbox_980">
         <div className="contact_page_explain">
           以下のフォームに必要事項をご記入のうえ、送信してください。<br />
-          ※通常 2〜3営業日以内 に担当者よりご連絡いたします。
+          ※通常 2〜3営業日以内に担当者よりご連絡いたします。
         </div>
 
         <div className="contact_form_wrapper page_inner">

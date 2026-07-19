@@ -5,7 +5,7 @@ import { getAllNews, NEWS_CATEGORIES, formatNewsDate, getThumbnailOrDefault } fr
 
 export const metadata = {
   title: 'お知らせ | 株式会社Seed',
-  description: '株式会社Seed の お知らせ 一覧。 リリース / メディア掲載 / 提携 / 採用 等 の 情報 を お届 け します。',
+  description: '株式会社Seed のお知らせ一覧。 リリース / メディア掲載 / 提携 / 採用等の情報をお届けします。',
 }
 
 export default function NewsIndex() {
@@ -18,7 +18,7 @@ export default function NewsIndex() {
         <div className="news_contents_wrapper archive_main_contents">
           {items.length === 0 ? (
             <div style={{ width: '100%', textAlign: 'center', padding: '48px 0', opacity: 0.5 }}>
-              現在 お知らせ は ありません。
+              現在お知らせはありません。
             </div>
           ) : (
             items.map((item) => (

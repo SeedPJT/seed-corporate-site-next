@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
-// 元 WP footer と 完全 一致 = Service を 親 + 3 子項目 の 番号 付き 構造 に、
-// service 子 は menu__service_child class で SCSS の 小 font 対応。
+// 元 WP footer と完全一致 = Service を親 + 3 子項目の番号付き構造に、
+// service 子は menu__service_child class で SCSS の小 font 対応。
 type FooterItem = { label: string; href: string; serviceChild?: boolean }
 
 const FOOTER_NAV: FooterItem[] = [

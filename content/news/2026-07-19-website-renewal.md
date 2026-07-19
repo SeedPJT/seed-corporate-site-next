@@ -17,8 +17,8 @@ summary: WordPress から Next.js on Vercel に完全移行し、表示速度と
 
 ## 主な変更点
 
-- Next.js 16 App Router で 静的 + SSR ハイブリッド化
-- Vercel 上での 自動 デプロイ (GitHub 連携)
-- お知らせ セクション を Markdown ベースで 運用
+- Next.js 16 App Router で静的 + SSR ハイブリッド化
+- Vercel 上での自動デプロイ (GitHub 連携)
+- お知らせセクションを Markdown ベースで運用
 
-デザインは大きく変更していません。今後、コンテンツ の 発信 を 継続 的 に強化して いき ます。
+デザインは大きく変更していません。今後、コンテンツの発信を継続的に強化していきます。

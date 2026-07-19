@@ -9,7 +9,7 @@ export const dynamic = 'force-dynamic'
 
 type Props = { params: Promise<{ slug: string }> }
 
-// Edit 画面 は remark 変換 前 の 生 markdown が欲しい ので、 gray-matter で 再パース する。
+// Edit 画面は remark 変換前の生 markdown が欲しいので、 gray-matter で再パースする。
 async function loadRawBody(slug: string): Promise<string | null> {
   const dir = path.join(process.cwd(), 'content', 'news')
   const mdPath = path.join(dir, `${slug}.md`)
@@ -29,7 +29,7 @@ export default async function AdminNewsEdit({ params }: Props) {
 
   return (
     <>
-      <h1 className="admin_h1">記事 を編集</h1>
+      <h1 className="admin_h1">記事を編集</h1>
       <AdminNewsEditor
         mode="edit"
         initial={{

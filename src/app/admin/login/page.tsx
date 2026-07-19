@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import '../admin.css'
-// login は shell の 外 = admin.css を 自分 で import する
+// login は shell の外 = admin.css を自分で import する
 
 export default function AdminLogin() {
   const router = useRouter()
@@ -37,7 +37,7 @@ export default function AdminLogin() {
   return (
     <div className="admin_login_shell">
       <div className="admin_login_card">
-        <h1 className="admin_login_title">Seed 管理 ログイン</h1>
+        <h1 className="admin_login_title">Seed 管理ログイン</h1>
         <form onSubmit={onSubmit}>
           {error && <div className="admin_alert admin_alert__error">{error}</div>}
           <div className="admin_field">
