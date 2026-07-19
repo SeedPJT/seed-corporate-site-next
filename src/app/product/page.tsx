@@ -17,7 +17,7 @@ export default function Product() {
               <h2 className="fv_title">
                 <span className="fv_title_label">Kaika<span className="fv_title_label_sub">（Keep Advancing with Innovative Knowledge Assistance）</span></span>
                 <span className="fv_title_text">
-                  身軽になりたい<br className="u_sp" />社長の<span className="fv_title_text_accent">右腕</span>
+                  身軽になりたい<br />社長の<span className="fv_title_text_accent">右腕</span>
                 </span>
               </h2>
               <div className="fv_explain section_explain">
