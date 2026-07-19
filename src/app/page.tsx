@@ -93,55 +93,23 @@ export default function Home() {
             独自プロダクト Kaika は、業務の実行や、意思決定の整理を一つの場で行える AI プロダクトです。身軽になりたい社長に伴走します。
           </div>
 
-          <div className="service_contents_wrapper">
+          <div className="service_contents_wrapper service_contents_wrapper__single">
             <div className="serv_co">
+              <img src="/img/top/service_02.webp" alt="Kaika実装伴走" className="serv_co_image" />
               <div className="serv_co_text_wrapper">
-                <div className="serv_co_number">01</div>
-                <div className="serv_co_title">
-                  包括的で最適な<br />
-                  伴走サービス
-                </div>
+                <div className="serv_co_title">Kaika実装伴走</div>
                 <div className="serv_co_text">
-                  独自プロダクトKaikaを活用し、個人の特性を把握して、多様な伴走者によって、学習や進路、生活の包括的で最適な伴走をします。
+                  Kaikaを社長の業務に組み込む、月額定額の伴走支援。<br />
+                  業務要件のヒアリングから実装、運用定着まで並走します。
+                </div>
+                <div className="serv_co_btn_wrapper">
+                  <Link href="/service/" className="btn arrow_btn">
+                    <img src="/img/common/icon_arrow.webp" alt="→" className="arrow" />
+                    <span className="text">詳しく見る</span>
+                  </Link>
                 </div>
               </div>
-              <img src="/img/top/service_01.webp" alt="01" className="serv_co_image" />
             </div>
-
-            <div className="serv_co">
-              <div className="serv_co_text_wrapper">
-                <div className="serv_co_number">02</div>
-                <div className="serv_co_title">
-                  AI・システムの<br />
-                  受託開発
-                </div>
-                <div className="serv_co_text">
-                  顧客の課題分析から参画し、課題解決に直結するAI・システムをオーダーメイドで開発します。
-                </div>
-              </div>
-              <img src="/img/top/service_02.webp" alt="02" className="serv_co_image" />
-            </div>
-
-            <div className="serv_co">
-              <div className="serv_co_text_wrapper">
-                <div className="serv_co_number">03</div>
-                <div className="serv_co_title">
-                  独自プロダクトを<br />
-                  活用した教育支援
-                </div>
-                <div className="serv_co_text">
-                  AI概論、AIプログラミング、生成AIの活用を軸に、学校・塾・企業向けの教育支援をします。
-                </div>
-              </div>
-              <img src="/img/top/service_03.webp" alt="03" className="serv_co_image" />
-            </div>
-          </div>
-
-          <div className="section_btn_wrapper">
-            <Link href="/service/" className="btn arrow_btn">
-              <img src="/img/common/icon_arrow.webp" alt="→" className="arrow" />
-              <span className="text">サービス一覧へ</span>
-            </Link>
           </div>
         </div>
       </section>
