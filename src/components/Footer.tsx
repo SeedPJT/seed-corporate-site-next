@@ -1,11 +1,17 @@
 import Link from 'next/link'
 
-const FOOTER_NAV = [
-  { label: 'トップページ', href: '/' },
+// 元 WP footer と 完全 一致 = Service を 親 + 3 子項目 の 番号 付き 構造 に、
+// service 子 は menu__service_child class で SCSS の 小 font 対応。
+type FooterItem = { label: string; href: string; serviceChild?: boolean }
+
+const FOOTER_NAV: FooterItem[] = [
   { label: 'Seedについて', href: '/about-us/' },
   { label: 'プロダクト紹介', href: '/product/' },
-  { label: 'サービス一覧', href: '/service/' },
   { label: 'お問い合わせ', href: '/contact/' },
+  { label: 'サービス一覧', href: '/service/' },
+  { label: '01 包括的で最適な伴走サービス', href: '/service/support-and-growth/', serviceChild: true },
+  { label: '02 AI・システムの受託開発', href: '/service/ai-and-system/', serviceChild: true },
+  { label: '03 独自プロダクトによる教育支援', href: '/service/ai-x-education/', serviceChild: true },
 ]
 
 export default function Footer() {
@@ -24,11 +30,15 @@ export default function Footer() {
 
         <div className="footer_right">
           <ul className="footer_menu_list">
-            {FOOTER_NAV.map((item) => (
-              <li key={item.href} className="menu-item">
-                <Link href={item.href}>{item.label}</Link>
-              </li>
-            ))}
+            {FOOTER_NAV.map((item) => {
+              const classes = ['menu-item', 'menu-item-type-post_type', 'menu-item-object-page']
+              if (item.serviceChild) classes.push('menu__service_child')
+              return (
+                <li key={item.href} className={classes.join(' ')}>
+                  <Link href={item.href}>{item.label}</Link>
+                </li>
+              )
+            })}
           </ul>
         </div>
 

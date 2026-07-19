@@ -1,11 +1,20 @@
 'use client'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 import PageHead from '@/components/PageHead'
 import CtaSection from '@/components/CtaSection'
 
-// Contact form = WP CF7 の 代替。 POST /api/contact に 送信 → 成功で /contact/thanks/ に redirect。
-// 送信 内容 は SendGrid / Resend 等 で メール 化 (別途 API 側 で 設定)。
+// Contact form = WP CF7 の 忠実 移植。 field 構造 と class 名 は 元 CF7 と 完 全 一致
+// (form_contents / form_item / form_item__label / form_item__input / acceptance_wrapper /
+// submit_btn_wrapper / wpcf7-* 系) = SCSS の 既存 style が そのまま 効く。
+const WHATS_OPTIONS = [
+  'サービスについて',
+  '導入のご相談',
+  '取材・メディア関連',
+  'その他',
+]
+
 export default function Contact() {
   const router = useRouter()
   const [status, setStatus] = useState<'idle' | 'sending' | 'error'>('idle')
@@ -46,43 +55,110 @@ export default function Contact() {
 
         <div className="contact_form_wrapper page_inner">
           <form onSubmit={onSubmit} className="wpcf7-form">
-            <p>
-              <label>お名前 <span className="wpcf7-required">*</span></label>
-              <span className="wpcf7-form-control-wrap">
-                <input type="text" name="name" required className="wpcf7-form-control wpcf7-text" />
+            <div className="form_contents">
+              <div className="form_item">
+                <div className="form_item__label">
+                  お名前 <span className="required">必須</span>
+                </div>
+                <div className="form_item__input">
+                  <span className="wpcf7-form-control-wrap" data-name="cf_name">
+                    <input
+                      type="text"
+                      name="cf_name"
+                      required
+                      className="wpcf7-form-control wpcf7-text wpcf7-validates-as-required"
+                      aria-required="true"
+                    />
+                  </span>
+                </div>
+              </div>
+
+              <div className="form_item">
+                <div className="form_item__label">
+                  メールアドレス <span className="required">必須</span>
+                </div>
+                <div className="form_item__input">
+                  <span className="wpcf7-form-control-wrap" data-name="cf_email">
+                    <input
+                      type="email"
+                      name="cf_email"
+                      required
+                      className="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email"
+                      aria-required="true"
+                    />
+                  </span>
+                </div>
+              </div>
+
+              <div className="form_item">
+                <div className="form_item__label">会社名・団体名</div>
+                <div className="form_item__input">
+                  <span className="wpcf7-form-control-wrap" data-name="cf_company">
+                    <input type="text" name="cf_company" className="wpcf7-form-control wpcf7-text" />
+                  </span>
+                </div>
+              </div>
+
+              <div className="form_item">
+                <div className="form_item__label">
+                  お問い合わせ項目 <span className="required">必須</span>
+                </div>
+                <div className="form_item__input radiobtn_container">
+                  <span className="wpcf7-form-control-wrap" data-name="cf_whats">
+                    <span className="wpcf7-form-control wpcf7-radio">
+                      {WHATS_OPTIONS.map((opt) => (
+                        <span key={opt} className="wpcf7-list-item">
+                          <label>
+                            <input type="radio" name="cf_whats" value={opt} required />
+                            <span className="wpcf7-list-item-label">{opt}</span>
+                          </label>
+                        </span>
+                      ))}
+                    </span>
+                  </span>
+                </div>
+              </div>
+
+              <div className="form_item">
+                <div className="form_item__label">お問い合わせ内容</div>
+                <div className="form_item__input">
+                  <span className="wpcf7-form-control-wrap" data-name="cf_details">
+                    <textarea
+                      name="cf_details"
+                      rows={8}
+                      className="wpcf7-form-control wpcf7-textarea"
+                    />
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div className="acceptance_wrapper">
+              <span className="wpcf7-form-control-wrap" data-name="cf_acceptance">
+                <span className="wpcf7-form-control wpcf7-acceptance">
+                  <span className="wpcf7-list-item">
+                    <label>
+                      <input type="checkbox" name="cf_acceptance" value="1" required />
+                      <span className="wpcf7-list-item-label">
+                        <Link href="/privacy-policy/">プライバシーポリシー</Link> に同意する
+                      </span>
+                    </label>
+                  </span>
+                </span>
               </span>
-            </p>
-            <p>
-              <label>会社名 / 団体名</label>
-              <span className="wpcf7-form-control-wrap">
-                <input type="text" name="company" className="wpcf7-form-control wpcf7-text" />
-              </span>
-            </p>
-            <p>
-              <label>メールアドレス <span className="wpcf7-required">*</span></label>
-              <span className="wpcf7-form-control-wrap">
-                <input type="email" name="email" required className="wpcf7-form-control wpcf7-text" />
-              </span>
-            </p>
-            <p>
-              <label>電話番号</label>
-              <span className="wpcf7-form-control-wrap">
-                <input type="tel" name="phone" className="wpcf7-form-control wpcf7-text" />
-              </span>
-            </p>
-            <p>
-              <label>お問い合わせ内容 <span className="wpcf7-required">*</span></label>
-              <span className="wpcf7-form-control-wrap">
-                <textarea name="message" rows={8} required className="wpcf7-form-control wpcf7-textarea" />
-              </span>
-            </p>
-            <p>
-              <button type="submit" disabled={status === 'sending'} className="wpcf7-form-control wpcf7-submit btn">
-                {status === 'sending' ? '送信中…' : '送信する'}
-              </button>
-            </p>
+            </div>
+
+            <div className="submit_btn_wrapper">
+              <input
+                type="submit"
+                value={status === 'sending' ? '送信中…' : 'この内容で送信する'}
+                disabled={status === 'sending'}
+                className="wpcf7-form-control wpcf7-submit has-spinner btn submit_btn green_btn"
+              />
+            </div>
+
             {status === 'error' && (
-              <div className="wpcf7-response-output" role="alert" style={{ color: '#c00', marginTop: 8 }}>
+              <div className="wpcf7-response-output" role="alert">
                 {errorMsg}
               </div>
             )}
