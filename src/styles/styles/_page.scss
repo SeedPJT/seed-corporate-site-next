@@ -1391,7 +1391,8 @@ body#product {
         .fv_title_label {
           display: inline-block;
           padding: rem(8) rem(24) rem(8) rem(20);
-          background: linear-gradient(90deg, #f596c2 0%, #a68be1 100%);
+          // 元 image = 左 purple → 右 pink の gradient。 色 は やや deep-toned。
+          background: linear-gradient(90deg, #7d75c9 0%, #d876b8 100%);
           color: $white;
           font-size: rem(28);
           line-height: 1.2;
@@ -1431,7 +1432,8 @@ body#product {
           }
 
           .fv_title_text_accent {
-            background: linear-gradient(90deg, #a68be1 0%, #f596c2 100%);
+            // 元 image の 「AI」 gradient と 同 じ 色調 = 左 purple → 右 pink。
+            background: linear-gradient(90deg, #7d75c9 0%, #d876b8 100%);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
