@@ -90,10 +90,8 @@ export default function Home() {
             <span className="ja_title">私たちができること</span>
           </h2>
           <div className="section_explain">
-            Seedは、テクノロジーと人の力を融合し、個々に寄り添う学びの支援を実現します。<br />
-            独自プロダクトKaikaを活用しながら、学習・進路・生活を支援する伴走サービス、課題解決に直結するAI・システム開発、<br />
-            そしてAIリテラシーを高める教育支援を提供。<br />
-            「多様性のある社会」の実現に向け、一人ひとりが自分らしく成長できる環境を創ります。
+            Seedは、テクノロジーと人の力を融合し、一人ひとりの散らかった行動を整理し、本質的な行動に熱中できる環境をつくります。<br />
+            独自プロダクト Kaika は、業務の実行や、意思決定の整理を一つの場で行える AI プロダクトです。身軽になりたい社長に伴走します。
           </div>
 
           <div className="service_contents_wrapper">
