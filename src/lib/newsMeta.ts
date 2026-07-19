@@ -11,5 +11,6 @@ export const NEWS_CATEGORIES = {
 
 export type NewsCategory = keyof typeof NEWS_CATEGORIES
 
-// アイキャッチ未設定時の fallback = Seed 用の no_image placeholder。
-export const DEFAULT_THUMBNAIL = '/img/common/no_image.webp'
+// アイキャッチ未設定時の fallback = Seed ロゴ。 CSS 側で padding + neutral 背景 + object-fit:contain
+// で card の aspect ratio (960/540) にきれいに納める (`.co_image__fallback` class)。
+export const DEFAULT_THUMBNAIL = '/img/common/logo.webp'

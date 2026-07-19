@@ -1,6 +1,12 @@
 import Link from 'next/link'
 import CtaSection from '@/components/CtaSection'
-import { getAllNews, NEWS_CATEGORIES, formatNewsDate, getThumbnailOrDefault } from '@/lib/news'
+import {
+  getAllNews,
+  NEWS_CATEGORIES,
+  formatNewsDate,
+  getThumbnailOrDefault,
+  isThumbnailFallback,
+} from '@/lib/news'
 
 export default function Home() {
   const latestNews = getAllNews().slice(0, 3)
@@ -196,7 +202,11 @@ export default function Home() {
             <div className="news_contents_wrapper archive_main_contents">
               {latestNews.map((item) => (
                 <Link key={item.slug} href={`/news/${item.slug}/`} className="co">
-                  <img src={getThumbnailOrDefault(item)} alt={item.title} className="co_image" />
+                  <img
+                    src={getThumbnailOrDefault(item)}
+                    alt={item.title}
+                    className={`co_image${isThumbnailFallback(item) ? ' co_image__fallback' : ''}`}
+                  />
                   <div className="co_title">{item.title}</div>
                   <div className="co_date">{formatNewsDate(item.date)}</div>
                   <div className="co_cats_wrapper category_wrapper">

@@ -101,3 +101,8 @@ export function formatNewsDate(dateStr: string): string {
 export function getThumbnailOrDefault(item: { thumbnail?: string }): string {
   return item.thumbnail || DEFAULT_THUMBNAIL
 }
+
+// fallback 使用中か判定 = CSS で padding + contain を効かせる class の付与に使う。
+export function isThumbnailFallback(item: { thumbnail?: string }): boolean {
+  return !item.thumbnail
+}

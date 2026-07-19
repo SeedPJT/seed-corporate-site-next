@@ -2101,9 +2101,21 @@ body.archive {
     }
 
     .co_image {
+      width: 100%;
       height: auto;
       aspect-ratio: 960/540;
       object-fit: cover;
+
+      // アイキャッチ未設定 = Seed ロゴを中央配置、はみ出さないよう contain + padding、
+      // 背景は淡いグレーで card として成立させる。
+      &.co_image__fallback {
+        object-fit: contain;
+        background-color: #f4f5f7;
+        padding: rem(48) rem(64);
+        @include mq(tbsm) {
+          padding: rem(32) rem(48);
+        }
+      }
     }
 
     .co_title {
@@ -2139,6 +2151,44 @@ body.archive {
         @include mq(tbsm) {
           font-size: rem(13);
         }
+      }
+    }
+  }
+}
+
+// news 一覧のカテゴリ絞り込みナビ = URL params ?category=xxx で filter する構造。
+body#news {
+  .news_category_nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: rem(8) rem(24);
+    margin-top: rem(80);
+    justify-content: center;
+    @include mq(tbsm) {
+      margin-top: rem(48);
+      gap: rem(4) rem(16);
+    }
+
+    .news_category_nav_item {
+      font-size: rem(15);
+      color: rgba($color: $black, $alpha: 0.5);
+      text-decoration: none;
+      padding: rem(4) rem(8);
+      border-bottom: 2px solid transparent;
+      transition:
+        color 0.15s ease-out,
+        border-color 0.15s ease-out;
+      @include mq(tbsm) {
+        font-size: rem(14);
+      }
+
+      &:hover {
+        color: $black;
+      }
+
+      &.is_active {
+        color: $black;
+        border-bottom-color: $main_color;
       }
     }
   }
