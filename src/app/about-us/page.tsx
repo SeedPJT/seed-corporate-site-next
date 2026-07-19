@@ -23,7 +23,7 @@ const COMPANY_DETAILS = [
   { label: '設立', content: '2024年12月6日' },
   { label: '所在地', content: '東京都足立区千住3-6 ツオード千住壱番館1001号室' },
   { label: '代表者', content: '井上峻之介' },
-  { label: '事業内容', content: '包括的で最適な伴走サービス、AI・システムの受託開発、独自プロダクトを活用した教育支援' },
+  { label: '事業内容', content: 'AIプロダクト「Kaika」の開発・提供、Kaika実装伴走(受託開発)' },
 ]
 
 const MAP_SRC = 'https://www.google.com/maps?q=%E6%9D%B1%E4%BA%AC%E9%83%BD%E8%B6%B3%E7%AB%8B%E5%8C%BA%E5%8D%83%E4%BD%8F3-6+%E3%83%84%E3%82%AA%E3%83%BC%E3%83%89%E5%8D%83%E4%BD%8F%E5%A3%B1%E7%95%AA%E9%A4%A8&hl=ja&z=18&output=embed'
