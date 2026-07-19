@@ -156,10 +156,14 @@ body#frontpage {
       position: relative;
       z-index: 400;
       width: rem(500);
+      // PC は中身 が全て position:absolute で高さ が出ない = min-height で確保 しないと
+      // section_explain が短くなった 時 に円の下部が切れる。 3 つ目の 円 の bottom (304+308.64) 分。
+      min-height: rem(613);
       @media screen and (max-width: 1340px) {
         transform: translateX(rem(-48));
       }
       @include mq(tbsm) {
+        min-height: 0;
         transform: none;
         width: rem(576);
         height: rem(614);

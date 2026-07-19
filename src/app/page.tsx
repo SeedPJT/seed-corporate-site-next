@@ -82,6 +82,41 @@ export default function Home() {
         </div>
       </section>
 
+      <section id="product">
+        <div className="product_inner innerbox_1180">
+          <div className="product_text_wrapper">
+            <h2 className="section_title">
+              <span className="en_title">product</span>
+              <span className="ja_title">プロダクト紹介</span>
+            </h2>
+            <div className="section_subtitle">
+              Kaika<span className="small">（Keep Advancing with Innovative Knowledge Assistance）</span>
+            </div>
+            <div className="section_explain">
+              Kaikaは、社長の日々の業務と意思決定を一つの場で整理できるAIプロダクトです。<br />
+              個人やチームのプロジェクトや振り返りがKaikaに蓄積され、業務も経営判断も、次の一手に繋がる状態へ。<br />
+              散らかりを整理するだけでなく、発信や分析にも活かし、社長を支えます。
+            </div>
+            <div className="section_btn_wrapper">
+              <Link href="/product/" className="btn arrow_btn">
+                <img src="/img/common/icon_arrow.webp" alt="→" className="arrow" />
+                <span className="text">プロダクト詳細へ</span>
+              </Link>
+            </div>
+          </div>
+          <div className="product_image_wrapper">
+            <img src="/img/product/fv_main.webp" alt="プロダクト" className="product_image" />
+          </div>
+        </div>
+      </section>
+
+      <div className="text_bridge">
+        <ul>
+          <li>Empowering Personalized Action with AI-Driven Solutions.</li>
+          <li>Empowering Personalized Action with AI-Driven Solutions.</li>
+        </ul>
+      </div>
+
       <section id="service">
         <div className="service_inner innerbox_1180">
           <h2 className="section_title">
@@ -110,41 +145,6 @@ export default function Home() {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <div className="text_bridge">
-        <ul>
-          <li>Empowering Personalized Action with AI-Driven Solutions.</li>
-          <li>Empowering Personalized Action with AI-Driven Solutions.</li>
-        </ul>
-      </div>
-
-      <section id="product">
-        <div className="product_inner innerbox_1180">
-          <div className="product_text_wrapper">
-            <h2 className="section_title">
-              <span className="en_title">product</span>
-              <span className="ja_title">プロダクト紹介</span>
-            </h2>
-            <div className="section_subtitle">
-              Kaika<span className="small">（Keep Advancing with Innovative Knowledge Assistance）</span>
-            </div>
-            <div className="section_explain">
-              Kaikaは、社長の日々の業務と意思決定を一つの場で整理できるAIプロダクトです。<br />
-              個人やチームのプロジェクトや振り返りがKaikaに蓄積され、業務も経営判断も、次の一手に繋がる状態へ。<br />
-              散らかりを整理するだけでなく、発信や分析にも活かし、社長を支えます。
-            </div>
-            <div className="section_btn_wrapper">
-              <Link href="/product/" className="btn arrow_btn">
-                <img src="/img/common/icon_arrow.webp" alt="→" className="arrow" />
-                <span className="text">プロダクト詳細へ</span>
-              </Link>
-            </div>
-          </div>
-          <div className="product_image_wrapper">
-            <img src="/img/product/fv_main.webp" alt="プロダクト" className="product_image" />
           </div>
         </div>
       </section>
