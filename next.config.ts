@@ -1,8 +1,7 @@
 import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
-  // 旧サービス URL は Kaika 実装伴走 に集約 = 301 redirect で /service/ に。
-  // SEO 保険 + 既存 リンク の 有効 化。
+  // 旧サービス URL は /service/ 単一 page に集約 = 301 redirect で SEO 保険 + 既存リンク の有効化。
   async redirects() {
     return [
       { source: '/service/ai-and-system', destination: '/service/', permanent: true },
