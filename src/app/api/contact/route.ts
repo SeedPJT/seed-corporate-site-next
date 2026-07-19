@@ -1,8 +1,8 @@
 // Contact form receiver = Vercel Serverless。
 // field 名 は 元 CF7 と 同 じ ( cf_* prefix)。
-// 通知 = Slack incoming webhook ( 主)。 env var `SLACK_CONTACT_WEBHOOK_URL` を Vercel Project Settings で 設定。
-// webhook 未 設定 の 場合 = console.log の みで 200 return ( form 動作 自体 は 壊れない)。
-// 将来 メール archive 追加 する なら Resend / SendGrid を ここ に差し込む。
+// 通知 = Slack Bot OAuth ( chat.postMessage) で `SLACK_CONTACT_CHANNEL_ID` に 送 る。
+// bot 未 設定 の 場 合 = console.log の みで 200 return ( form 動 作 破壊 なし)。
+// 将来 メール archive 追加 する なら Resend / SendGrid を ここ に差 し込む。
 import { NextResponse } from 'next/server'
 
 type ContactPayload = {
@@ -14,9 +14,10 @@ type ContactPayload = {
 }
 
 async function postToSlack(payload: ContactPayload): Promise<void> {
-  const url = process.env.SLACK_CONTACT_WEBHOOK_URL
-  if (!url) {
-    console.log('[contact] SLACK_CONTACT_WEBHOOK_URL 未設定 = Slack 通知 skip')
+  const token = process.env.SLACK_BOT_TOKEN
+  const channel = process.env.SLACK_CONTACT_CHANNEL_ID
+  if (!token || !channel) {
+    console.log('[contact] SLACK_BOT_TOKEN / SLACK_CONTACT_CHANNEL_ID 未設定 = Slack 通知 skip')
     return
   }
   const text = [
@@ -30,14 +31,17 @@ async function postToSlack(payload: ContactPayload): Promise<void> {
     .filter(Boolean)
     .join('\n')
 
-  const res = await fetch(url, {
+  const res = await fetch('https://slack.com/api/chat.postMessage', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ text }),
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json; charset=utf-8',
+    },
+    body: JSON.stringify({ channel, text }),
   })
-  if (!res.ok) {
-    const body = await res.text()
-    throw new Error(`Slack webhook failed: ${res.status} ${body}`)
+  const body = (await res.json()) as { ok: boolean; error?: string }
+  if (!res.ok || !body.ok) {
+    throw new Error(`Slack chat.postMessage 失敗: ${res.status} ${body.error || 'unknown'}`)
   }
 }
 
@@ -62,7 +66,7 @@ export async function POST(req: Request) {
     const payload: ContactPayload = { name, email, company, whats, details }
 
     // Slack 通知 = 失敗 しても user への 200 return は継続 ( form 送信 成功 扱い)、
-    // 失敗 は log に残 して 後 で 復旧 。
+    // 失敗 は log に残して 後 で 復旧。
     try {
       await postToSlack(payload)
     } catch (err) {

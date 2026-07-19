@@ -6,20 +6,11 @@ import path from 'node:path'
 import matter from 'gray-matter'
 import { remark } from 'remark'
 import remarkHtml from 'remark-html'
+import { NEWS_CATEGORIES, type NewsCategory } from './newsMeta'
+
+export { NEWS_CATEGORIES, type NewsCategory }
 
 const NEWS_DIR = path.join(process.cwd(), 'content', 'news')
-
-// category 表示 name の 正規化 = 表 記揺 れ を吸収。
-export const NEWS_CATEGORIES = {
-  release: 'リリース',
-  press: 'メディア掲載',
-  partnership: '提携',
-  hire: '採用',
-  event: 'イベント',
-  info: 'お知らせ',
-} as const
-
-export type NewsCategory = keyof typeof NEWS_CATEGORIES
 
 export type NewsMeta = {
   slug: string
