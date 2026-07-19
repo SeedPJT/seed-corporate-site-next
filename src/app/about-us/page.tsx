@@ -48,13 +48,10 @@ export default function AboutUs() {
             <div className="afsw_text_wrapper">
               <h2 className="section_title small_title">
                 <span className="en_title">vision</span>
-                <span className="ja_title">誰もが本質的な行動に<br className="u_pc" />熱中できるような社会を創る</span>
+                <span className="ja_title">誰もが本来の自分の行動に<br className="u_pc" />熱中できる社会を創る</span>
               </h2>
               <div className="section_explain">
-                世界には、多様な背景と価値観をもつ人々が共に生きています。<br />
-                <span className="main_color bold">私たちは、一人ひとりが自分にとって本質的な行動を見つけ、そこに本気で熱中できる環境を築くことが不可欠だと考えています。</span><br />
-                本質的な行動に打ち込む人が増えれば、社会全体が生き生きとし、新たな価値が生まれ続けます。散らかった情報や日々の忙しさに埋もれるのではなく、自分にとって意味のある一手に集中できる。そんな状態を、テクノロジーと人の力で支えていきます。<br />
-                <span className="main_color bold">私たちは、誰もが本質的な行動に熱中できる社会を、共に創っていきます。</span>
+                人生の早くから責任を背負ってきた人、他人のためにエネルギーを注ぎ続けてきた人たち。<span className="main_color bold">本来の自分から離れてしまった人も含めて、私たちは、一人ひとりが本来の自分の行動に熱中できる社会を創ります。</span>
               </div>
             </div>
             {/* @ts-expect-error lottie-player custom element */}

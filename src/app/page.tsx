@@ -51,8 +51,8 @@ export default function Home() {
             <div className="message_triangle flex_center">
               <span className="en_text">Vision</span>
               <span className="ja_text">
-                誰もが本質的な行動に<br />
-                熱中できるような<br />
+                誰もが本来の自分の<br />
+                行動に熱中できる<br />
                 社会を創る
               </span>
             </div>
