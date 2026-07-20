@@ -42,7 +42,7 @@ async function getRouteInfo(): Promise<{ bodyId: string; pathname: string }> {
 export const metadata: Metadata = {
   title: '株式会社Seed',
   description: '身軽になりたい社長の右腕として、業務と意思決定を一つの場で整理するAIプロダクト「Kaika」を開発・提供しています。',
-  keywords: 'Kaika, AI, 業務改善, 経営者, 社長, 意思決定支援, 議事録, 発信支援, AIエージェント, Seed',
+  keywords: 'Kaika, AI, 業務改善, 社長, 意思決定支援, 議事録, 発信支援, AIエージェント, Seed',
   icons: { icon: '/img/favicon.webp' },
   openGraph: {
     title: '株式会社Seed',

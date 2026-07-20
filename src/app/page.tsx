@@ -105,7 +105,7 @@ export default function Home() {
             </div>
           </div>
           <div className="product_image_wrapper">
-            <img src="/img/home_main.png" alt="Kaika今日画面·経営者の1日を整える" className="product_image" />
+            <img src="/img/home_main.png" alt="Kaika今日画面·社長の1日を整える" className="product_image" />
           </div>
         </div>
       </section>
