@@ -1386,8 +1386,8 @@ body#product {
           padding-right: 0;
         }
 
-        // 元 image = purple → pink gradient pill (Kaika ロゴ ラベル)。
-        // font を CSS で 再現 する と 元 と ズレ る = image 復元 で 元 デザ イン に 揃 え る。
+        // 元image=purple→pink gradient pill (Kaikaロゴラベル)。
+        // fontをCSSで再現すると元とズレる=image復元で元デザインに揃える。
         .fv_title_label {
           width: rem(700);
           max-width: 100%;
@@ -1398,8 +1398,8 @@ body#product {
           }
         }
 
-        // 新 tagline 「身軽になりたい社長の右腕」 = 「右腕」 を gradient accent で 大 きく。
-        // 元 image で 「AI」 が dominant だった の と 同 じ pattern = accent を 相対 的 に 大 きくして 目 立 たせる。
+        // 新tagline「身軽になりたい社長の右腕」=「右腕」をgradient accentで大きく。
+        // 元imageで「AI」がdominantだったのと同じpattern=accentを相対的に大きくして目立たせる。
         .fv_title_text {
           display: block;
           margin-top: rem(24);
