@@ -1388,8 +1388,9 @@ body#product {
 
         // 元image=purple→pink gradient pill (Kaikaロゴラベル)。
         // fontをCSSで再現すると元とズレる=image復元で元デザインに揃える。
+        // width=タギライン相当に絞ってバランス整える。
         .fv_title_label {
-          width: rem(700);
+          width: rem(540);
           max-width: 100%;
           height: auto;
           object-fit: contain;
@@ -1400,6 +1401,7 @@ body#product {
 
         // 新tagline「身軽になりたい社長の右腕」=「右腕」をgradient accentで大きく。
         // 元imageで「AI」がdominantだったのと同じpattern=accentを相対的に大きくして目立たせる。
+        // accent 88px=過剰dominant=72pxで「1段大きい」感キープしつつバランス。
         .fv_title_text {
           display: block;
           margin-top: rem(24);
@@ -1415,16 +1417,16 @@ body#product {
           }
 
           .fv_title_text_accent {
-            font-size: rem(88);
+            font-size: rem(72);
             line-height: 1;
-            vertical-align: middle;
+            vertical-align: baseline;
             background: linear-gradient(90deg, #7d75c9 0%, #d876b8 100%);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
             color: transparent;
             @include mq(tbsm) {
-              font-size: rem(52);
+              font-size: rem(44);
             }
           }
         }
@@ -1485,13 +1487,14 @@ body#product {
           width: auto;
           // width: calc(100% + rem(15) + ((100vw - 1280px) / 2));
           height: 100%;
-          left: rem(-15);
+          left: rem(-20);
           top: 0;
           bottom: 0;
           object-fit: cover;
           object-position: left center;
           @include mq(tbsm) {
             width: 100%;
+            left: 0;
           }
         }
 
@@ -1511,77 +1514,10 @@ body#product {
     }
   }
 
+  // 新版 = philosophy段落 + Learning Cycle 図 (mock ベース)
   section#what {
-    .product_what_inner {
-      margin-top: rem(64);
-
-      .pwi_item {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: rem(32) 0;
-        border-bottom: 1px solid rgba($color: $black, $alpha: 0.2);
-        @include mq(tbsm) {
-          flex-direction: column;
-        }
-
-        &:nth-child(1) {
-          border-top: 1px solid rgba($color: $black, $alpha: 0.2);
-        }
-
-        .pwi_item__icon {
-          width: rem(228);
-          height: auto;
-          @include mq(tbsm) {
-            width: rem(160);
-          }
-        }
-
-        .pwi_item__text {
-          width: calc(100% - rem(228) - rem(24));
-          @include mq(tbsm) {
-            width: 100%;
-            margin-top: rem(24);
-          }
-
-          > span {
-            display: block;
-
-            &.pwi_item__text__title {
-              font-size: rem(22);
-              line-height: calc(25.2 / 22);
-              font-weight: 700;
-              @include mq(tbsm) {
-                font-size: rem(18);
-                text-align: center;
-              }
-            }
-
-            &.pwi_item__text__content {
-              color: rgba($color: $text_color, $alpha: 0.8);
-              margin-top: rem(8);
-              @include mq(tbsm) {
-                font-size: rem(14);
-                line-height: calc(25.2 / 14);
-              }
-            }
-          }
-        }
-      }
-    }
-
-    .arrow_and_text {
-      .aat_text {
-        .aat_text__small {
-          @include mq(tbsm) {
-            text-align: left;
-          }
-        }
-      }
-    }
-  }
-
-  section#product_point_01 {
+    position: relative;
+    overflow: hidden;
     padding-top: rem(104);
     padding-bottom: rem(104);
     @include mq(tbsm) {
@@ -1590,263 +1526,639 @@ body#product {
     }
 
     .section_title {
-      span {
+      > span {
         text-align: center;
       }
     }
 
-    .product_point_contents_wrapper {
-      margin-top: rem(64);
+    .section_explain {
+      text-align: center;
+      max-width: rem(780);
+      margin-left: auto;
+      margin-right: auto;
+
+      .main_color {
+        color: $main_color;
+        font-weight: 700;
+      }
+    }
+
+    // Learning cycle diagram (mock lc-* 実装)
+    .lc-main {
+      display: grid;
+      grid-template-columns: rem(560) 1fr;
+      gap: rem(72);
+      align-items: center;
+      max-width: rem(1140);
+      margin: rem(64) auto 0;
       @include mq(tbsm) {
+        grid-template-columns: 1fr;
+        gap: rem(48);
         margin-top: rem(48);
       }
+    }
 
-      .ppcw_co {
-        &:nth-child(n + 2) {
-          margin-top: rem(64);
-        }
+    .lc-stage {
+      position: relative;
+      width: 100%;
+      max-width: rem(560);
+      aspect-ratio: 1;
+      @include mq(tbsm) {
+        max-width: rem(420);
+        margin: 0 auto;
+      }
+    }
 
-        .ppcw_co_title {
-          display: flex;
-          align-items: center;
-          gap: rem(24);
-          @include mq(tbsm) {
-            align-items: flex-start;
-            gap: rem(12);
-          }
+    .lc-svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+      overflow: visible;
+    }
 
-          > span {
-            display: block;
+    // 色 tone = 全ページ brand 紫 system ($main_color / impact accent) と 呼応 させ る。
+    .lc-ring-outer { fill: none; stroke: rgba(119, 125, 225, 0.35); stroke-width: 0.75; stroke-dasharray: 2 5; opacity: 0.7; }
+    .lc-ring-inner { fill: none; stroke: rgba(119, 125, 225, 0.2); stroke-width: 0.75; opacity: 0.8; }
+    .lc-triangle { fill: none; stroke: rgba(119, 125, 225, 0.28); stroke-width: 0.5; opacity: 0.55; }
+    .lc-spoke { stroke: rgba(119, 125, 225, 0.35); stroke-width: 0.75; opacity: 0.5; stroke-dasharray: 1 3; }
+    .lc-arc {
+      fill: none; stroke: #7d75c9; stroke-width: 1.4;
+      stroke-linecap: round; stroke-dasharray: 5 5; opacity: 0.85;
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .lc-arc { animation: lc-flow 22s linear infinite; }
+      @keyframes lc-flow { to { stroke-dashoffset: -100; } }
+    }
 
-            &.ppcw_co_title__number {
-              font-size: rem(64);
-              line-height: 1;
-              font-weight: 500;
-              font-family: $accent_font;
-              color: $main_color;
-              flex-shrink: 0;
-              @include mq(tbsm) {
-                font-size: rem(40);
-              }
-            }
+    .lc-hub {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 38%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: $white;
+      border: 1px solid rgba(119, 125, 225, 0.3);
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: rem(18);
+    }
 
-            &.ppcw_co_title__text {
-              width: 100%;
-              font-size: rem(32);
-              line-height: calc(57.6 / 32);
-              font-weight: 700;
-              @include mq(tbsm) {
-                font-size: rem(24);
-                line-height: calc(36 / 24);
-              }
-            }
-          }
-        }
+    .lc-hub__icon {
+      width: rem(84);
+      height: auto;
+      margin-bottom: rem(10);
+      @include mq(tbsm) {
+        width: rem(58);
+        margin-bottom: rem(4);
+      }
+    }
 
-        .ppcw_co_maincontent {
-          display: flex;
-          justify-content: space-between;
-          margin-top: rem(24);
-          @include mq(tbsm) {
-            flex-direction: column;
-          }
+    // 色=カラフルなKaika iconと競合しないよう solid dark で静か+可読性重視。
+    .lc-hub__text {
+      font-size: rem(21);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: $text_color;
+      line-height: 1.5;
+      @include mq(tbsm) {
+        font-size: rem(15);
+      }
+    }
 
-          .ppcw_co_asis,
-          .ppcw_co_tobe {
-            width: calc((100% - rem(64)) / 2);
-            background-color: $white;
-            border: 1px solid #d3d3d3;
-            @include mq(tbsm) {
-              width: 100%;
-            }
+    .lc-phase {
+      position: absolute;
+      width: 22%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: $white;
+      border: 1px solid rgba(119, 125, 225, 0.3);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: rem(8);
+      transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
 
-            .ppcw_co_subtitle {
-              font-weight: 700;
-              padding: rem(2) rem(16);
-              border-bottom: 1px solid #d3d3d3;
-            }
+      &:hover {
+        border-color: #7d75c9;
+        box-shadow: 0 rem(8) rem(20) rgba(119, 125, 225, 0.15);
+        transform: scale(1.04);
+      }
 
-            .ppcw_co_list {
-              font-size: rem(14);
-              line-height: calc(25.2 / 14);
-              padding: rem(16);
+      &[data-pos="top"] { top: 2.5%; left: 39%; }
+      &[data-pos="br"] { top: 57%; left: 70.6%; }
+      &[data-pos="bl"] { top: 57%; left: 7.4%; }
+    }
 
-              ul {
-                > li {
-                  position: relative;
-                  z-index: 400;
-                  padding-left: 1em;
+    .lc-phase__num {
+      font-family: $accent_font;
+      font-size: rem(12);
+      color: rgba(119, 125, 225, 0.6);
+      letter-spacing: 0.14em;
+      font-variant-numeric: tabular-nums;
+      margin-bottom: rem(3);
+      font-weight: 500;
+    }
 
-                  &::before {
-                    content: "・";
-                    position: absolute;
-                    left: 0;
-                    top: 0;
-                  }
-                }
-              }
-            }
-          }
-          .ppcw_co_asis {
-            .ppcw_co_subtitle {
-              color: $text_color;
-              background-color: #f1f1f1;
-            }
-          }
-          .ppcw_co_tobe {
-            .ppcw_co_subtitle {
-              color: $white;
-              background-color: $main_color;
-            }
-          }
+    .lc-phase__ja {
+      font-size: rem(19);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: $text_color;
+      line-height: 1.2;
+      margin-bottom: rem(2);
+      @include mq(tbsm) {
+        font-size: rem(14);
+      }
+    }
 
-          span.arrow {
-            display: flex;
-            align-items: center;
-            @include mq(tbsm) {
-              flex-direction: column;
-            }
+    .lc-phase__en {
+      font-family: $accent_font;
+      font-size: rem(10);
+      color: rgba(119, 125, 225, 0.7);
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
 
-            &::before {
-              content: "";
-              display: block;
-              width: 0;
-              height: 0;
-              border-style: solid;
-              border-top: rem(24) solid transparent;
-              border-bottom: rem(24) solid transparent;
-              border-left: rem(21) solid rgba($color: $main_color, $alpha: 0.3);
-              border-right: 0;
-              margin-left: rem(8);
-              @include mq(tbsm) {
-                transform: rotate(90deg);
-              }
-            }
-          }
-        }
+    .lc-details {
+      display: flex;
+      flex-direction: column;
+      gap: rem(28);
+    }
+
+    .lc-detail {
+      padding-left: rem(28);
+      position: relative;
+      border-left: 1px solid rgba(119, 125, 225, 0.25);
+      padding-bottom: rem(4);
+
+      &::before {
+        content: "";
+        position: absolute;
+        left: rem(-3.5);
+        top: rem(6);
+        width: rem(6);
+        height: rem(6);
+        border-radius: 50%;
+        background: #7d75c9;
+      }
+    }
+
+    .lc-detail__head {
+      display: flex;
+      align-items: baseline;
+      gap: rem(12);
+      margin-bottom: rem(8);
+    }
+
+    .lc-detail__num {
+      font-family: $accent_font;
+      font-size: rem(11);
+      letter-spacing: 0.22em;
+      color: rgba(119, 125, 225, 0.7);
+      font-variant-numeric: tabular-nums;
+      font-weight: 500;
+    }
+
+    .lc-detail__ja {
+      font-size: rem(22);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: $text_color;
+      margin: 0;
+      line-height: 1.2;
+    }
+
+    .lc-detail__en {
+      font-family: $accent_font;
+      font-size: rem(9);
+      color: rgba(119, 125, 225, 0.55);
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    .lc-detail__body {
+      font-size: rem(16);
+      color: rgba($color: $text_color, $alpha: 0.8);
+      line-height: 1.85;
+      margin: 0;
+      letter-spacing: 0.01em;
+    }
+  }
+
+  // 2 特許 (行動から特性可視化 / 会話から事実ルール構造化) = body default 紫 に 委ねる
+  section#why {
+    padding-top: rem(104);
+    padding-bottom: rem(104);
+    @include mq(tbsm) {
+      padding-top: rem(64);
+      padding-bottom: rem(64);
+    }
+
+    .section_title {
+      > span {
+        text-align: center;
+      }
+    }
+
+    .section_explain {
+      text-align: center;
+      max-width: rem(780);
+      margin-left: auto;
+      margin-right: auto;
+
+      .main_color {
+        color: $main_color;
+        font-weight: 700;
+      }
+    }
+
+    .patents_wrapper {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: rem(48) rem(32);
+      margin-top: rem(80);
+      max-width: rem(960);
+      margin-left: auto;
+      margin-right: auto;
+      @include mq(tbsm) {
+        margin-top: rem(56);
+        gap: rem(40);
+      }
+      @media (min-width: 780px) {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .patent_item {
+      background: $white;
+      border-radius: rem(20);
+      padding: rem(56) rem(44) rem(44);
+      position: relative;
+      box-shadow: 0 rem(8) rem(32) rgba($color: $black, $alpha: 0.06);
+      @include mq(tbsm) {
+        padding: rem(44) rem(28) rem(32);
+      }
+    }
+
+    .patent_badge {
+      position: absolute;
+      top: rem(-18);
+      left: rem(28);
+      background: $btn_green;
+      color: $white;
+      padding: rem(10) rem(22);
+      border-radius: rem(100);
+      font-size: rem(15);
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      box-shadow: 0 rem(4) rem(12) rgba($color: $btn_green, $alpha: 0.25);
+    }
+
+    .patent_badge--pending {
+      background: rgba($color: $text_color, $alpha: 0.55);
+      box-shadow: 0 rem(4) rem(12) rgba($color: $text_color, $alpha: 0.15);
+    }
+
+    .patent_title {
+      font-size: rem(26);
+      font-weight: 700;
+      line-height: 1.5;
+      margin: rem(16) 0 rem(20);
+      color: $text_color;
+      text-wrap: balance;
+      @include mq(tbsm) {
+        font-size: rem(21);
+        margin: rem(12) 0 rem(16);
+      }
+    }
+
+    .patent_body {
+      font-size: rem(16);
+      line-height: 1.9;
+      color: rgba($color: $text_color, $alpha: 0.8);
+      margin: 0;
+      @include mq(tbsm) {
+        font-size: rem(14.5);
       }
     }
   }
 
-  section#product_point_02 {
-    position: relative;
-    z-index: 400;
+  // 新版 = Video (Coming Soon placeholder)
+  section#video {
     background-color: $white;
     padding-top: rem(104);
-    padding-bottom: rem(86);
-    margin-bottom: rem(59);
+    padding-bottom: rem(104);
     @include mq(tbsm) {
-      padding-top: rem(80);
-      padding-bottom: rem(63);
-      margin-bottom: rem(64);
+      padding-top: rem(64);
+      padding-bottom: rem(64);
     }
 
-    img.what_bg {
-      position: absolute;
-      z-index: -1;
-      top: 0;
-      width: rem(495);
-      height: rem(265);
-      @include mq(tbsm) {
-        width: rem(258);
-        height: rem(138.5);
-      }
-
-      &.what_bg_left {
-        left: 0;
-      }
-
-      &.what_bg_right {
-        right: 0;
-        @include mq(tbsm) {
-          top: initial;
-          bottom: 0;
-          transform: rotate(180deg) scale(-1, 1);
-        }
-      }
-    }
-
-    .product_point_02_title {
+    .section_title {
       > span {
         text-align: center;
-        white-space: nowrap;
+      }
+    }
+
+    .section_explain {
+      text-align: center;
+      max-width: rem(720);
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .video_placeholder {
+      margin: rem(56) auto 0;
+      max-width: rem(1080);
+      aspect-ratio: 16 / 9;
+      background: linear-gradient(135deg, #f3f4f9 0%, #e8ebf3 100%);
+      border-radius: rem(20);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: rem(24);
+      border: 1px dashed rgba($color: $main_color, $alpha: 0.3);
+      @include mq(tbsm) {
+        margin-top: rem(40);
+      }
+    }
+
+    .video_placeholder__icon {
+      width: rem(120);
+      height: rem(120);
+      background: rgba($color: $white, $alpha: 0.9);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      @include mq(tbsm) {
+        width: rem(72);
+        height: rem(72);
+      }
+
+      &::after {
+        content: "";
+        width: 0;
+        height: 0;
+        border-left: rem(30) solid $main_color;
+        border-top: rem(18) solid transparent;
+        border-bottom: rem(18) solid transparent;
+        margin-left: rem(6);
         @include mq(tbsm) {
+          border-left: rem(18) solid $main_color;
+          border-top: rem(11) solid transparent;
+          border-bottom: rem(11) solid transparent;
         }
       }
     }
 
-    .point_explain {
-      max-width: rem(972);
-      border: 2px solid rgba($color: $main_color, $alpha: 0.3);
-      padding: rem(32);
-      margin: rem(40) auto 0;
-      @include mq(tbsm) {
-        padding: rem(24);
-        margin-top: rem(24);
-      }
+    .video_placeholder__text {
+      text-align: center;
 
-      > span {
+      strong {
         display: block;
-        text-align: center;
-
-        &.point_explain__title {
-          font-size: rem(28);
-          line-height: calc(42 / 28);
-          font-weight: 700;
-          color: $main_color;
-          @include mq(tbsm) {
-            font-size: rem(20);
-            line-height: calc(30 / 20);
-          }
-        }
-
-        &.point_explain__text {
-          margin-top: rem(16);
-          @include mq(tbsm) {
-            font-size: rem(15);
-            line-height: calc(30 / 15);
-          }
-        }
-      }
-    }
-
-    .number_image_list_inner {
-      margin-top: rem(88);
-      @include mq(tbsm) {
-        margin-top: rem(46);
+        font-family: $accent_font;
+        font-size: rem(28);
+        letter-spacing: 0.16em;
+        font-weight: 700;
+        color: $main_color;
       }
 
-      .nil_co {
-        align-items: flex-start;
-
-        .nil_co_image_wrapper {
-          &::after {
-            background-color: #f3f4f9;
-          }
-        }
-
-        .nil_co_text_wrapper {
-          .nil_co_list {
-            .nil_co_list_item {
-              > .text {
-                font-size: rem(16);
-              }
-            }
-          }
-        }
-      }
-    }
-
-    .arrow_and_text {
-      .aat_text {
-        .aat_text__small {
-          @include mq(tbsm) {
-            text-align: left;
-          }
-        }
+      small {
+        display: block;
+        font-size: rem(15);
+        color: rgba($color: $text_color, $alpha: 0.5);
+        margin-top: rem(6);
       }
     }
   }
+
+  // Impact 表 (Before/After 比較)
+  // 教育支援 page pattern = body default 紫 のまま + 最後 section に step_bg (下部 幅100%装飾) を 貼 る。
+  section#impact {
+    position: relative;
+    overflow: hidden;
+    padding-top: rem(104);
+    padding-bottom: rem(104);
+    @include mq(tbsm) {
+      padding-top: rem(64);
+      padding-bottom: rem(64);
+    }
+
+    .step_bg {
+      position: absolute;
+      z-index: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      @include mq(tbsm) {
+        display: none;
+      }
+    }
+
+    .impact_inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .section_title {
+      > span {
+        text-align: center;
+      }
+    }
+
+    .impact_compare {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: rem(28);
+      align-items: stretch;
+      max-width: rem(1120);
+      margin: rem(72) auto 0;
+      @include mq(tbsm) {
+        margin-top: rem(48);
+        gap: rem(20);
+      }
+      @media (min-width: 780px) {
+        grid-template-columns: 1fr auto 1fr;
+      }
+    }
+
+    .impact_col {
+      padding: rem(44) rem(40);
+      border-radius: rem(20);
+      background: $white;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 rem(6) rem(28) rgba($color: $black, $alpha: 0.05);
+      @include mq(tbsm) {
+        padding: rem(32) rem(24);
+      }
+    }
+
+    .impact_col--after {
+      background: linear-gradient(135deg, rgba(125, 117, 201, 0.05) 0%, rgba(216, 118, 184, 0.05) 100%);
+      box-shadow: 0 0 0 1px rgba(125, 117, 201, 0.25);
+    }
+
+    .impact_col__label {
+      display: inline-block;
+      font-family: $accent_font;
+      font-size: rem(13);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba($color: $text_color, $alpha: 0.6);
+      margin-bottom: rem(24);
+      font-weight: 700;
+    }
+
+    .impact_col--after .impact_col__label {
+      background: linear-gradient(90deg, #7d75c9 0%, #d876b8 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+
+    .impact_metrics {
+      display: flex;
+      flex-direction: column;
+      gap: rem(20);
+      padding-bottom: rem(24);
+      border-bottom: 1px solid rgba($color: $black, $alpha: 0.08);
+      margin-bottom: rem(24);
+    }
+
+    .impact_row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .impact_row__label {
+      font-size: rem(16);
+      color: rgba($color: $text_color, $alpha: 0.7);
+    }
+
+    .impact_row__value {
+      font-family: $accent_font;
+      font-size: rem(34);
+      font-weight: 700;
+      color: $text_color;
+      line-height: 1;
+
+      small {
+        font-family: $base_font;
+        font-size: rem(14);
+        font-weight: 500;
+        color: rgba($color: $text_color, $alpha: 0.6);
+        margin-left: rem(4);
+      }
+    }
+
+    .impact_col--after .impact_row__value {
+      background: linear-gradient(90deg, #7d75c9 0%, #d876b8 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+
+      small {
+        -webkit-text-fill-color: rgba($color: $text_color, $alpha: 0.6);
+        background: none;
+      }
+    }
+
+    .impact_cost {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding-bottom: rem(24);
+      border-bottom: 1px solid rgba($color: $black, $alpha: 0.08);
+      margin-bottom: rem(24);
+    }
+
+    .impact_cost__label {
+      font-size: rem(16);
+      color: rgba($color: $text_color, $alpha: 0.7);
+    }
+
+    .impact_cost__value {
+      font-family: $accent_font;
+      font-size: rem(24);
+      font-weight: 700;
+      color: $text_color;
+      text-align: right;
+
+      small {
+        display: block;
+        font-family: $base_font;
+        font-size: rem(12);
+        font-weight: 500;
+        color: rgba($color: $text_color, $alpha: 0.6);
+        margin-top: rem(4);
+      }
+    }
+
+    .impact_col--after .impact_cost__value {
+      background: linear-gradient(90deg, #7d75c9 0%, #d876b8 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+
+      small {
+        -webkit-text-fill-color: rgba($color: $text_color, $alpha: 0.6);
+        background: none;
+      }
+    }
+
+    .impact_state {
+      margin-top: auto;
+      font-size: rem(20);
+      font-weight: 700;
+      text-align: center;
+      padding: rem(18) rem(24);
+      border-radius: rem(100);
+      background: rgba($color: $black, $alpha: 0.04);
+      color: rgba($color: $text_color, $alpha: 0.6);
+      letter-spacing: 0.08em;
+    }
+
+    .impact_state--after {
+      background: linear-gradient(90deg, #7d75c9 0%, #d876b8 100%);
+      color: $white;
+    }
+
+    .impact_arrow {
+      align-self: center;
+      font-size: rem(36);
+      color: rgba($color: $text_color, $alpha: 0.4);
+      font-weight: 300;
+      line-height: 1;
+      padding: 0 rem(4);
+      @media (max-width: 779px) {
+        transform: rotate(90deg);
+        padding: rem(8) 0;
+      }
+    }
+  }
+
 }
 
 // 記事一覧 = 元 WP は body.blog/body.archive、 Next.js の news は body#news で追加。
