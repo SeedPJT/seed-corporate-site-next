@@ -15,7 +15,7 @@ export default function Product() {
           <div className="fv_inner innerbox_1280">
             <div className="fv_text_wrapper">
               <h2 className="fv_title">
-                <span className="fv_title_label">Kaika<span className="fv_title_label_sub">（Keep Advancing with Innovative Knowledge Assistance）</span></span>
+                <img src="/img/product/fv_title_label.webp" alt="Kaika（Keep Advancing with Innovative Knowledge Assistance）" className="fv_title_label" />
                 <span className="fv_title_text">
                   身軽になりたい<br />社長の<span className="fv_title_text_accent">右腕</span>
                 </span>

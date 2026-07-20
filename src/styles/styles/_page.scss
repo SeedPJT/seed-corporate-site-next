@@ -1386,51 +1386,35 @@ body#product {
           padding-right: 0;
         }
 
-        // 旧 = 画像 だった を text span 化 = pink紫 gradient bg + white bold で pill 型 label 再現。
-        // 内側 の (Keep Advancing...) は 小 font で追記。
+        // 元 image = purple → pink gradient pill (Kaika ロゴ ラベル)。
+        // font を CSS で 再現 する と 元 と ズレ る = image 復元 で 元 デザ イン に 揃 え る。
         .fv_title_label {
-          display: inline-block;
-          padding: rem(8) rem(24) rem(8) rem(20);
-          background: linear-gradient(90deg, #7d75c9 0%, #d876b8 100%);
-          color: $white;
-          font-size: rem(28);
-          line-height: 1.2;
-          font-weight: 700;
-          clip-path: polygon(0 0, 100% 0, calc(100% - #{rem(20)}) 100%, 0 100%);
+          width: rem(700);
+          max-width: 100%;
+          height: auto;
+          object-fit: contain;
           @include mq(tbsm) {
-            padding: rem(6) rem(20) rem(6) rem(14);
-            font-size: rem(18);
-            clip-path: polygon(0 0, 100% 0, calc(100% - #{rem(14)}) 100%, 0 100%);
-          }
-
-          .fv_title_label_sub {
-            font-size: rem(15);
-            font-weight: 500;
-            margin-left: rem(4);
-            @include mq(tbsm) {
-              font-size: rem(11);
-            }
+            width: 100%;
           }
         }
 
-        // 旧 = 画像 hero text = 巨大 bold + 一部 gradient 化。
-        // 新 tagline 「身軽になりたい社長の右腕」= 「右腕」 を gradient accent に。
+        // 新 tagline 「身軽になりたい社長の右腕」 = 「右腕」 を gradient accent に。
+        // 56px は 大 きすぎ = 48px に 縮 小 で 元 image title と 視覚 バラン ス 揃 え。
         .fv_title_text {
           display: block;
           margin-top: rem(24);
-          font-size: rem(56);
+          font-size: rem(48);
           line-height: 1.4;
           font-weight: 900;
           color: $black;
           letter-spacing: 0.02em;
           @include mq(tbsm) {
             margin-top: rem(12);
-            font-size: rem(32);
+            font-size: rem(28);
             line-height: 1.4;
           }
 
           .fv_title_text_accent {
-            // 元 image の 「AI」 gradient と 同 じ 色調 = 左 purple → 右 pink。
             background: linear-gradient(90deg, #7d75c9 0%, #d876b8 100%);
             -webkit-background-clip: text;
             background-clip: text;
