@@ -105,7 +105,7 @@ export default function Home() {
             </div>
           </div>
           <div className="product_image_wrapper">
-            <img src="/img/product/fv_main.webp" alt="プロダクト" className="product_image" />
+            <img src="/img/home_main.png" alt="Kaika 今日画面 · 経営者の 1 日を整える" className="product_image" />
           </div>
         </div>
       </section>

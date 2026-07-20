@@ -28,7 +28,7 @@ export default function Product() {
               </div>
             </div>
             <div className="fv_image_wrapper">
-              <img src="/img/product/fv_main.webp" alt="Kaika 今日画面 = 業務と意思決定を一つの場で整理" className="fv_main_image" />
+              <img src="/img/product/plan_main.png" alt="Kaika プラン画面 · 目標と対話が一つの場で" className="fv_main_image" />
               <img src="/img/common/logo_brain.webp" alt="." className="fv_main_bg" />
             </div>
             <div className="fv_btn_wrapper u_sp">

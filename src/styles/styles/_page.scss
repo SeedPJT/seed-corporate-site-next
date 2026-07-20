@@ -1398,28 +1398,34 @@ body#product {
           }
         }
 
-        // 新 tagline 「身軽になりたい社長の右腕」 = 「右腕」 を gradient accent に。
-        // 56px は 大 きすぎ = 48px に 縮 小 で 元 image title と 視覚 バラン ス 揃 え。
+        // 新 tagline 「身軽になりたい社長の右腕」 = 「右腕」 を gradient accent で 大 きく。
+        // 元 image で 「AI」 が dominant だった の と 同 じ pattern = accent を 相対 的 に 大 きくして 目 立 たせる。
         .fv_title_text {
           display: block;
           margin-top: rem(24);
-          font-size: rem(48);
+          font-size: rem(56);
           line-height: 1.4;
           font-weight: 900;
           color: $black;
           letter-spacing: 0.02em;
           @include mq(tbsm) {
             margin-top: rem(12);
-            font-size: rem(28);
+            font-size: rem(32);
             line-height: 1.4;
           }
 
           .fv_title_text_accent {
+            font-size: rem(88);
+            line-height: 1;
+            vertical-align: middle;
             background: linear-gradient(90deg, #7d75c9 0%, #d876b8 100%);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
             color: transparent;
+            @include mq(tbsm) {
+              font-size: rem(52);
+            }
           }
         }
       }
