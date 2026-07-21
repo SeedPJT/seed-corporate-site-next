@@ -50,7 +50,7 @@ export default function Contact() {
       <div className="page_contents_wrapper innerbox_980">
         <div className="contact_page_explain">
           以下のフォームに必要事項をご記入のうえ、送信してください。<br />
-          ※通常 2〜3営業日以内に担当者よりご連絡いたします。
+          ※通常 2～3営業日以内 に担当者よりご連絡いたします。
         </div>
 
         <div className="contact_form_wrapper page_inner">

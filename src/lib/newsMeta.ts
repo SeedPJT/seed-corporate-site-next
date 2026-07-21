@@ -7,6 +7,7 @@ export const NEWS_CATEGORIES = {
   hire: '採用',
   event: 'イベント',
   info: 'お知らせ',
+  project: 'プロジェクト・実績',
 } as const
 
 export type NewsCategory = keyof typeof NEWS_CATEGORIES

@@ -19,6 +19,7 @@ export type NewsMeta = {
   category: NewsCategory
   summary?: string
   thumbnail?: string
+  draft?: boolean
 }
 
 export type NewsItem = NewsMeta & {
@@ -44,24 +45,29 @@ function parseFile(filePath: string, slug: string): NewsMeta & { raw: string } {
     category,
     summary: data.summary ? String(data.summary) : undefined,
     thumbnail: data.thumbnail ? String(data.thumbnail) : undefined,
+    draft: data.draft === true,
     raw: content,
   }
 }
 
 export function getAllNews(): NewsMeta[] {
   const files = safeReadDir(NEWS_DIR)
-  const items = files.map((file) => {
-    const slug = file.replace(/\.(md|mdx)$/, '')
-    const parsed = parseFile(path.join(NEWS_DIR, file), slug)
-    return {
-      slug: parsed.slug,
-      title: parsed.title,
-      date: parsed.date,
-      category: parsed.category,
-      summary: parsed.summary,
-      thumbnail: parsed.thumbnail,
-    }
-  })
+  const items = files
+    .map((file) => {
+      const slug = file.replace(/\.(md|mdx)$/, '')
+      const parsed = parseFile(path.join(NEWS_DIR, file), slug)
+      return {
+        slug: parsed.slug,
+        title: parsed.title,
+        date: parsed.date,
+        category: parsed.category,
+        summary: parsed.summary,
+        thumbnail: parsed.thumbnail,
+        draft: parsed.draft,
+      }
+    })
+    // 下書き (draft: true) は 公開 一覧 から 除外。 file は 残 る の で admin preview は 可能。
+    .filter((item) => !item.draft)
   // 新しい順 = date DESC
   return items.sort((a, b) => (a.date < b.date ? 1 : -1))
 }
