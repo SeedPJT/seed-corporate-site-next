@@ -43,7 +43,7 @@ export default function Product() {
           <div className="what_inner innerbox_1180">
             <h2 className="section_title small_title">
               <span className="en_title">What?</span>
-              <span className="ja_title">Kaikaとは？</span>
+              <span className="ja_title"><span className="ja_brand">Kaika</span>とは？</span>
             </h2>
             <div className="section_explain">
               Kaikaは、面倒な実務も、事業推進も、まとめて任せられる右腕です。日々の行動を覚え、つなげ、育てていきます。右腕が何かを動かすときは、知っていることから考え、<strong className="main_color">利益に繋げます。</strong>
@@ -54,7 +54,7 @@ export default function Product() {
                 <svg className="lc-svg" viewBox="0 0 480 480" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
                   <defs>
                     <marker id="lc-ah" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="userSpaceOnUse">
-                      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#5b5c65"/>
+                      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#7d75c9"/>
                     </marker>
                   </defs>
                   <circle className="lc-ring-outer" cx="240" cy="240" r="220"/>
@@ -148,7 +148,7 @@ export default function Product() {
           <div className="video_inner innerbox_1180">
             <h2 className="section_title small_title">
               <span className="en_title">Watch</span>
-              <span className="ja_title">動画で見る、Kaikaのある1日</span>
+              <span className="ja_title">動画で見る、<span className="ja_brand">Kaika</span>のある<span className="ja_brand">1</span>日</span>
             </h2>
             <div className="section_explain">
               Kaika使用後の日常をX分の動画で体感してください。
@@ -168,7 +168,7 @@ export default function Product() {
           <div className="impact_inner innerbox_1180">
             <h2 className="section_title small_title">
               <span className="en_title">How?</span>
-              <span className="ja_title">Kaikaが変える 1 週間</span>
+              <span className="ja_title"><span className="ja_brand">Kaika</span>が変える<span className="ja_brand">1</span>週間</span>
             </h2>
 
             <div className="impact_compare">

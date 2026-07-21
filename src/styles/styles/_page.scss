@@ -984,6 +984,38 @@ body#service {
         @include mq(tbsm) {
           max-width: 100%;
         }
+
+        // Product page fv_title_text と同じ tone (weight 900 + accent gradient)。 「定着」 = 主 accent word。
+        .fv_title_text {
+          display: block;
+          font-family: $base_font;
+          font-size: rem(56);
+          font-weight: 900;
+          line-height: 1.4;
+          letter-spacing: 0.02em;
+          color: $black;
+          @include mq(tbsm) {
+            font-size: rem(32);
+          }
+
+          // 「定着」= 文中 accent = base と同 サイズ で 底 line 揃 え、 色 のみ gradient で 強調。
+          // (Product 「右腕。」 = 文末 = 72px bump OK / Service 「定着」 = 文中 = size bump 不可)
+          .fv_title_text_accent {
+            background: linear-gradient(90deg, #7d75c9 0%, #d876b8 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+          }
+
+          // 「Kaika」= 英字 = Zen Kaku (Japanese font) だと 相対的 に 細 く 見 える。
+          // Barlow Semi Condensed (accent_font) に 差 し 替 え + 900 weight + condensed 幅 で 太 さ 揃 え。
+          .fv_title_text_brand {
+            font-family: $accent_font;
+            font-weight: 900;
+            letter-spacing: 0;
+          }
+        }
       }
 
       .fv_explain {
@@ -1014,7 +1046,7 @@ body#service {
     .fv_image_wrapper {
       position: absolute;
       z-index: -1;
-      top: rem(119);
+      top: rem(80);
       right: 0;
       width: calc(((100vw - 1280px) / 2) + (1280px * 0.5));
       height: rem(502);
@@ -1040,8 +1072,9 @@ body#service {
           width: rem(78);
         }
 
+        // 新 image (system/feature_01) に 合 わせて icon 位置 調整。 wrapper top up 済 = wrapper 内 で は やや 下 目 に。
         &.fv_icon_left {
-          top: rem(163);
+          top: rem(110);
           left: rem(-81);
           @include mq(tbsm) {
             top: initial;
@@ -1051,7 +1084,7 @@ body#service {
         }
 
         &.fv_icon_right {
-          top: rem(185);
+          top: rem(120);
           right: rem(6);
           @include mq(tbsm) {
             top: rem(82);
@@ -1061,7 +1094,7 @@ body#service {
 
         &.fv_icon_bottom {
           left: rem(117);
-          bottom: rem(-20);
+          bottom: rem(30);
           @include mq(tbsm) {
             left: initial;
             right: rem(80);
@@ -1072,7 +1105,8 @@ body#service {
     }
   }
 
-  section#what {
+  section#what,
+  section#what_02 {
     .icon_text_list_inner {
       margin-top: rem(56);
       @include mq(tbsm) {
@@ -1080,14 +1114,125 @@ body#service {
       }
 
       .itl_item {
-        .itl_item__text {
+        // 数字 badge = HP palette (main_bg 薄 紫) circle + main_color 数字 opacity で 静 か。 mock 準拠 tone。
+        .itl_num {
           display: flex;
-          width: 100%;
-          justify-content: center;
           align-items: center;
-          height: calc(3em * 1.6);
+          justify-content: center;
+          width: rem(180);
+          height: rem(180);
+          border-radius: 50%;
+          background: $main_bg_color;
+          color: rgba($color: $main_color, $alpha: 0.6);
+          font-family: $accent_font;
+          font-size: rem(80);
+          font-weight: 900;
+          line-height: 1;
+          letter-spacing: 0;
+          margin: 0 auto;
+          @include mq(splg) {
+            width: rem(140);
+            height: rem(140);
+            font-size: rem(60);
+          }
+        }
+
+        // title + body の 2 段 構造 = mock 準拠。 flex 中央 揃 え は 撤 廃 (単一 中央 文 用 だった が 今 は title + body で 高 さ 可変)。
+        .itl_item__text {
+          font-size: rem(15);
+          font-weight: 500;
+          line-height: 1.85;
+          color: rgba($color: $text_color, $alpha: 0.8);
+          margin-top: rem(24);
+
+          .itl_item__text__title {
+            display: block;
+            font-size: rem(20);
+            font-weight: 700;
+            color: $main_color;
+            margin-bottom: rem(12);
+            line-height: 1.4;
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+
+  // #what_02 = section 1 の layout に 揃 え。 bg は body 紫 継承 (section 1 = 白 白 の 2 連続 回避)。
+  section#what_02 {
+    position: relative;
+    z-index: 400;
+    padding-top: rem(80);
+    padding-bottom: rem(80);
+    @include mq(tbsm) {
+      padding-bottom: rem(64);
+    }
+
+    .section_title {
+      > span {
+        text-align: center;
+      }
+    }
+
+    .section_explain {
+      text-align: center;
+    }
+
+    // 元 Product page 「Kaikaとは」 の pwi_item pattern = 3 item 縦stack + 各 row = icon左 + text右 + border 区切 り。
+    .product_what_inner {
+      margin-top: rem(64);
+
+      .pwi_item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: rem(32) 0;
+        border-bottom: 1px solid rgba($color: $black, $alpha: 0.2);
+        @include mq(tbsm) {
+          flex-direction: column;
+        }
+
+        &:first-child {
+          border-top: 1px solid rgba($color: $black, $alpha: 0.2);
+        }
+
+        .pwi_item__icon {
+          width: rem(228);
+          height: auto;
           @include mq(tbsm) {
-            height: auto;
+            width: rem(160);
+          }
+        }
+
+        .pwi_item__text {
+          width: calc(100% - rem(228) - rem(24));
+          @include mq(tbsm) {
+            width: 100%;
+            margin-top: rem(24);
+          }
+
+          > span {
+            display: block;
+
+            &.pwi_item__text__title {
+              font-size: rem(22);
+              line-height: calc(25.2 / 22);
+              font-weight: 700;
+              @include mq(tbsm) {
+                font-size: rem(18);
+                text-align: center;
+              }
+            }
+
+            &.pwi_item__text__content {
+              color: rgba($color: $text_color, $alpha: 0.8);
+              margin-top: rem(8);
+              @include mq(tbsm) {
+                font-size: rem(14);
+                line-height: calc(25.2 / 14);
+              }
+            }
           }
         }
       }
@@ -1623,14 +1768,18 @@ body#product {
     }
 
     // 色=カラフルなKaika iconと競合しないよう solid dark で静か+可読性重視。
+    // font-feature-settings 'palt' + padding-left = 句読点 (、。) の 全角幅 で 左 寄 り 見 え 補正、 微 右 shift。
     .lc-hub__text {
       font-size: rem(21);
       font-weight: 700;
       letter-spacing: 0.06em;
       color: $text_color;
       line-height: 1.5;
+      font-feature-settings: 'palt' 1;
+      padding-left: rem(20);
       @include mq(tbsm) {
         font-size: rem(15);
+        padding-left: rem(12);
       }
     }
 

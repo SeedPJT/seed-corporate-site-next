@@ -499,6 +499,13 @@ section#cta {
       @include mq(tbsm) {
         font-size: rem(28);
       }
+
+      // 英字 / 数字 (Kaika / 1 等) を Barlow (accent_font) + 900 で 括 る = Zen Kaku の 英字 細 さ 解消。
+      .ja_brand {
+        font-family: $accent_font;
+        font-weight: 900;
+        letter-spacing: 0;
+      }
     }
   }
 
@@ -509,6 +516,12 @@ section#cta {
         line-height: calc(72 / 40);
         @include mq(tbsm) {
           font-size: rem(24);
+        }
+
+        .ja_brand {
+          font-family: $accent_font;
+          font-weight: 900;
+          letter-spacing: 0;
         }
       }
     }
