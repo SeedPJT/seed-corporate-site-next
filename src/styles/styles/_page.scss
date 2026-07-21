@@ -2312,12 +2312,18 @@ body#product {
       font-weight: 300;
       line-height: 1;
       padding: 0 rem(4);
-      // SP = 1-col grid で 「→」 が 左 寄 り に なる = text-align center + justify-self center。
+      // SP = rotate だと character 内部 metric で 上 の table に 被 る = JSX の 「→」 を hide + pseudo で 「↓」 直接 render。
       @media (max-width: 779px) {
-        transform: rotate(90deg);
-        padding: rem(8) 0;
+        font-size: 0;
         text-align: center;
-        justify-self: center;
+        padding: rem(12) 0;
+
+        &::before {
+          content: "↓";
+          font-size: rem(32);
+          display: inline-block;
+          line-height: 1;
+        }
       }
     }
   }
