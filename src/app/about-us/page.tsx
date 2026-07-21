@@ -22,7 +22,7 @@ const CEO_IMG = '/img/about/ceo.png'
 const COMPANY_DETAILS = [
   { label: '会社名', content: '株式会社Seed' },
   { label: '設立', content: '2024年12月6日' },
-  { label: '所在地', content: '東京都足立区千住3-6 ツオード千住壱番館1001号室' },
+  { label: '所在地', content: '東京都足立区千住3-6-12 ツオード千住壱番館1001号室' },
   { label: '代表者', content: '井上峻之介' },
   { label: '事業内容', content: 'AIプロダクト「Kaika」の開発・提供、Kaika実装伴走(受託開発)' },
 ]

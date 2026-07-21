@@ -139,7 +139,7 @@ export default function ServicePage() {
                 <img src="/img/service/system/who_01.webp" alt="AIプロダクトを導入したいが、社内で実装リソースが足りない社長" className="wh_co_image" />
                 <div className="wh_co_title">
                   <span className="main_color">AIプロダクト導入</span>したいが、<br />
-                  社内で実装リソースが足りない社長
+                  社内で実装リソースが足りない
                 </div>
                 <div className="wh_co_content center">
                   自社開発は難しいが、AIエージェントを業務に組み込みたい。Seedが実装まで伴走するので、社内リソース不足でも導入を進められます。
