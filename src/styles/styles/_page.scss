@@ -1738,13 +1738,15 @@ body#product {
       @keyframes lc-flow { to { stroke-dashoffset: -100; } }
     }
 
+    // iOS Safari は 絶対 配置 + flex 内 で aspect-ratio が 崩 れる 既知 挙動 = height を % で 明示。
+    // .lc-stage が square なので width と 同 じ % を height にも 与 えれば 円 が 保 た れ る。
     .lc-hub {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       width: 38%;
-      aspect-ratio: 1;
+      height: 38%;
       border-radius: 50%;
       background: $white;
       border: 1px solid rgba(119, 125, 225, 0.3);
@@ -1786,7 +1788,7 @@ body#product {
     .lc-phase {
       position: absolute;
       width: 22%;
-      aspect-ratio: 1;
+      height: 22%;
       border-radius: 50%;
       background: $white;
       border: 1px solid rgba(119, 125, 225, 0.3);
@@ -2202,6 +2204,9 @@ body#product {
     .impact_row__label {
       font-size: rem(16);
       color: rgba($color: $text_color, $alpha: 0.7);
+      @include mq(tbsm) {
+        font-size: rem(13);
+      }
     }
 
     .impact_row__value {
@@ -2210,6 +2215,9 @@ body#product {
       font-weight: 700;
       color: $text_color;
       line-height: 1;
+      @include mq(tbsm) {
+        font-size: rem(26);
+      }
 
       small {
         font-family: $base_font;
@@ -2217,6 +2225,9 @@ body#product {
         font-weight: 500;
         color: rgba($color: $text_color, $alpha: 0.6);
         margin-left: rem(4);
+        @include mq(tbsm) {
+          font-size: rem(11);
+        }
       }
     }
 

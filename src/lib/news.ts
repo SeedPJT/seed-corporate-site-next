@@ -34,6 +34,15 @@ function safeReadDir(dir: string): string[] {
   }
 }
 
+// YAML 未クォート の date literal (例: date: 2025-04-02) は js-yaml が Date object に parse する。
+// String(Date) = 「Wed Apr 02 2025 …」 で 曜日名 頭文字 sort に なる → chronological に ならない bug の 元。
+// ISO 8601 (YYYY-MM-DD) の 文字列 に 正規化 して 保存 = lexicographic = chronological が 一致 する。
+function normalizeDate(v: unknown): string {
+  if (v instanceof Date) return v.toISOString().slice(0, 10)
+  if (typeof v === 'string' && v.length > 0) return v.slice(0, 10)
+  return '1970-01-01'
+}
+
 function parseFile(filePath: string, slug: string): NewsMeta & { raw: string } {
   const raw = fs.readFileSync(filePath, 'utf-8')
   const { data, content } = matter(raw)
@@ -41,7 +50,7 @@ function parseFile(filePath: string, slug: string): NewsMeta & { raw: string } {
   return {
     slug,
     title: String(data.title || slug),
-    date: String(data.date || '1970-01-01'),
+    date: normalizeDate(data.date),
     category,
     summary: data.summary ? String(data.summary) : undefined,
     thumbnail: data.thumbnail ? String(data.thumbnail) : undefined,
