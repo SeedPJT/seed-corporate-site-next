@@ -522,6 +522,20 @@ body#frontpage {
       width: calc(100% - rem(502));
       @include mq(tbsm) {
         width: 100%;
+        display: contents; // 子 要 素 を flex 直接 子 に 昇 格 = image と order 混 在 可 能 に
+      }
+
+      .section_title,
+      .section_subtitle,
+      .section_explain {
+        @include mq(tbsm) {
+          order: 1;
+        }
+      }
+      .section_btn_wrapper {
+        @include mq(tbsm) {
+          order: 3;
+        }
       }
 
       .section_subtitle {
@@ -560,6 +574,7 @@ body#frontpage {
       @include mq(tbsm) {
         width: 100%;
         margin-top: rem(32);
+        order: 2; // text と button の 間 に 挿入
       }
 
       .product_image {
