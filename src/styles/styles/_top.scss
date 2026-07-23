@@ -774,13 +774,28 @@ body#frontpage.loading_container__hidden.loading_skipped {
 
   #skipButton {
     position: absolute;
-    bottom: rem(16);
-    right: rem(16);
+    bottom: rem(24);
+    right: rem(24);
     cursor: pointer;
-    font-size: rem(32);
+    font-family: $accent_font;
+    font-size: rem(18);
+    font-weight: $bold;
+    letter-spacing: 0.08em;
+    color: $text_color;
+    background: $white;
+    padding: rem(10) rem(24);
+    border-radius: rem(100);
+    box-shadow: 0 rem(4) rem(12) rgba(#000, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 rem(6) rem(16) rgba(#000, 0.12);
+    }
     @include mq(tbsm) {
-      font-size: rem(16);
-      bottom: rem(54);
+      font-size: rem(14);
+      bottom: rem(24);
+      right: rem(20);
+      padding: rem(8) rem(18);
     }
   }
 
