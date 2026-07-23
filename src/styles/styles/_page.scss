@@ -1757,6 +1757,9 @@ body#product {
       justify-content: center;
       text-align: center;
       padding: rem(18);
+      @include mq(tbsm) {
+        padding: rem(10);
+      }
     }
 
     .lc-hub__icon {
@@ -1780,8 +1783,8 @@ body#product {
       font-feature-settings: 'palt' 1;
       padding-left: rem(20);
       @include mq(tbsm) {
-        font-size: rem(15);
-        padding-left: rem(12);
+        font-size: rem(13);
+        padding-left: 0;
       }
     }
 
@@ -1841,6 +1844,10 @@ body#product {
       letter-spacing: 0.24em;
       text-transform: uppercase;
       font-weight: 500;
+      @include mq(tbsm) {
+        font-size: rem(7);
+        letter-spacing: 0.1em;
+      }
     }
 
     .lc-details {
@@ -2171,8 +2178,7 @@ body#product {
       display: inline-block;
       font-family: $accent_font;
       font-size: rem(13);
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
+      letter-spacing: 0.14em;
       color: rgba($color: $text_color, $alpha: 0.6);
       margin-bottom: rem(24);
       font-weight: 700;

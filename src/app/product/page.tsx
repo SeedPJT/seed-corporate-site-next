@@ -57,11 +57,6 @@ export default function Product() {
                       <path d="M 0 0 L 10 5 L 0 10 Z" fill="#7d75c9"/>
                     </marker>
                   </defs>
-                  <circle className="lc-ring-outer" cx="240" cy="240" r="220"/>
-                  <polygon className="lc-triangle" points="240,65 391.6,327.5 88.4,327.5"/>
-                  <line className="lc-spoke" x1="240" y1="240" x2="240" y2="65"/>
-                  <line className="lc-spoke" x1="240" y1="240" x2="391.6" y2="327.5"/>
-                  <line className="lc-spoke" x1="240" y1="240" x2="88.4" y2="327.5"/>
                   <path className="lc-arc" d="M 300 76 A 175 175 0 0 1 412 270" markerEnd="url(#lc-ah)"/>
                   <path className="lc-arc" d="M 353 374 A 175 175 0 0 1 127 374" markerEnd="url(#lc-ah)"/>
                   <path className="lc-arc" d="M 68 270 A 175 175 0 0 1 180 76" markerEnd="url(#lc-ah)"/>
@@ -148,7 +143,7 @@ export default function Product() {
           <div className="video_inner innerbox_1180">
             <h2 className="section_title small_title">
               <span className="en_title">Watch</span>
-              <span className="ja_title">動画で見る、<span className="ja_brand">Kaika</span>のある<span className="ja_brand">1</span>日</span>
+              <span className="ja_title"><span className="ja_brand">Kaika</span>のある<span className="ja_brand">1</span>日</span>
             </h2>
             <div className="section_explain">
               Kaika使用後の日常をX分の動画で体感してください。
@@ -189,7 +184,7 @@ export default function Product() {
               <div className="impact_arrow">→</div>
 
               <div className="impact_col impact_col--after">
-                <div className="impact_col__label">Kaika使用後 · Possible-State</div>
+                <div className="impact_col__label">Kaika使用後 · To-Be</div>
                 <div className="impact_metrics">
                   <div className="impact_row"><span className="impact_row__label">情報探索・整理</span><span className="impact_row__value">1<small>h/週</small></span></div>
                   <div className="impact_row"><span className="impact_row__label">議事録・振り返り</span><span className="impact_row__value">15<small>m/週</small></span></div>

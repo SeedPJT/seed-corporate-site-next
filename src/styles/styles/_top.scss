@@ -554,7 +554,8 @@ body#frontpage {
       z-index: 400;
       width: rem(502);
       @include mq(tbsm) {
-        display: none;
+        width: 100%;
+        margin-top: rem(32);
       }
 
       .product_image {
@@ -565,12 +566,21 @@ body#frontpage {
         -webkit-transform: translateY(-50%);
         -ms-transform: translateY(-50%);
         max-width: initial;
-        // width: calc(100% + rem(32) + ((100vw - 1180px) / 2));
         width: auto;
         height: rem(490);
         object-fit: cover;
         object-position: left;
         @media screen and (min-width: 1700px) {
+          object-fit: contain;
+        }
+        @include mq(tbsm) {
+          position: static;
+          transform: none;
+          -webkit-transform: none;
+          -ms-transform: none;
+          width: 100%;
+          max-width: 100%;
+          height: auto;
           object-fit: contain;
         }
       }
