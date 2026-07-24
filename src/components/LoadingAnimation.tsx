@@ -22,16 +22,14 @@ export default function LoadingAnimation() {
 
   useIsoLayoutEffect(() => {
     if (!isFrontpage) {
-      document.body.classList.remove('loading_container__hidden')
-      document.body.classList.remove('loading_skipped')
+      document.body.classList.remove('loading_container__hidden', 'loading_skipped')
       return
     }
     if (hasShownInPageLoad) {
-      document.body.classList.add('loading_container__hidden')
-      document.body.classList.add('loading_skipped')
+      // 2 回 目 以降 の / 遷移 = animation 全 停止。 loading_skipped を 先 に add で FvFadeinMain の 発 火 window を 消 す
+      document.body.classList.add('loading_skipped', 'loading_container__hidden')
     } else {
-      document.body.classList.remove('loading_container__hidden')
-      document.body.classList.remove('loading_skipped')
+      document.body.classList.remove('loading_container__hidden', 'loading_skipped')
     }
   }, [isFrontpage])
 
