@@ -782,25 +782,14 @@ body#frontpage.loading_container__hidden.loading_skipped {
     text-shadow: 0 0 rem(6) rgba(255, 255, 255, 0.85);
     z-index: 10;
     pointer-events: auto;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+    -webkit-tap-highlight-color: transparent;
     @include mq(tbsm) {
-      // mobile: tap target 拡大 (推奨 最小 44x44) + safe-area 対応 + 認識 しや すい font size
-      font-size: rem(18);
-      // 位置 = bottom(safe-area) + 16px、 右 は safe-area 対応
-      bottom: max(rem(24), env(safe-area-inset-bottom, rem(24)));
-      right: max(rem(16), env(safe-area-inset-right, rem(16)));
-      // padding で tap 領域 拡大 = min 44x44 目安 (font 18px + padding 12px 上下 = 44px 相当)
-      padding: rem(12) rem(20);
-      // 暗 lottie frame でも 認識 しや すく 半透明 白背景
-      background: rgba(255, 255, 255, 0.5);
-      border-radius: rem(24);
-      backdrop-filter: blur(4px);
-      // 触った 瞬間 の feedback
-      transition: background 0.15s ease, transform 0.1s ease;
-      &:active {
-        background: rgba(255, 255, 255, 0.75);
-        transform: scale(0.95);
-      }
+      font-size: rem(16);
+      bottom: rem(54);
+      // 2026-07-25: 見た目 変えず tap area だけ 拡大 = invisible padding (透明 拡張 領域)。
+      // background 無し = 白丸 出さない、 padding のみ で tap 領域 ~44x44 に。
+      padding: rem(14) rem(18);
+      background: transparent;
     }
   }
 
