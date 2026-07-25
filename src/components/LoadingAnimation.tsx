@@ -94,7 +94,10 @@ export default function LoadingAnimation() {
     }
 
     const skipButton = document.getElementById('skipButton')
-    const handleSkip = () => {
+    // 2026-07-25: mobile Safari で click event が 300ms 遅延 or Lottie overlay に 吸われる ケース に 備え
+    //   touchstart / pointerdown も 併用 = 触った 瞬間 反応。
+    const handleSkip = (e?: Event) => {
+      if (e && e.type !== 'click') e.preventDefault()  // touchstart / pointerdown = 直後の click 抑制
       isPageLoaded = true
       hideLoadingIfReady()
       document.querySelectorAll<HTMLElement>('*:not(.text_bridge > ul)').forEach((el) => {
@@ -102,12 +105,19 @@ export default function LoadingAnimation() {
         el.style.animationDelay = '0s'
       })
     }
-    if (skipButton) skipButton.addEventListener('click', handleSkip)
+    if (skipButton) {
+      skipButton.addEventListener('click', handleSkip)
+      // passive:false で preventDefault を許可 (触った瞬間 double-fire を抑制)
+      skipButton.addEventListener('touchstart', handleSkip, { passive: false })
+    }
 
     return () => {
       cancelled = true
       window.removeEventListener('load', onLoad)
-      if (skipButton) skipButton.removeEventListener('click', handleSkip)
+      if (skipButton) {
+        skipButton.removeEventListener('click', handleSkip)
+        skipButton.removeEventListener('touchstart', handleSkip)
+      }
     }
   }, [shouldRunFullLoading])
 
