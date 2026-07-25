@@ -1774,7 +1774,7 @@ body#product {
 
     // 色=カラフルなKaika iconと競合しないよう solid dark で静か+可読性重視。
     // font-feature-settings 'palt' + padding-left = 句読点 (、。) の 全角幅 で 左 寄 り 見 え 補正、 微 右 shift。
-    // 2026-07-26: mobile も padding-left で ちょい 右 shift ( 元 は 0 = 左 寄り 見 え)。
+    // 2026-07-26: mobile も padding-left で 右 shift ( 元 は 0 = 左 寄り 見 え、 6 だと 弱い ので 12 に)。
     .lc-hub__text {
       font-size: rem(21);
       font-weight: 700;
@@ -1785,7 +1785,7 @@ body#product {
       padding-left: rem(20);
       @include mq(tbsm) {
         font-size: rem(13);
-        padding-left: rem(6);
+        padding-left: rem(12);
       }
     }
 
