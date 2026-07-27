@@ -12,10 +12,11 @@ type Props = { params: Promise<{ slug: string }> }
 export async function generateMetadata({ params }: Props) {
   const { slug } = await params
   const item = await getNewsBySlug(slug)
-  if (!item) return { title: 'お知らせ | 株式会社Seed' }
+  if (!item) return { title: 'お知らせ | 株式会社Seed', icons: { icon: '/img/favicon.webp' } }
   return {
     title: `${item.title} | 株式会社Seed`,
     description: item.summary || item.title,
+    icons: { icon: '/img/favicon.webp' },
     openGraph: item.thumbnail
       ? {
           title: item.title,

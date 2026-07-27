@@ -4,6 +4,9 @@ import CtaSection from '@/components/CtaSection'
 export const metadata: Metadata = {
   title: 'Kaika | 株式会社Seed',
   description: '身軽になりたい社長の右腕。業務も意思決定も、一つの場で。',
+  // root layout の icons 継承が Next.js 15 の build で稀に skip される (実測: product page で
+  // Vercel default favicon 表示) = 各ページで明示的に再指定して継承依存を排除。
+  icons: { icon: '/img/favicon.webp' },
 }
 
 export default function Product() {

@@ -13,6 +13,7 @@ import {
 export const metadata = {
   title: 'お知らせ | 株式会社Seed',
   description: '株式会社Seed のお知らせ一覧。リリース / メディア掲載 / 提携 / 採用等の情報をお届けします。',
+  icons: { icon: '/img/favicon.webp' },
 }
 
 type Props = { searchParams: Promise<{ category?: string }> }

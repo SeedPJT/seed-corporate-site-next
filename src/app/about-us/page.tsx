@@ -5,6 +5,7 @@ import CtaSection from '@/components/CtaSection'
 export const metadata: Metadata = {
   title: 'About | 株式会社Seed',
   description: '株式会社Seedは、誰もが本来の自分の行動に熱中できる社会を目指し、散らかった行動を整理し、価値ある情報に変えるAIプロダクトKaikaを開発・提供しています。',
+  icons: { icon: '/img/favicon.webp' },
 }
 
 const CEO_MESSAGE = `会社員からフリーランス、そして社長へと歩む中で、私は自分と他人の責任を混同し、本当に重要なことではなく、他人の責任や不安にエネルギーを使っていた時期がありました。

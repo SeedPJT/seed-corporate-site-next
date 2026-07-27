@@ -5,6 +5,7 @@ import CtaSection from '@/components/CtaSection'
 export const metadata: Metadata = {
   title: '実装伴走 | 株式会社Seed',
   description: 'Kaikaを社長やチームの業務に定着させる実装伴走サービス。業務要件のヒアリングから右腕設計・実装、運用定着・チューニング、効果測定まで並走します。',
+  icons: { icon: '/img/favicon.webp' },
 }
 
 export default function ServicePage() {

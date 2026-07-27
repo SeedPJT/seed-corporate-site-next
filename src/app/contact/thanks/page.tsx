@@ -5,6 +5,7 @@ import CtaSection from '@/components/CtaSection'
 
 export const metadata: Metadata = {
   title: 'お問い合わせ | 株式会社Seed',
+  icons: { icon: '/img/favicon.webp' },
 }
 
 export default function Thanks() {
