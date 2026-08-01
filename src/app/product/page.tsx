@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import CtaSection from '@/components/CtaSection'
 
 export const metadata: Metadata = {
-  title: 'Kaika | 株式会社Seed',
+  title: 'Kaika 株式会社Seed',
   description: '身軽になりたい社長の右腕。業務も意思決定も、一つの場で。',
   // root layout の icons 継承が Next.js 15 の build で稀に skip される (実測: product page で
   // Vercel default favicon 表示) = 各ページで明示的に再指定して継承依存を排除。
@@ -102,7 +102,7 @@ export default function Product() {
                     <h3 className="lc-detail__ja">動く</h3>
                     <div className="lc-detail__en">Act</div>
                   </div>
-                  <p className="lc-detail__body">議事録・計画・発信・学習など、標準装備の右腕がすぐ動きます。蓄えた情報とSlack・Gmail・Notion等の外部ソースを元に、オーダーメイドの動きも可能。</p>
+                  <p className="lc-detail__body">知識検索・議事録・計画・発信・学習など、標準装備の右腕がすぐ動きます。蓄えた情報とSlack・Gmail・Notion等の外部ソースを元に、オーダーメイドの動きも可能。</p>
                 </div>
                 <div className="lc-detail">
                   <div className="lc-detail__head">
