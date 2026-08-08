@@ -6,6 +6,8 @@ import CtaSection from '@/components/CtaSection'
 export const metadata: Metadata = {
   title: 'お問い合わせ | 株式会社Seed',
   icons: { icon: '/img/favicon.webp' },
+  // 送信完了 page = 検索結果に出ても価値がない = index させない。
+  robots: { index: false, follow: true },
 }
 
 export default function Thanks() {
