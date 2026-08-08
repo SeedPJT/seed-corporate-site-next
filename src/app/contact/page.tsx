@@ -148,7 +148,7 @@ export default function Contact() {
                     <label>
                       <input type="checkbox" name="cf_acceptance" value="1" required />
                       <span className="wpcf7-list-item-label">
-                        <Link href="/privacy-policy/">プライバシーポリシー</Link> に同意する
+                        <Link href="/privacy-policy">プライバシーポリシー</Link> に同意する
                       </span>
                     </label>
                   </span>

@@ -6,11 +6,11 @@ type FooterItem = { label: string; href: string; serviceChild?: boolean }
 
 const FOOTER_NAV: FooterItem[] = [
   { label: 'トップページ', href: '/' },
-  { label: 'Seedについて', href: '/about-us/' },
-  { label: 'Kaikaとは', href: '/product/' },
-  { label: '実装伴走', href: '/service/' },
-  { label: 'お知らせ', href: '/news/' },
-  { label: 'お問い合わせ', href: '/contact/' },
+  { label: 'Seedについて', href: '/about-us' },
+  { label: 'Kaikaとは', href: '/product' },
+  { label: '実装伴走', href: '/service' },
+  { label: 'お知らせ', href: '/news' },
+  { label: 'お問い合わせ', href: '/contact' },
 ]
 
 export default function Footer() {
@@ -23,7 +23,7 @@ export default function Footer() {
           </Link>
           <div className="footer_bottom u_pc">
             <div className="copyright">&copy; 2025 Seed All Rights Reserved.</div>
-            <Link href="/privacy-policy/" className="link">プライバシーポリシー</Link>
+            <Link href="/privacy-policy" className="link">プライバシーポリシー</Link>
           </div>
         </div>
 
@@ -43,7 +43,7 @@ export default function Footer() {
 
         <div className="footer_bottom u_sp_f">
           <div className="copyright">&copy; 2025 Seed All Rights Reserved.</div>
-          <Link href="/privacy-policy/" className="link">プライバシーポリシー</Link>
+          <Link href="/privacy-policy" className="link">プライバシーポリシー</Link>
         </div>
       </div>
     </footer>

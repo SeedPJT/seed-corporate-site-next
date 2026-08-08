@@ -40,7 +40,7 @@ export default function Home() {
               違いを恐れず、それぞれの&quot;尖り&quot;を力に変え、未来を切り拓こう。
             </div>
             <div className="section_btn_wrapper u_pc">
-              <Link href="/about-us/" className="btn arrow_btn">
+              <Link href="/about-us" className="btn arrow_btn">
                 <img src="/img/common/icon_arrow.webp" alt="→" className="arrow" />
                 <span className="text">Seedについて</span>
               </Link>
@@ -74,7 +74,7 @@ export default function Home() {
           </div>
 
           <div className="section_btn_wrapper u_sp">
-            <Link href="/about-us/" className="btn arrow_btn">
+            <Link href="/about-us" className="btn arrow_btn">
               <img src="/img/common/icon_arrow.webp" alt="→" className="arrow" />
               <span className="text">Seedについて</span>
             </Link>
@@ -98,7 +98,7 @@ export default function Home() {
               業務・判断・発信・分析、あらゆる面から社長を支えます。
             </div>
             <div className="section_btn_wrapper">
-              <Link href="/product/" className="btn arrow_btn">
+              <Link href="/product" className="btn arrow_btn">
                 <img src="/img/common/icon_arrow.webp" alt="→" className="arrow" />
                 <span className="text">プロダクト詳細へ</span>
               </Link>
@@ -138,7 +138,7 @@ export default function Home() {
                   業務要件のヒアリングから実装、運用定着まで並走します。
                 </div>
                 <div className="serv_co_btn_wrapper">
-                  <Link href="/service/" className="btn arrow_btn">
+                  <Link href="/service" className="btn arrow_btn">
                     <img src="/img/common/icon_arrow.webp" alt="→" className="arrow" />
                     <span className="text">詳しく見る</span>
                   </Link>
@@ -158,7 +158,7 @@ export default function Home() {
                 <span className="ja_title">お知らせ</span>
               </h2>
               <div className="section_btn_wrapper news_btn_wrapper news_btn_wrapper__pc">
-                <Link href="/news/" className="btn arrow_btn">
+                <Link href="/news" className="btn arrow_btn">
                   <img src="/img/common/icon_arrow.webp" alt="→" className="arrow" />
                   <span className="text">お知らせ一覧へ</span>
                 </Link>
@@ -183,7 +183,7 @@ export default function Home() {
             </div>
 
             <div className="section_btn_wrapper news_btn_wrapper news_btn_wrapper__sp">
-              <Link href="/news/" className="btn arrow_btn">
+              <Link href="/news" className="btn arrow_btn">
                 <img src="/img/common/icon_arrow.webp" alt="→" className="arrow" />
                 <span className="text">お知らせ一覧へ</span>
               </Link>

@@ -14,7 +14,7 @@ export default function CtaSection() {
             ご相談やご質問など、お気軽にお問い合わせください。
           </div>
           <div className="cta_right">
-            <Link href="/contact/" className="btn arrow_btn">
+            <Link href="/contact" className="btn arrow_btn">
               <img src="/img/common/icon_arrow.webp" alt="→" className="arrow" />
               <span className="text">お問い合わせはこちら</span>
             </Link>

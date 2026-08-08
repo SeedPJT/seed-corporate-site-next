@@ -39,7 +39,7 @@ export default async function NewsIndex({ searchParams }: Props) {
         <div className="archive_category_list_wrapper">
           <ul className="archive_category_list">
             <li className={`cat_item${active === 'all' ? ' current' : ''}`}>
-              <Link href="/news/" className="flex_center">すべて</Link>
+              <Link href="/news" className="flex_center">すべて</Link>
             </li>
             {(Object.keys(NEWS_CATEGORIES) as NewsCategory[])
               .filter((key) => activeCategories.has(key))

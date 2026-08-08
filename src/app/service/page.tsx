@@ -22,7 +22,7 @@ export default function ServicePage() {
               業務に合わせて、プロダクトそのものを拡張。導入で終わらせない、使うほど育つ経営の右腕を、あなたの業務に定着させます。
             </div>
             <div className="fv_btn_wrapper">
-              <Link href="/contact/" className="btn black_btn">まずは無料で相談する</Link>
+              <Link href="/contact" className="btn black_btn">まずは無料で相談する</Link>
             </div>
           </div>
           <div className="fv_image_wrapper">
@@ -185,7 +185,7 @@ export default function ServicePage() {
                   <span className="st_co_title__text">お問い合わせ</span>
                 </div>
                 <div className="st_co_detail">
-                  まずは、お気軽にご相談ください。お問い合わせフォームは<Link href="/contact/" className="link">こちら</Link>
+                  まずは、お気軽にご相談ください。お問い合わせフォームは<Link href="/contact" className="link">こちら</Link>
                 </div>
               </div>
               <div className="st_co">

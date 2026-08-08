@@ -12,11 +12,11 @@ type NavItem = { label: string; href: string; contact?: boolean; children?: SubI
 
 const NAV_ITEMS: NavItem[] = [
   { label: 'TOP', href: '/' },
-  { label: 'Seedについて', href: '/about-us/' },
-  { label: 'Kaikaとは', href: '/product/' },
-  { label: '実装伴走', href: '/service/' },
-  { label: 'お知らせ', href: '/news/' },
-  { label: 'お問い合わせ', href: '/contact/', contact: true },
+  { label: 'Seedについて', href: '/about-us' },
+  { label: 'Kaikaとは', href: '/product' },
+  { label: '実装伴走', href: '/service' },
+  { label: 'お知らせ', href: '/news' },
+  { label: 'お問い合わせ', href: '/contact', contact: true },
 ]
 
 export default function Header() {

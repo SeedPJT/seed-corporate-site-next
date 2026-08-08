@@ -12,6 +12,7 @@ const PATH_TO_ID: Record<string, string> = {
   '/contact': 'contact',
   '/contact/thanks': 'thanks',
   '/news': 'news',
+  '/privacy-policy': 'privacy-policy',
 }
 
 // 動的 slug ( news/[slug] 等) は prefix 一致で body id を付ける。

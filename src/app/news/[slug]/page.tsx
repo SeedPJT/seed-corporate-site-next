@@ -52,7 +52,7 @@ export default async function NewsDetail({ params }: Props) {
         <div className="single_contents" dangerouslySetInnerHTML={{ __html: item.contentHtml }} />
 
         <div className="single_return">
-          <Link href="/news/" className="link green">記事一覧へ戻る</Link>
+          <Link href="/news" className="link green">記事一覧へ戻る</Link>
         </div>
       </div>
 
