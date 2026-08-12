@@ -149,14 +149,22 @@ export default function Product() {
               <span className="ja_title"><span className="ja_brand">Kaika</span>のある<span className="ja_brand">1</span>日</span>
             </h2>
             <div className="section_explain">
-              Kaika使用後の日常をX分の動画で体感してください。
+              Kaika使用後の日常を動画で体感してください。
             </div>
-            <div className="video_placeholder">
-              <div className="video_placeholder__icon"></div>
-              <div className="video_placeholder__text">
-                <strong>Coming Soon</strong>
-                <small>近日公開予定</small>
-              </div>
+            {/* 2026-08-12: Coming Soon の 枠 を 実 動画 に 差し替え ( LP と 同 じ 扱い)。
+                preload="metadata" = 本体 9.5MB は 落とさ ず 先頭 の moov だけ 読む
+                ( faststart 済 = 数十 KB)。 これ で 再生 前 から 再生 バー に 長さ が 出る =
+                別枠 の 長さ バッジ は 不要 ( 右下 は 全画面 ボタン と 重なる ので 尚更)。
+                poster = 冒頭 の ロゴ 画面 を 切り出した もの = 再生 前 も 白 に なら ない。 */}
+            <div className="video_frame">
+              <video
+                className="video_frame__player"
+                src="/video/kaika-demo.mp4"
+                poster="/video/kaika-demo-poster.jpg"
+                controls
+                preload="metadata"
+                playsInline
+              />
             </div>
           </div>
         </section>

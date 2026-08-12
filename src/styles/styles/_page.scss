@@ -2039,71 +2039,26 @@ body#product {
       margin-right: auto;
     }
 
-    .video_placeholder {
+    // 2026-08-12: placeholder ( 破線 + 再生 三角) から 実 動画 の 器 に。
+    // 角丸 で 切る ため overflow:hidden。 地 は 白 = poster の 余白 と 繋がる。
+    .video_frame {
       margin: rem(56) auto 0;
       max-width: rem(1080);
       aspect-ratio: 16 / 9;
-      background: linear-gradient(135deg, #f3f4f9 0%, #e8ebf3 100%);
       border-radius: rem(20);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: rem(24);
-      border: 1px dashed rgba($color: $main_color, $alpha: 0.3);
+      overflow: hidden;
+      background: $white;
+      box-shadow: 0 rem(20) rem(60) rgba($color: $text_color, $alpha: 0.12);
       @include mq(tbsm) {
         margin-top: rem(40);
       }
     }
 
-    .video_placeholder__icon {
-      width: rem(120);
-      height: rem(120);
-      background: rgba($color: $white, $alpha: 0.9);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      @include mq(tbsm) {
-        width: rem(72);
-        height: rem(72);
-      }
-
-      &::after {
-        content: "";
-        width: 0;
-        height: 0;
-        border-left: rem(30) solid $main_color;
-        border-top: rem(18) solid transparent;
-        border-bottom: rem(18) solid transparent;
-        margin-left: rem(6);
-        @include mq(tbsm) {
-          border-left: rem(18) solid $main_color;
-          border-top: rem(11) solid transparent;
-          border-bottom: rem(11) solid transparent;
-        }
-      }
-    }
-
-    .video_placeholder__text {
-      text-align: center;
-
-      strong {
-        display: block;
-        font-family: $accent_font;
-        font-size: rem(28);
-        letter-spacing: 0.16em;
-        font-weight: 700;
-        color: $main_color;
-      }
-
-      small {
-        display: block;
-        font-size: rem(15);
-        color: rgba($color: $text_color, $alpha: 0.5);
-        margin-top: rem(6);
-      }
+    .video_frame__player {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
     }
   }
 
