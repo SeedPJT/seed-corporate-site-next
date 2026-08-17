@@ -102,7 +102,7 @@ export default function Product() {
                     <h3 className="lc-detail__ja">動く</h3>
                     <div className="lc-detail__en">Act</div>
                   </div>
-                  <p className="lc-detail__body">知識検索・議事録・計画・発信・学習など、標準装備の右腕がすぐ動きます。蓄えた情報とSlack・Gmail・Notion等の外部ソースを元に、オーダーメイドの動きも可能。</p>
+                  <p className="lc-detail__body">知識検索・議事録・計画・発信・学習など、標準装備の右腕 (AIエージェント) がすぐ動きます。蓄えた情報とSlack・Gmail・Notion等の外部ソースを元に、オーダーメイドの動きも可能。</p>
                 </div>
                 <div className="lc-detail">
                   <div className="lc-detail__head">

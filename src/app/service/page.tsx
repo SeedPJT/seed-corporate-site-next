@@ -94,7 +94,7 @@ export default function ServicePage() {
                 </div>
                 <div className="pwi_item__text">
                   <span className="pwi_item__text__title">プロダクトが、業務に合わせて変わる</span>
-                  <span className="pwi_item__text__content">Kaikaは、共通基盤(プロダクト本体)と、あなた専用の右腕の2層構造。基盤の安定性を保ったまま、右腕側を業務要件に合わせて柔軟にカスタム・拡張できる設計です。通常なら「そういう仕様です」で終わる制約も、その場で即判断・即対応。1年後も陳腐化しない業務が定着します。</span>
+                  <span className="pwi_item__text__content">Kaikaは、共通基盤(プロダクト本体)と、あなた専用の右腕 (AIエージェント) の2層構造。基盤の安定性を保ったまま、右腕側を業務要件に合わせて柔軟にカスタム・拡張できる設計です。通常なら「そういう仕様です」で終わる制約も、その場で即判断・即対応。1年後も陳腐化しない業務が定着します。</span>
                 </div>
               </div>
               <div className="pwi_item">
