@@ -149,6 +149,12 @@ export default function HanaFlowDiagram() {
             <stop offset="0%" stopColor="#ffd6e7" /><stop offset="100%" stopColor="#fbb1bb" />
           </radialGradient>
         </defs>
+
+        {/* 板 = 縦版にも敷く ( 2026-08-31)。
+            広い版だけ <rect className="bgf"> を持っていたので、 スマホでは図の下が
+            そのまま透けて、 節の背景色 ( lp-sec--bg) が線や文字の裏に出ていた。
+            viewBox が y=-14 から始まるので、 板もそこから覆う。 */}
+        <rect x="0" y="-14" width="380" height="786" className="bgf" />
         {/* 社長の一言 */}
         <rect x="16" y="14" width="228" height="60" rx="10" className="pnl" />
         <rect x="16" y="14" width="228" height="60" rx="10" className="ln" />
