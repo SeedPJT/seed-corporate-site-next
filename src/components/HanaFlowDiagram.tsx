@@ -138,7 +138,7 @@ export default function HanaFlowDiagram() {
       {/* 狭い画面用 = 縦に積んだ図。
           横長のまま縮めると 1100 -> 350px で倍率 0.32 = 文字が 4px になり読めない。
           幅 380 に組み直して、 上から 話す -> 溜まる -> 返る の順に読ませる。 */}
-      <svg className="narrow" viewBox="0 0 380 772" role="img" aria-label="話した事とKaika上でやった事が事実とルールに分解され、その蓄積をたどってHanaの答えとして返るまでの流れ図">
+      <svg className="narrow" viewBox="0 -14 380 786" role="img" aria-label="話した事とKaika上でやった事が事実とルールに分解され、その蓄積をたどってHanaの答えとして返るまでの流れ図">
         {/* 2026-08-31: 縦版の定義は **縦版の中に置く**。
             広い版は狭い画面で display:none になるので、 その中の defs は効かない
             ( 矢印の頭と Hana の丸が消えた)。 */}
@@ -158,6 +158,8 @@ export default function HanaFlowDiagram() {
         <path d="M36 74 L 42 92 L 56 74" className="ln" />
         <text x="30" y="40" className="body ink" fontSize="12">「<tspan className="fb">サクラ</tspan>の件、</text>
         <text x="42" y="62" className="body ink" fontSize="12">今どうなってる?」</text>
+        {/* 広い版と同じく 「サクラ」 に下線 = ここが手掛かりだと示す */}
+        <line x1="42" y1="46" x2="78" y2="46" stroke="var(--b)" strokeWidth="1.3" />
         <circle cx="28" cy="110" r="12" fill="#FFFFFF" stroke="var(--line)" strokeWidth="1" />
         <g transform="translate(20.5,102.5) scale(0.0145)" fill="var(--fnt)">
           <path d="M858.5 763.6a374 374 0 0 0-80.6-119.5 375.63 375.63 0 0 0-119.5-80.6c-.4-.2-.8-.3-1.2-.5C719.5 518 760 444.7 760 362c0-137-111-248-248-248S264 225 264 362c0 82.7 40.5 156 102.8 201.1-.4.2-.8.3-1.2.5-43.4 18.3-82.4 44.6-115.9 78.1a375.63 375.63 0 0 0-80.6 119.5A371.7 371.7 0 0 0 140 908c-.2 4.4 3.3 8 7.7 8h60c4.3 0 7.9-3.4 8-7.7 2-77.2 33-149.5 87.8-204.3 56.7-56.7 132-87.9 212.5-87.9s155.8 31.2 212.5 87.9C783.3 758.8 814.3 831.1 816.3 908c.1 4.3 3.7 7.7 8 7.7h60c4.4 0 7.9-3.6 7.7-8-1.1-51.6-11.6-101.7-31.5-148.1zM512 534c-45.9 0-89.1-17.9-121.6-50.4S340 407.9 340 362c0-45.9 17.9-89.1 50.4-121.6S466.1 190 512 190s89.1 17.9 121.6 50.4S684 316.1 684 362c0 45.9-17.9 89.1-50.4 121.6S557.9 534 512 534z" />
@@ -167,7 +169,7 @@ export default function HanaFlowDiagram() {
         {/* 取り込み = 話した事とやった事が中へ */}
         {/* 広い版と同じ意味にする = 一言から 「どの関係先の話か」 を特定する道。
             まっすぐ枠に落とすと何を指しているのか分からなかった。 */}
-        <path d="M 244 44 L 332 44 A 8 8 0 0 1 340 52 L 340 258" className="sb" strokeWidth="1.6" fill="none" markerEnd="url(#aB2)" />
+        <path d="M 60 14 A 8 8 0 0 1 68 6 L 332 6 A 8 8 0 0 1 340 14 L 340 258" className="sb" strokeWidth="1.6" fill="none" markerEnd="url(#aB2)" />
         <text x="334" y="152" className="body fb" fontSize="10" textAnchor="end">特定</text>
 
         {/* Kaika の中 */}
