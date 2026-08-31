@@ -1981,11 +1981,26 @@ body#product {
         margin-top: rem(40);
       }
 
+      /* 2026-08-31: 横長のまま縮めると 1100 -> 350px で倍率 0.32 = 文字が 4px に
+         なり読めない。 狭い画面には縦に積み直した別の図を出す ( 幅 380 で組んである)。 */
       > svg {
         display: block;
         width: 100%;
-        min-width: rem(760);
         height: auto;
+      }
+      > svg.wide { min-width: rem(760); }
+      > svg.narrow { display: none; }
+
+      @media (max-width: 800px) {
+        /* 横に流さない = 画面幅に収める */
+        overflow-x: visible;
+        > svg.wide { display: none; }
+        > svg.narrow {
+          display: block;
+          max-width: rem(420);
+          margin-left: auto;
+          margin-right: auto;
+        }
       }
 
       .bgf { fill: var(--bg); }
