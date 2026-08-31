@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import CtaSection from '@/components/CtaSection'
+import HanaFlowDiagram from '@/components/HanaFlowDiagram'
 
 export const metadata: Metadata = {
   title: 'Kaika 株式会社Seed',
@@ -121,11 +122,13 @@ export default function Product() {
           <div className="why_inner innerbox_1180">
             <h2 className="section_title small_title">
               <span className="en_title">Why?</span>
-              <span className="ja_title">なぜ「使うだけで育つ」が<br className="u_sp" />実現できるのか？</span>
+              <span className="ja_title">なぜ散らかった思考と行動を<br className="u_sp" />価値に変えられるのか？</span>
             </h2>
             <div className="section_explain">
               Kaikaが保有する<strong className="main_color">2つの独自特許技術</strong>が、これを支えています。
             </div>
+
+            <HanaFlowDiagram />
 
             <div className="patents_wrapper">
               <div className="patent_item">

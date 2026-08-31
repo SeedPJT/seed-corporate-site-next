@@ -1945,6 +1945,82 @@ body#product {
       }
     }
 
+    /* ───────────────────────────────────────────────────────────
+       why の図 = Kaika-app の LP と同じ図を、 HP の色で置く。
+
+       図は CSS 変数で色を持つ作りなので、 ここで差し替えるだけで済む。
+       元は松緑とピンク ( app の色) だった。
+
+         知識の構造 ( 関係先 / 試み / 取り込みの矢印) -> $main_color 紫
+         社長自身と Hana の返事 ( 特性 / あなた / 答え) -> $btn_pink
+
+       塗り分けの class ( .srf / .ln 等) は **必ずこの下に閉じ込める**。
+       .body / .mono のような短い名前を素で置くと他の場所を壊す。
+       ─────────────────────────────────────────────────────────── */
+    .hana_diagram {
+      --bg: #{$white};
+      --pnl: #{$white};
+      --srf: #{$main_bg_color};
+      --ink: #{$text_color};
+      --mut: rgba(36, 39, 49, 0.6);
+      --fnt: rgba(36, 39, 49, 0.42);
+      --line: rgba(36, 39, 49, 0.1);
+      --edge: rgba(119, 125, 225, 0.34);
+      --hl: rgba(119, 125, 225, 0.09);
+      --g: #{$btn_pink};
+      --b: #{$main_color};
+      --body: #{$base_font};
+      --mono: "Barlow Semi Condensed", sans-serif;
+
+      margin: rem(56) auto 0;
+      max-width: rem(1100);
+      /* 横に長い図 = 狭い画面では図だけ横に流す ( 本文は流さない)。 */
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      @include mq(tbsm) {
+        margin-top: rem(40);
+      }
+
+      > svg {
+        display: block;
+        width: 100%;
+        min-width: rem(760);
+        height: auto;
+      }
+
+      .bgf { fill: var(--bg); }
+      .pnl { fill: var(--pnl); }
+      .srf { fill: var(--srf); }
+      .hl { fill: var(--hl); }
+      .ink { fill: var(--ink); }
+      .mut { fill: var(--mut); }
+      .fnt { fill: var(--fnt); }
+      .fb { fill: var(--b); }
+      .fg { fill: var(--g); }
+      .ln { fill: none; stroke: var(--line); stroke-width: 1.2; }
+      .sg { fill: none; stroke: var(--g); }
+      .sb { fill: none; stroke: var(--b); }
+      .eg { fill: none; stroke: var(--edge); stroke-width: 1.3; }
+      .body { font-family: var(--body); }
+      .mono { font-family: var(--mono); }
+      .lpLogo { opacity: 0.9; }
+    }
+
+    .diagram_cap {
+      margin: rem(14) auto 0;
+      /* 2026-08-31: 62ch だと広い画面でも 2 行に折れていた。
+         図の幅まで使わせて 1 行に収める ( 狭い画面では自然に折れる)。 */
+      max-width: 100%;
+      font-size: rem(13);
+      line-height: 1.9;
+      color: rgba(36, 39, 49, 0.6);
+      text-align: center;
+      @include mq(tbsm) {
+        font-size: rem(12);
+        text-align: left;
+      }
+    }
+
     .patents_wrapper {
       display: grid;
       grid-template-columns: 1fr;
