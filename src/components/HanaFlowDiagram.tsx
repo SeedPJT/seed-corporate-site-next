@@ -31,7 +31,7 @@ export default function HanaFlowDiagram() {
           <path d="M52 148 L 58 168 L 72 148" className="ln"/>
           <text x="50" y="92" className="body ink" fontSize="13">「<tspan className="fb" fontWeight="700">サクラ</tspan>の件、</text>
           <line x1="63" y1="98" x2="102" y2="98" stroke="var(--b)" strokeWidth="1.4"/>
-          <text x="50" y="120" className="body ink" fontSize="13">　今どうなってる?」</text>
+          <text x="63" y="120" className="body ink" fontSize="13">今どうなってる?」</text>
 
           <circle cx="62" cy="188" r="17" fill="#FFFFFF" stroke="var(--line)" strokeWidth="1"/>
           <g transform="translate(51.5,177.5) scale(0.0205)" fill="var(--fnt)">
