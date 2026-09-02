@@ -26,10 +26,10 @@ export default function ServicePage() {
             </div>
           </div>
           <div className="fv_image_wrapper">
-            <img src="/img/service/system/feature_01.webp" alt="本質的な課題を捉えた企画・設計" className="fv_main_image" />
-            <img src="/img/service/education/fv_icon_left.webp" alt="icon" className="fv_icon fv_icon_left" />
-            <img src="/img/service/education/fv_icon_right.webp" alt="icon" className="fv_icon fv_icon_right" />
-            <img src="/img/service/education/fv_icon_bottom.webp" alt="icon" className="fv_icon fv_icon_bottom" />
+            <img src="/img/service/fv_main.webp" alt="本質的な課題を捉えた企画・設計" className="fv_main_image" />
+            <img src="/img/service/fv_icon_left.webp" alt="icon" className="fv_icon fv_icon_left" />
+            <img src="/img/service/fv_icon_right.webp" alt="icon" className="fv_icon fv_icon_right" />
+            <img src="/img/service/fv_icon_bottom.webp" alt="icon" className="fv_icon fv_icon_bottom" />
           </div>
         </section>
 
@@ -90,7 +90,7 @@ export default function ServicePage() {
             <div className="product_what_inner">
               <div className="pwi_item">
                 <div className="pwi_item__icon">
-                  <img src="/img/service/support/about_flow_02.webp" alt="プロダクトが、業務に合わせて変わる" className="pwi_item__icon" />
+                  <img src="/img/service/strength_01.webp" alt="プロダクトが、業務に合わせて変わる" className="pwi_item__icon" />
                 </div>
                 <div className="pwi_item__text">
                   <span className="pwi_item__text__title">プロダクトが、業務に合わせて変わる</span>
@@ -99,7 +99,7 @@ export default function ServicePage() {
               </div>
               <div className="pwi_item">
                 <div className="pwi_item__icon">
-                  <img src="/img/service/system/what_01.webp" alt="使うほど、成果が育ち続ける" className="pwi_item__icon" />
+                  <img src="/img/service/strength_02.webp" alt="使うほど、成果が育ち続ける" className="pwi_item__icon" />
                 </div>
                 <div className="pwi_item__text">
                   <span className="pwi_item__text__title">使うほど、成果が育ち続ける</span>
@@ -108,7 +108,7 @@ export default function ServicePage() {
               </div>
               <div className="pwi_item">
                 <div className="pwi_item__icon">
-                  <img src="/img/service/education/what_01.webp" alt="チームの暗黙知が、会社の資産に" className="pwi_item__icon" />
+                  <img src="/img/service/strength_03.webp" alt="チームの暗黙知が、会社の資産に" className="pwi_item__icon" />
                 </div>
                 <div className="pwi_item__text">
                   <span className="pwi_item__text__title">チームの暗黙知が、会社の資産に</span>
@@ -119,7 +119,7 @@ export default function ServicePage() {
           </div>
         </section>
 
-        <section id="education_who" className="recommend_who">
+        <section id="service_who" className="recommend_who">
           <div className="who_inner innerbox_1180">
             <h2 className="who_title section_title small_title">
               <span className="en_title">who?</span>
@@ -137,7 +137,7 @@ export default function ServicePage() {
                 </div>
               </div>
               <div className="wh_co">
-                <img src="/img/service/system/who_01.webp" alt="AIプロダクトを導入したいが、社内で実装リソースが足りない社長" className="wh_co_image" />
+                <img src="/img/service/who_01.webp" alt="AIプロダクトを導入したいが、社内で実装リソースが足りない社長" className="wh_co_image" />
                 <div className="wh_co_title">
                   <span className="main_color">AIプロダクト導入</span>したいが、<br />
                   社内で実装リソースが足りない
@@ -147,7 +147,7 @@ export default function ServicePage() {
                 </div>
               </div>
               <div className="wh_co">
-                <img src="/img/service/system/who_02.webp" alt="オーダーメイドのAIエージェントを、業務に組み込みたい" className="wh_co_image" />
+                <img src="/img/service/who_02.webp" alt="オーダーメイドのAIエージェントを、業務に組み込みたい" className="wh_co_image" />
                 <div className="wh_co_title">
                   <span className="main_color">オーダーメイド</span>のAIエージェントを、<br />
                   業務に組み込みたい
@@ -157,7 +157,7 @@ export default function ServicePage() {
                 </div>
               </div>
               <div className="wh_co">
-                <img src="/img/service/system/who_03.webp" alt="継続改善する伴走型パートナーを求めている" className="wh_co_image" />
+                <img src="/img/service/who_03.webp" alt="継続改善する伴走型パートナーを求めている" className="wh_co_image" />
                 <div className="wh_co_title">
                   <span className="main_color">継続改善</span>する<br />
                   伴走型パートナーを求めている
