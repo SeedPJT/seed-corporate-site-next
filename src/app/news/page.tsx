@@ -11,6 +11,9 @@ import {
 } from '@/lib/news'
 
 export const metadata = {
+  // 一覧は ?category= を取る = 同じ中身の URL が増える。
+  // どれが正規かを こちらが言う ( 言わないと Google が自分で選ぶ)
+  alternates: { canonical: '/news' },
   title: 'お知らせ | 株式会社Seed',
   description: '株式会社Seed のお知らせ一覧。リリース / メディア掲載 / 提携 / 採用等の情報をお届けします。',
   icons: { icon: '/img/favicon.webp' },

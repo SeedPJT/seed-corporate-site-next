@@ -3,6 +3,8 @@ import CtaSection from '@/components/CtaSection'
 import HanaFlowDiagram from '@/components/HanaFlowDiagram'
 
 export const metadata: Metadata = {
+  // どれが正規かを こちらが言う ( 言わないと Google が自分で選ぶ)
+  alternates: { canonical: '/product' },
   title: 'Kaika 株式会社Seed',
   description: '身軽になりたい社長の右腕。業務も意思決定も、一つの場で。',
   // root layout の icons 継承が Next.js 15 の build で稀に skip される (実測: product page で

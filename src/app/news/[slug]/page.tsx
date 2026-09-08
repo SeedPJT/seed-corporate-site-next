@@ -12,11 +12,19 @@ type Props = { params: Promise<{ slug: string }> }
 export async function generateMetadata({ params }: Props) {
   const { slug } = await params
   const item = await getNewsBySlug(slug)
-  if (!item) return { title: 'お知らせ | 株式会社Seed', icons: { icon: '/img/favicon.webp' } }
+  if (!item) {
+    return {
+      title: 'お知らせ | 株式会社Seed',
+      icons: { icon: '/img/favicon.webp' },
+      alternates: { canonical: '/news' },
+    }
+  }
   return {
     title: `${item.title} | 株式会社Seed`,
     description: item.summary || item.title,
     icons: { icon: '/img/favicon.webp' },
+    // どれが正規かを こちらが言う ( 言わないと Google が自分で選ぶ)
+    alternates: { canonical: `/news/${slug}` },
     openGraph: item.thumbnail
       ? {
           title: item.title,

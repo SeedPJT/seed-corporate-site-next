@@ -4,6 +4,8 @@ import PageHead from '@/components/PageHead'
 import CtaSection from '@/components/CtaSection'
 
 export const metadata: Metadata = {
+  // どれが正規かを こちらが言う ( 言わないと Google が自分で選ぶ)
+  alternates: { canonical: '/contact/thanks' },
   title: 'お問い合わせ | 株式会社Seed',
   icons: { icon: '/img/favicon.webp' },
   // 送信完了 page = 検索結果に出ても価値がない = index させない。

@@ -3,6 +3,8 @@ import PageHead from '@/components/PageHead'
 import CtaSection from '@/components/CtaSection'
 
 export const metadata: Metadata = {
+  // どれが正規かを こちらが言う ( 言わないと Google が自分で選ぶ)
+  alternates: { canonical: '/about-us' },
   title: 'About | 株式会社Seed',
   description: '株式会社Seedは、誰もが本来の自分の行動に熱中できる社会を目指し、散らかった行動を整理し、価値ある情報に変えるAIプロダクトKaikaを開発・提供しています。',
   icons: { icon: '/img/favicon.webp' },

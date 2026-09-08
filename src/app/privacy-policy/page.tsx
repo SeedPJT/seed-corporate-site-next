@@ -4,6 +4,8 @@ import PageHead from '@/components/PageHead'
 import CtaSection from '@/components/CtaSection'
 
 export const metadata: Metadata = {
+  // どれが正規かを こちらが言う ( 言わないと Google が自分で選ぶ)
+  alternates: { canonical: '/privacy-policy' },
   title: 'プライバシーポリシー | 株式会社Seed',
   description:
     '株式会社Seedにおける個人情報の取得・利用・管理の方針をご案内します。お問い合わせフォームでお預かりした情報の取り扱い、Cookieおよびアクセス解析の利用、開示等のご請求方法を記載しています。',

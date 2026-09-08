@@ -39,7 +39,25 @@ async function getRouteInfo(): Promise<{ bodyId: string; pathname: string }> {
   return { bodyId: resolveBodyId(normalized), pathname: normalized }
 }
 
+/**
+ * Search Console 「重複しています。 Google により、 ユーザーがマークした
+ * ページとは異なるページが正規ページとして選択されました」 ( 2026-08-10)。
+ *
+ * 実物を見た所、 **canonical が 1 ページも出ていなかった**
+ * ( /, /about-us, /service, /news すべて)。 どれが正規かを こちらが
+ * 言っていないので、 Google が自分で選ぶ。 選ばれた物がこちらの意図と
+ * 違えば、 その通知になる。
+ *
+ * host / protocol / 末尾スラッシュは 308 で 1 本に寄っているが、
+ * **問い合わせ文字列が付いた URL は別物として 200 を返す**
+ * ( /about-us?utm_source=x)。 広告や SNS から来た印が付くと、 同じ中身の
+ * URL が増える。 canonical はそこを束ねる為に要る。
+ *
+ * metadataBase を置くと、 各ページの alternates.canonical を相対で書ける。
+ */
 export const metadata: Metadata = {
+  metadataBase: new URL('https://seed-tech.co.jp'),
+  alternates: { canonical: '/' },
   title: '株式会社Seed',
   description: '身軽になりたい社長の右腕として、業務と意思決定を一つの場で整理するAIプロダクト「Kaika」を開発・提供しています。',
   keywords: 'Kaika, AI, 業務改善, 社長, 意思決定支援, 議事録, 発信支援, AIエージェント, Seed',
