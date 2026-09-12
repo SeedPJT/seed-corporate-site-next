@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import CtaSection from '@/components/CtaSection'
+import KaikaLayersDiagram from '@/components/KaikaLayersDiagram'
 
 export const metadata: Metadata = {
   // どれが正規かを こちらが言う ( 言わないと Google が自分で選ぶ)
@@ -88,6 +89,11 @@ export default function ServicePage() {
             <div className="section_explain">
               「導入して終わり」ではなく、使い続けるほど成果が育つ。Kaika実装伴走ならではの3つの特徴です。
             </div>
+
+            {/* 3 つの特徴は どれも この構造の上に乗っている
+                ( 右腕を作り替えられる / 基盤側が学ぶ / 基盤側に溜まる) ので、
+                特徴 1 の下ではなく 3 つの前に置く。 */}
+            <KaikaLayersDiagram />
 
             <div className="product_what_inner">
               <div className="pwi_item">

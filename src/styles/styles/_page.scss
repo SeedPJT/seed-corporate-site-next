@@ -1335,6 +1335,58 @@ body#product {
       .lpLogo { opacity: 0.9; }
     }
 
+    /* What? の節の図 = 「何をどこまで作るのか」。
+       変数名は .hana_diagram と揃えてあるので、 同じ palette がそのまま効く。
+       色は役割で決める = --b 構造の側 ( Kaika 本体) / --g 人の側 ( 専用の右腕)。 */
+    .kaika_layers {
+      --pnl: #{$white};
+      --srf: #{$main_bg_color};
+      --ink: #{$text_color};
+      --mut: rgba(36, 39, 49, 0.6);
+      --fnt: rgba(36, 39, 49, 0.42);
+      --g: #{$btn_pink};
+      --b: #{$main_color};
+      --body: #{$base_font};
+
+      margin: rem(40) auto rem(48);
+      max-width: rem(960);
+      /* 横に長い図 = 狭い画面では図だけ横に流す ( 本文は流さない)。 */
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      @include mq(tbsm) {
+        margin: rem(28) auto rem(32);
+      }
+
+      > svg {
+        display: block;
+        width: 100%;
+        min-width: rem(560);
+        height: auto;
+      }
+
+      .kl_title {
+        font-family: var(--body);
+        font-size: rem(23);
+        font-weight: 700;
+        fill: var(--ink);
+      }
+      .kl_title2 {
+        font-family: var(--body);
+        font-size: rem(17);
+        font-weight: 700;
+        fill: var(--ink);
+      }
+
+      &__note {
+        margin: rem(16) 0 0;
+        font-family: var(--body);
+        font-size: rem(13);
+        line-height: 1.9;
+        color: var(--mut);
+        text-align: center;
+      }
+    }
+
     .diagram_cap {
       margin: rem(14) auto 0;
       /* 2026-08-31: 62ch だと広い画面でも 2 行に折れていた。
