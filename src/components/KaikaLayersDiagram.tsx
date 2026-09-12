@@ -22,7 +22,7 @@ export default function KaikaLayersDiagram() {
       role="img"
       aria-label="Kaikaと、御社専用の右腕と、御社のシステムが繋がる図。あらたに作るのは真ん中の右腕だけ"
     >
-      <svg viewBox="0 0 960 190" aria-hidden="true">
+      <svg className="wide" viewBox="0 0 960 190" aria-hidden="true">
         <defs>
           <marker id="kl_arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
             <path d="M0,0 L9,4.5 L0,9 z" fill="var(--fnt, rgba(36,39,49,.5))" />
@@ -50,8 +50,37 @@ export default function KaikaLayersDiagram() {
           <ellipse cx="748" cy="52" rx="58" ry="15" />
           <path d="M690 80 a58 15 0 0 0 116 0" strokeDasharray="3 4" />
         </g>
-        <text x="834" y="90" className="kl_title2">御社の</text>
-        <text x="834" y="114" className="kl_title2">システム</text>
+        <text x="834" y="92" className="kl_title">御社の</text>
+        <text x="834" y="122" className="kl_title">システム</text>
+      </svg>
+
+      <svg className="narrow" viewBox="0 0 340 470" aria-hidden="true">
+        <defs>
+          <marker id="kl_arrow_n" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+            <path d="M0,0 L9,4.5 L0,9 z" fill="var(--fnt, rgba(36,39,49,.5))" />
+          </marker>
+        </defs>
+
+        <rect x="20" y="14" width="300" height="104" rx="10" fill="var(--srf, #ffffff)" stroke="var(--b, #777de1)" strokeWidth="2.2" />
+        <image href="/img/common/kaika_logo.png" x="97" y="45" width="146" height="40" preserveAspectRatio="xMidYMid meet" />
+
+        <path d="M156 126 L156 162" stroke="var(--fnt, rgba(36,39,49,.5))" strokeWidth="1.3" markerEnd="url(#kl_arrow_n)" />
+        <path d="M184 162 L184 126" stroke="var(--fnt, rgba(36,39,49,.5))" strokeWidth="1.3" markerEnd="url(#kl_arrow_n)" />
+
+        <rect x="20" y="170" width="300" height="104" rx="10" fill="var(--pnl, #ffffff)" stroke="var(--g, #f05f7c)" strokeWidth="2.2" />
+        <rect x="20" y="170" width="300" height="104" rx="10" fill="var(--g, #f05f7c)" opacity="0.06" />
+        <text x="170" y="230" className="kl_title" textAnchor="middle">御社専用の右腕</text>
+
+        <path d="M156 282 L156 318" stroke="var(--fnt, rgba(36,39,49,.5))" strokeWidth="1.3" markerEnd="url(#kl_arrow_n)" />
+        <path d="M184 318 L184 282" stroke="var(--fnt, rgba(36,39,49,.5))" strokeWidth="1.3" markerEnd="url(#kl_arrow_n)" />
+
+        <g stroke="var(--fnt, rgba(36,39,49,.5))" strokeWidth="1.3" fill="none" strokeDasharray="5 4">
+          <path d="M56 342 v70 a48 13 0 0 0 96 0 v-70" />
+          <ellipse cx="104" cy="342" rx="48" ry="13" />
+          <path d="M56 366 a48 13 0 0 0 96 0" strokeDasharray="3 4" />
+        </g>
+        <text x="172" y="374" className="kl_title">御社の</text>
+        <text x="172" y="404" className="kl_title">システム</text>
       </svg>
     </div>
   )
