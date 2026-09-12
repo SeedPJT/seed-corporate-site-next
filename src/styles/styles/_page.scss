@@ -611,7 +611,8 @@ body#service {
       > svg.wide { min-width: rem(560); }
       > svg.narrow { display: none; }
 
-      @media (max-width: 700px) {
+      /* 区切りは家のもの ( tbsm = 768px)。 ここで本文も rem(14) に落ちる。 */
+      @include mq(tbsm) {
         /* 横に流さない = 画面幅に収める */
         overflow-x: visible;
         > svg.wide { display: none; }
@@ -629,6 +630,16 @@ body#service {
         font-size: rem(23);
         font-weight: 700;
         fill: var(--ink);
+      }
+
+      /* 狭い用は viewBox 340 = 表示幅とほぼ 1:1 なので、 23px がそのまま
+         23px として出る。 この画面では本文が rem(14) なので大きすぎる。
+         周りに合わせて落とす。 */
+      @include mq(tbsm) {
+        .kl_title { font-size: rem(17); }
+      }
+      @include mq(se) {
+        .kl_title { font-size: rem(16); }
       }
     }
 
