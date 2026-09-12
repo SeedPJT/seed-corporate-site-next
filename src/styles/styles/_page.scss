@@ -573,6 +573,54 @@ body#service {
       text-align: center;
     }
 
+    /* What? の節の図 = 「何をどこまで作るのか」。
+       2026-09-12: 最初 .hana_diagram の隣 ( body#product section#why の中) に
+       書いてしまい、 **service では 1 つも当たらなかった**。 変数が未定義になり
+       fill が SVG 既定の黒、 stroke が none = 箱は黒く、 矢印と筒は消えた。
+       入れ子のある SCSS では 「どこに書くか」 がそのまま効く範囲になる。
+
+       色は役割で決める = --b 構造の側 ( Kaika 本体) / --g 人の側 ( 専用の右腕)。
+       この節の地は紫なので、 箱は白で抜く。 */
+    .kaika_layers {
+      --pnl: #{$white};
+      --srf: #{$white};
+      --ink: #{$text_color};
+      --mut: rgba(36, 39, 49, 0.6);
+      --fnt: rgba(36, 39, 49, 0.5);
+      --g: #{$btn_pink};
+      --b: #{$main_color};
+      --body: #{$base_font};
+
+      margin: rem(40) auto rem(8);
+      max-width: rem(960);
+      /* 横に長い図 = 狭い画面では図だけ横に流す ( 本文は流さない)。 */
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      @include mq(tbsm) {
+        margin: rem(28) auto rem(4);
+      }
+
+      > svg {
+        display: block;
+        width: 100%;
+        min-width: rem(560);
+        height: auto;
+      }
+
+      .kl_title {
+        font-family: var(--body);
+        font-size: rem(23);
+        font-weight: 700;
+        fill: var(--ink);
+      }
+      .kl_title2 {
+        font-family: var(--body);
+        font-size: rem(17);
+        font-weight: 700;
+        fill: var(--ink);
+      }
+    }
+
     // 元 Product page 「Kaikaとは」 の pwi_item pattern = 3 item 縦stack + 各 row = icon左 + text右 + border 区切 り。
     .product_what_inner {
       margin-top: rem(64);
@@ -1333,58 +1381,6 @@ body#product {
       .body { font-family: var(--body); }
       .mono { font-family: var(--mono); }
       .lpLogo { opacity: 0.9; }
-    }
-
-    /* What? の節の図 = 「何をどこまで作るのか」。
-       変数名は .hana_diagram と揃えてあるので、 同じ palette がそのまま効く。
-       色は役割で決める = --b 構造の側 ( Kaika 本体) / --g 人の側 ( 専用の右腕)。 */
-    .kaika_layers {
-      --pnl: #{$white};
-      --srf: #{$main_bg_color};
-      --ink: #{$text_color};
-      --mut: rgba(36, 39, 49, 0.6);
-      --fnt: rgba(36, 39, 49, 0.42);
-      --g: #{$btn_pink};
-      --b: #{$main_color};
-      --body: #{$base_font};
-
-      margin: rem(40) auto rem(48);
-      max-width: rem(960);
-      /* 横に長い図 = 狭い画面では図だけ横に流す ( 本文は流さない)。 */
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      @include mq(tbsm) {
-        margin: rem(28) auto rem(32);
-      }
-
-      > svg {
-        display: block;
-        width: 100%;
-        min-width: rem(560);
-        height: auto;
-      }
-
-      .kl_title {
-        font-family: var(--body);
-        font-size: rem(23);
-        font-weight: 700;
-        fill: var(--ink);
-      }
-      .kl_title2 {
-        font-family: var(--body);
-        font-size: rem(17);
-        font-weight: 700;
-        fill: var(--ink);
-      }
-
-      &__note {
-        margin: rem(16) 0 0;
-        font-family: var(--body);
-        font-size: rem(13);
-        line-height: 1.9;
-        color: var(--mut);
-        text-align: center;
-      }
     }
 
     .diagram_cap {
