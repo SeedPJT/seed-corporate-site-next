@@ -93,7 +93,7 @@ export default function Home() {
               Kaika<span className="small">（Keep Advancing with Innovative Knowledge Assistance）</span>
             </div>
             <div className="section_explain">
-              Kaikaは、社長の日々の業務と意思決定を一つの場で整理できるAIプロダクトです。<br />
+              Kaikaは、業務を構造化して蓄積できるワークスペースです。<br />
               個人やチームのプロジェクトや振り返りがKaikaに蓄積され、業務も経営判断も、次の一手に繋がる状態へ。<br />
               業務・判断・発信・分析、あらゆる面から社長を支えます。
             </div>
@@ -125,7 +125,7 @@ export default function Home() {
           </h2>
           <div className="section_explain">
             Seedは、テクノロジーと人の力を融合し、一人ひとりの散らかった行動を整理し、本質的な行動に熱中できる環境をつくります。<br />
-            独自プロダクトKaikaは、業務の実行や、意思決定の整理を一つの場で行えるAIプロダクトです。業務に合わせて柔軟にカスタマイズでき、身軽になりたい社長に伴走します。
+            独自プロダクトKaikaは、業務を構造化して蓄積できるワークスペースです。業務に合わせて柔軟にカスタマイズでき、身軽になりたい社長に伴走します。
           </div>
 
           <div className="service_contents_wrapper service_contents_wrapper__single">

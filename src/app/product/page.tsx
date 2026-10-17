@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   // どれが正規かを こちらが言う ( 言わないと Google が自分で選ぶ)
   alternates: { canonical: '/product' },
   title: 'Kaika 株式会社Seed',
-  description: '身軽になりたい社長の右腕。業務も意思決定も、一つの場で。',
+  description: '身軽になりたい社長の右腕。面倒な実務も、事業推進も。',
   // root layout の icons 継承が Next.js 15 の build で稀に skip される (実測: product page で
   // Vercel default favicon 表示) = 各ページで明示的に再指定して継承依存を排除。
   icons: { icon: '/img/favicon.webp' },
@@ -27,7 +27,7 @@ export default function Product() {
                 </span>
               </h2>
               <div className="fv_explain section_explain">
-                業務も意思決定も、一つの場で。
+                面倒な実務も、事業推進も。
               </div>
               <div className="fv_btn_wrapper u_pc">
                 <a href="https://kaika.world/" className="btn black_btn" target="_blank" rel="noopener noreferrer">まずは<span className="yellow">無料</span>で試す</a>
@@ -52,7 +52,7 @@ export default function Product() {
               <span className="ja_title"><span className="ja_brand">Kaika</span>とは？</span>
             </h2>
             <div className="section_explain">
-              Kaikaは、面倒な実務も、事業推進も、まとめて任せられる右腕です。日々の行動を覚え、つなげ、育てていきます。右腕が何かを動かすときは、知っていることから考え、<strong className="main_color">利益に繋げます。</strong>
+              Kaikaは、業務を構造化して蓄積できるワークスペースです。日々の行動を蓄え、構造化し、育てていきます。右腕が何かを動かすときは、知っていることから考え、<strong className="main_color">利益に繋げます。</strong>
             </div>
 
             <div className="lc-main">
@@ -75,18 +75,18 @@ export default function Product() {
 
                 <div className="lc-phase" data-pos="top">
                   <div className="lc-phase__num">01</div>
-                  <div className="lc-phase__ja">覚える</div>
-                  <div className="lc-phase__en">Remember</div>
-                </div>
-                <div className="lc-phase" data-pos="br">
-                  <div className="lc-phase__num">02</div>
                   <div className="lc-phase__ja">動く</div>
                   <div className="lc-phase__en">Act</div>
                 </div>
+                <div className="lc-phase" data-pos="br">
+                  <div className="lc-phase__num">02</div>
+                  <div className="lc-phase__ja">蓄える</div>
+                  <div className="lc-phase__en">Accumulate</div>
+                </div>
                 <div className="lc-phase" data-pos="bl">
                   <div className="lc-phase__num">03</div>
-                  <div className="lc-phase__ja">整える</div>
-                  <div className="lc-phase__en">Organize</div>
+                  <div className="lc-phase__ja">育つ</div>
+                  <div className="lc-phase__en">Grow</div>
                 </div>
               </div>
 
@@ -94,26 +94,26 @@ export default function Product() {
                 <div className="lc-detail">
                   <div className="lc-detail__head">
                     <div className="lc-detail__num">01</div>
-                    <h3 className="lc-detail__ja">覚える</h3>
-                    <div className="lc-detail__en">Remember</div>
+                    <h3 className="lc-detail__ja">動く</h3>
+                    <div className="lc-detail__en">Act</div>
                   </div>
-                  <p className="lc-detail__body">使うだけで、日々の行動と判断が静かに蓄積されていきます。</p>
+                  <p className="lc-detail__body">知識検索・議事録・計画・発信・学習など、標準装備の右腕 (AIエージェント) がすぐ動きます。蓄えた情報とSlack・Gmail・Notion等の外部ソースを元に、オーダーメイドの動きも可能です。</p>
                 </div>
                 <div className="lc-detail">
                   <div className="lc-detail__head">
                     <div className="lc-detail__num">02</div>
-                    <h3 className="lc-detail__ja">動く</h3>
-                    <div className="lc-detail__en">Act</div>
+                    <h3 className="lc-detail__ja">蓄える</h3>
+                    <div className="lc-detail__en">Accumulate</div>
                   </div>
-                  <p className="lc-detail__body">知識検索・議事録・計画・発信・学習など、標準装備の右腕 (AIエージェント) がすぐ動きます。蓄えた情報とSlack・Gmail・Notion等の外部ソースを元に、オーダーメイドの動きも可能。</p>
+                  <p className="lc-detail__body">使うだけで、日々の行動と判断が形になって積み上がっていきます。業務は構造化されKaikaに蓄積されます。</p>
                 </div>
                 <div className="lc-detail">
                   <div className="lc-detail__head">
                     <div className="lc-detail__num">03</div>
-                    <h3 className="lc-detail__ja">整える</h3>
-                    <div className="lc-detail__en">Organize</div>
+                    <h3 className="lc-detail__ja">育つ</h3>
+                    <div className="lc-detail__en">Grow</div>
                   </div>
-                  <p className="lc-detail__body">右腕の利益インパクトが見える化され、日々の会話から事実とルールも積み上がっていきます。</p>
+                  <p className="lc-detail__body">右腕の利益インパクトが見えます。日々の会話から事実とルールも積み上がり、それを元に右腕を育てていけます。</p>
                 </div>
               </div>
             </div>
@@ -135,13 +135,13 @@ export default function Product() {
             <div className="patents_wrapper">
               <div className="patent_item">
                 <span className="patent_badge">特許取得済み</span>
-                <h3 className="patent_title">行動から、<br />特性を可視化する</h3>
-                <p className="patent_body">日々の行動から、暗黙知を捉え、変化に対応します。手短なコミュニケーションからでも意図を推定します。</p>
+                <h3 className="patent_title">あなたの行動を分析する</h3>
+                <p className="patent_body">日々の行動から、無意識の癖や傾向を読み取ります。短いやり取りからでも、何をしたいかを推定します。</p>
               </div>
               <div className="patent_item">
                 <span className="patent_badge patent_badge--pending">特許出願中</span>
-                <h3 className="patent_title">会話から、<br />事実とルールを構造化する</h3>
-                <p className="patent_body">日々の会話や指示・マニュアルを、事実とルールに自動分解。知識を容易に引き出せたり、右腕を半自動で構築できます。</p>
+                <h3 className="patent_title">蓄積された業務を構造化する</h3>
+                <p className="patent_body">蓄積された業務を、事実とルールへ自動で分けます。構造化したまま保持するので、知りたい事がすぐ引き出せて、右腕もそこから組み立てられます。</p>
               </div>
             </div>
           </div>

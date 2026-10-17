@@ -41,8 +41,8 @@ export default function KaikaLayersDiagram() {
         <path d="M342 106 L290 106" stroke="var(--fnt, rgba(36,39,49,.5))" strokeWidth="1.3" markerEnd="url(#kl_arrow)" />
 
         {/* 御社専用の右腕 = ここだけ作る。 人の側の色 ( ピンク) */}
-        <rect x="350" y="34" width="250" height="122" rx="10" fill="var(--pnl, #ffffff)" stroke="var(--g, #f05f7c)" strokeWidth="2.2" />
-        <rect x="350" y="34" width="250" height="122" rx="10" fill="var(--g, #f05f7c)" opacity="0.06" />
+        <rect x="350" y="34" width="250" height="122" rx="10" fill="var(--pnl, #ffffff)" stroke="var(--g, #d876b8)" strokeWidth="2.2" />
+        <rect x="350" y="34" width="250" height="122" rx="10" fill="var(--g, #d876b8)" opacity="0.06" />
         <text x="475" y="103" className="kl_title" textAnchor="middle">御社専用の右腕</text>
 
         <path d="M608 84 L660 84" stroke="var(--fnt, rgba(36,39,49,.5))" strokeWidth="1.3" markerEnd="url(#kl_arrow)" />
@@ -71,8 +71,8 @@ export default function KaikaLayersDiagram() {
         <path d="M156 126 L156 150" stroke="var(--fnt, rgba(36,39,49,.5))" strokeWidth="1.3" markerEnd="url(#kl_arrow_n)" />
         <path d="M184 162 L184 138" stroke="var(--fnt, rgba(36,39,49,.5))" strokeWidth="1.3" markerEnd="url(#kl_arrow_n)" />
 
-        <rect x="20" y="170" width="300" height="104" rx="10" fill="var(--pnl, #ffffff)" stroke="var(--g, #f05f7c)" strokeWidth="2.2" />
-        <rect x="20" y="170" width="300" height="104" rx="10" fill="var(--g, #f05f7c)" opacity="0.06" />
+        <rect x="20" y="170" width="300" height="104" rx="10" fill="var(--pnl, #ffffff)" stroke="var(--g, #d876b8)" strokeWidth="2.2" />
+        <rect x="20" y="170" width="300" height="104" rx="10" fill="var(--g, #d876b8)" opacity="0.06" />
         <text x="170" y="230" className="kl_title" textAnchor="middle">御社専用の右腕</text>
 
         <path d="M156 282 L156 306" stroke="var(--fnt, rgba(36,39,49,.5))" strokeWidth="1.3" markerEnd="url(#kl_arrow_n)" />

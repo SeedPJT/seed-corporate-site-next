@@ -25,6 +25,9 @@ $main_color: #777de1;
 $main_bg_color: #f3f4f9;
 $btn_green: #0a8866;
 $btn_pink: #f05f7c;
+// 見出しの帯 ( #7d75c9 -> #d876b8) で使っている紫寄りのピンク。
+// ボタンの $btn_pink より赤みが薄く、 主色 ( #777de1) の隣に置いても浮かない。
+$accent_pink: #d876b8;
 
 /////////////
 // 基本設定 //

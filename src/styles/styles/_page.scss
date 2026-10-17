@@ -587,7 +587,9 @@ body#service {
       --ink: #{$text_color};
       --mut: rgba(36, 39, 49, 0.6);
       --fnt: rgba(36, 39, 49, 0.5);
-      --g: #{$btn_pink};
+      /* 2026-10-17: 強調を $btn_pink ( #f05f7c) から $accent_pink ( #d876b8) へ
+         ( why の図と同じ。 理由はそちらの註)。 */
+      --g: #{$accent_pink};
       --b: #{$main_color};
       --body: #{$base_font};
 
@@ -1336,7 +1338,12 @@ body#product {
        元は松緑とピンク ( app の色) だった。
 
          知識の構造 ( 関係先 / 試み / 取り込みの矢印) -> $main_color 紫
-         社長自身と Hana の返事 ( 特性 / あなた / 答え) -> $btn_pink
+         社長自身と Hana の返事 ( 特性 / あなた / 答え) -> $accent_pink
+
+       2026-10-17: 強調を $btn_pink ( #f05f7c) から $accent_pink ( #d876b8) へ。
+       $btn_pink は **ボタン用の赤寄り** で、 紫 ( #777de1) の隣に広い面で
+       置くと赤く浮く ( 社長の指摘)。 見出しの帯 ( #7d75c9 -> #d876b8) で
+       既に使っている紫寄りのピンクなら、 同じ頁の中で馴染む。
 
        塗り分けの class ( .srf / .ln 等) は **必ずこの下に閉じ込める**。
        .body / .mono のような短い名前を素で置くと他の場所を壊す。
@@ -1351,7 +1358,7 @@ body#product {
       --line: rgba(36, 39, 49, 0.1);
       --edge: rgba(119, 125, 225, 0.34);
       --hl: rgba(119, 125, 225, 0.09);
-      --g: #{$btn_pink};
+      --g: #{$accent_pink};
       --b: #{$main_color};
       --body: #{$base_font};
       --mono: "Barlow Semi Condensed", sans-serif;
@@ -1471,7 +1478,8 @@ body#product {
       font-size: rem(26);
       font-weight: 700;
       line-height: 1.5;
-      margin: rem(16) 0 rem(20);
+      /* 2026-10-17: 題を 1 行にした分だけ本文が近づいた ( 社長の指摘。 LP と同値)。 */
+      margin: rem(16) 0 rem(28);
       color: $text_color;
       text-wrap: balance;
       @include mq(tbsm) {

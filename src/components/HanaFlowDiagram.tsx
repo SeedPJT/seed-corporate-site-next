@@ -1,7 +1,7 @@
 /**
  * why の節に置く図 = 「なぜ散らかった思考を価値に変えられるのか？」
  *
- * Kaika-app の LP と同じ図。 色だけ HP のもの ( 紫 #777de1 / ピンク #f05f7c) に
+ * Kaika-app の LP と同じ図。 色だけ HP のもの ( 紫 #777de1 / ピンク #d876b8) に
  * 差し替えてある ( _page.scss の .hana_diagram)。
  *
  * 一言が事実とルールに分解され、 知識のつながりを辿って、 答えとして返るまでを
@@ -19,7 +19,7 @@ export default function HanaFlowDiagram() {
             <marker id="aB" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--b)"/></marker>
             <marker id="aG" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--g)"/></marker>
             <radialGradient id="hanaG" cx="40%" cy="38%" r="60%">
-              <stop offset="0%" stopColor="#ffd6e7"/><stop offset="100%" stopColor="#fbb1bb"/>
+              <stop offset="0%" stopColor="#f3d6ea"/><stop offset="100%" stopColor="#eab4d8"/>
             </radialGradient>
           </defs>
           <rect width="1100" height="640" className="bgf"/>
@@ -146,7 +146,7 @@ export default function HanaFlowDiagram() {
           <marker id="aB2" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--b)" /></marker>
           <marker id="aG2" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--g)" /></marker>
           <radialGradient id="hanaG2" cx="40%" cy="38%" r="60%">
-            <stop offset="0%" stopColor="#ffd6e7" /><stop offset="100%" stopColor="#fbb1bb" />
+            <stop offset="0%" stopColor="#f3d6ea" /><stop offset="100%" stopColor="#eab4d8" />
           </radialGradient>
         </defs>
 
