@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   // どれが正規かを こちらが言う ( 言わないと Google が自分で選ぶ)
   alternates: { canonical: '/service' },
   title: '実装伴走 | 株式会社Seed',
-  description: 'Kaikaを社長やチームの業務に定着させる実装伴走サービス。業務要件のヒアリングから右腕設計・実装、運用定着・チューニング、効果測定まで並走します。',
+  description: 'Kaikaを業務に定着させる実装伴走サービス。業務要件のヒアリングから右腕設計・実装、運用定着・チューニング、効果測定まで伴走します。',
   icons: { icon: '/img/favicon.webp' },
 }
 
@@ -220,7 +220,7 @@ export default function ServicePage() {
                   <span className="st_co_title__text">運用定着・チューニング</span>
                 </div>
                 <div className="st_co_detail">
-                  日々の対話の中で「もう少しこうしてほしい」を拾い、右腕を継続的にチューニング。使いながら育てるサイクルを回します。標準装備の使いこなしから個別カスタムまで並走します。
+                  日々の対話の中で「もう少しこうしてほしい」を拾い、右腕を継続的にチューニング。使いながら育てるサイクルを回します。標準装備の使いこなしから個別カスタムまで伴走します。
                 </div>
               </div>
               <div className="st_co">

@@ -95,7 +95,7 @@ export default function Home() {
             <div className="section_explain">
               Kaikaは、業務を構造化して蓄積できるワークスペースです。<br />
               個人やチームのプロジェクトや振り返りがKaikaに蓄積され、業務も経営判断も、次の一手に繋がる状態へ。<br />
-              業務・判断・発信・分析、あらゆる面から社長を支えます。
+              業務・判断・発信・分析、あらゆる面から支えます。
             </div>
             <div className="section_btn_wrapper">
               <Link href="/product" className="btn arrow_btn">
@@ -125,7 +125,7 @@ export default function Home() {
           </h2>
           <div className="section_explain">
             Seedは、テクノロジーと人の力を融合し、一人ひとりの散らかった行動を整理し、本質的な行動に熱中できる環境をつくります。<br />
-            独自プロダクトKaikaは、業務を構造化して蓄積できるワークスペースです。業務に合わせて柔軟にカスタマイズでき、身軽になりたい社長に伴走します。
+            独自プロダクトKaikaは、業務を構造化して蓄積できるワークスペースです。業務に合わせて柔軟にカスタマイズできます。
           </div>
 
           <div className="service_contents_wrapper service_contents_wrapper__single">
@@ -134,8 +134,8 @@ export default function Home() {
               <div className="serv_co_text_wrapper">
                 <div className="serv_co_title">Kaika実装伴走</div>
                 <div className="serv_co_text">
-                  Kaikaを社長の業務に組み込む、月額定額の伴走支援。<br />
-                  業務要件のヒアリングから実装、運用定着まで並走します。
+                  Kaikaを業務に組み込む、月額定額の伴走支援。<br />
+                  業務要件のヒアリングから実装、運用定着まで伴走します。
                 </div>
                 <div className="serv_co_btn_wrapper">
                   <Link href="/service" className="btn arrow_btn">
