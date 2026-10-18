@@ -136,12 +136,12 @@ export default function Product() {
               <div className="patent_item">
                 <span className="patent_badge">特許取得済み</span>
                 <h3 className="patent_title">あなたの行動を分析する</h3>
-                <p className="patent_body">日々の行動から、無意識の癖や傾向を読み取ります。短いやり取りからでも、何をしたいかを推定します。</p>
+                <p className="patent_body">日々の行動から、あなたの特性を分析します。短いやり取りからでも、何をしたいかを推定します。</p>
               </div>
               <div className="patent_item">
                 <span className="patent_badge patent_badge--pending">特許出願中</span>
-                <h3 className="patent_title">蓄積された業務を構造化する</h3>
-                <p className="patent_body">蓄積された業務を、事実とルールへ自動で分けます。構造化したまま保持するので、知りたい事がすぐ引き出せて、右腕もそこから組み立てられます。</p>
+                <h3 className="patent_title">蓄積された会話を構造化する</h3>
+                <p className="patent_body">蓄積された会話を、事実とルールへ自動で分けます。構造化したまま保持するので、使うほどあなたの日々の活動に詳しくなっていきます。</p>
               </div>
             </div>
           </div>
