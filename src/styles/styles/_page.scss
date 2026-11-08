@@ -393,7 +393,7 @@ body#service {
           }
 
           // 「定着」= 文中 accent = base と同 サイズ で 底 line 揃 え、 色 のみ gradient で 強調。
-          // (Product 「右腕。」 = 文末 = 72px bump OK / Service 「定着」 = 文中 = size bump 不可)
+          // (Product 「右腕」 = 文末 = 72px bump OK / Service 「定着」 = 文中 = size bump 不可)
           .fv_title_text_accent {
             background: linear-gradient(90deg, #7d75c9 0%, #d876b8 100%);
             -webkit-background-clip: text;

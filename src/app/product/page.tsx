@@ -23,7 +23,7 @@ export default function Product() {
               <h2 className="fv_title">
                 <img src="/img/product/fv_title_label.webp" alt="Kaika（Keep Advancing with Innovative Knowledge Assistance）" className="fv_title_label" />
                 <span className="fv_title_text">
-                  身軽になりたい<br />社長の<span className="fv_title_text_accent">右腕。</span>
+                  身軽になりたい<br />社長の<span className="fv_title_text_accent">右腕</span>
                 </span>
               </h2>
               <div className="fv_explain section_explain">
