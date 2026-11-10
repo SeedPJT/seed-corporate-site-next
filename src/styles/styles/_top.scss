@@ -49,6 +49,9 @@ body#frontpage {
         line-height: calc(79.2 / 36);
         font-weight: 700;
         margin-top: rem(32);
+        //  携帯では 1 行に収まらない。 既定の折り返しは カタカナ の途中
+        //  ( イノベーショ / ン) で切るので、 文節 の <wbr> だけを折れ口にする。
+        word-break: keep-all;
         @include mq(tbsm) {
           font-size: rem(22);
         }

@@ -15,10 +15,10 @@ export default function Home() {
       <section id="fv">
         <div className="fv_inner innerbox_1280">
           <h2 className="fv_title">
-            <div className="fv_title_inner">From Individuality, <br />Innovation Grows<span></span></div>
+            <div className="fv_title_inner">From Diversity, <br />Innovation Grows<span></span></div>
           </h2>
           <h3 className="fv_subtitle">
-            <div className="fv_title_inner">個性からイノベーションが育つ<span></span></div>
+            <div className="fv_title_inner">多様な個性から<wbr />イノベーションが育つ<span></span></div>
           </h3>
           <div className="fv_scroll_icon">
             <img src="/img/common/icon_arrow_black.webp" alt="↓" className="arrow" />
@@ -35,7 +35,7 @@ export default function Home() {
               <span className="ja_title">尖りを活かそう。</span>
             </h2>
             <div className="section_explain">
-              私たちSeedは、多様性こそが個人の力を引き出し、社会を進化させる原動力だと考えています。<br />
+              私たちSeedは、多様な個性こそが個人の力を引き出し、社会を進化させる原動力だと考えています。<br />
               種が芽吹き、花を咲かせ、やがて実を結ぶように、私たちは、多様な価値観が活かされる包摂的な社会を育てるための&quot;種&quot;をまき続けます。<br />
               違いを恐れず、それぞれの&quot;尖り&quot;を力に変え、未来を切り拓こう。
             </div>
