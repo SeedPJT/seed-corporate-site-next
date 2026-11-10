@@ -19,7 +19,7 @@ export default function ServicePage() {
           <div className="fv_text_wrapper innerbox_1280">
             <img src="/img/common/logo_brain.webp" alt="." className="fv_bg" />
             <h2 className="fv_title">
-              <span className="fv_title_text"><span className="fv_title_text_brand">Kaika</span>を、<br />業務に<span className="fv_title_text_accent">定着</span>させる。</span>
+              <span className="fv_title_text"><span className="fv_title_text_brand">Kaika</span>を<br />業務に<span className="fv_title_text_accent">定着</span>させる</span>
             </h2>
             <div className="fv_explain section_explain">
               業務に合わせて、プロダクトそのものを拡張。導入で終わらせない、使うほど育つ経営の右腕を、あなたの業務に定着させます。
