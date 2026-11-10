@@ -15,10 +15,10 @@ export default function Home() {
       <section id="fv">
         <div className="fv_inner innerbox_1280">
           <h2 className="fv_title">
-            <div className="fv_title_inner">From Diversity, <br />Innovation Grows<span></span></div>
+            <div className="fv_title_inner">From Individuality, <br />Innovation Grows<span></span></div>
           </h2>
           <h3 className="fv_subtitle">
-            <div className="fv_title_inner">多様性からイノベーションが育つ<span></span></div>
+            <div className="fv_title_inner">個性からイノベーションが育つ<span></span></div>
           </h3>
           <div className="fv_scroll_icon">
             <img src="/img/common/icon_arrow_black.webp" alt="↓" className="arrow" />
