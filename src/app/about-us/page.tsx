@@ -55,7 +55,7 @@ export default function AboutUs() {
                 <span className="ja_title">誰もが本来の自分の行動に<br className="u_pc" />熱中できる社会を創る</span>
               </h2>
               <div className="section_explain">
-                人生の早くから責任を背負ってきた人、他人のためにエネルギーを注ぎ続けてきた人たち。<span className="main_color bold">本来の自分から離れてしまった人も含めて、私たちは、一人ひとりが本来の自分の行動に熱中できる社会を創ります。</span>
+                日々、人のために動き続ける中で、本来の自分から離れてしまった人が居ます。私たちは、<span className="main_color bold">一人ひとりが本来の自分の行動に熱中できる社会を創ります。</span>
               </div>
             </div>
             {/* @ts-expect-error lottie-player custom element */}
@@ -69,7 +69,7 @@ export default function AboutUs() {
                 <span className="ja_title">散らかった行動を整理し、<br className="u_pc" />価値ある情報に変える</span>
               </h2>
               <div className="section_explain">
-                行動量や思考量が多く、頭の中が散らかっていて自分だけで整理するのが難しい人も含めて、<span className="main_color bold">Kaikaが情報の構造化を担い、人は本質的な判断と行動に集中できるようにします。</span>
+                行動量や思考量が多く、頭の中が散らかっている人を中心に、<span className="main_color bold">Kaikaが情報の構造化を担い、人は本質的な判断と行動に集中できるようにします。</span>
               </div>
             </div>
             {/* @ts-expect-error lottie-player custom element */}
