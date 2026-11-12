@@ -5,7 +5,7 @@ import HanaFlowDiagram from '@/components/HanaFlowDiagram'
 export const metadata: Metadata = {
   // どれが正規かを こちらが言う ( 言わないと Google が自分で選ぶ)
   alternates: { canonical: '/product' },
-  title: 'Kaika 株式会社Seed',
+  title: 'Kaika | 株式会社Seed',
   description: '身軽になりたい社長の右腕。面倒な実務も、事業推進も。',
   // root layout の icons 継承が Next.js 15 の build で稀に skip される (実測: product page で
   // Vercel default favicon 表示) = 各ページで明示的に再指定して継承依存を排除。
