@@ -6,7 +6,9 @@ export const metadata: Metadata = {
   // どれが正規かを こちらが言う ( 言わないと Google が自分で選ぶ)
   alternates: { canonical: '/about-us' },
   title: 'About | 株式会社Seed',
-  description: '株式会社Seedは、誰もが本来の自分の行動に熱中できる社会を目指し、散らかった行動を整理し、価値ある情報に変えるAIプロダクトKaikaを開発・提供しています。',
+  //   Kaika を指す語は 「ワークスペース」 1 つに揃える ( 2026-11-12)。
+  //   同じ物を 「AIプロダクト」 と 「ワークスペース」 の 2 通りで呼んでいた。
+  description: '株式会社Seedは、誰もが本来の自分の行動に熱中できる社会を目指し、散らかった行動を整理し、価値ある情報に変えるワークスペースKaikaを開発・提供しています。',
   icons: { icon: '/img/favicon.webp' },
 }
 
@@ -27,7 +29,10 @@ const COMPANY_DETAILS = [
   { label: '設立', content: '2024年12月6日' },
   { label: '所在地', content: '東京都足立区千住3-6-12 ツオード千住壱番館1001号室' },
   { label: '代表者', content: '井上峻之介' },
-  { label: '事業内容', content: 'AIプロダクト「Kaika」の開発・提供、Kaika実装伴走' },
+  //   名前はそのまま書く ( 2026-11-12)。 同じ 1 行で 「Kaika」 と Kaika が
+  //   混ざっていた。 括弧は 「初めて出す時に目印を付ける」 ための物で、
+  //   会社概要の 事業内容 は何の欄かが先に書いてあるので要らない。
+  { label: '事業内容', content: 'Kaikaの開発・提供、Kaika実装伴走' },
 ]
 
 const MAP_SRC = 'https://www.google.com/maps?q=%E6%9D%B1%E4%BA%AC%E9%83%BD%E8%B6%B3%E7%AB%8B%E5%8C%BA%E5%8D%83%E4%BD%8F3-6+%E3%83%84%E3%82%AA%E3%83%BC%E3%83%89%E5%8D%83%E4%BD%8F%E5%A3%B1%E7%95%AA%E9%A4%A8&hl=ja&z=18&output=embed'
